@@ -2,6 +2,8 @@ package Controleur;
 import java.awt.event.*;
 import Modele.Etat;
 import Vue.Affichage;
+import Vue.AffichageClient;
+import Vue.AffichageCommande;
 
 /* Ma classe Control qui fera le lien entre ma Classe Etat et ma Classe Affichage suite à toute interaction */
 public class Control implements MouseListener{
@@ -9,6 +11,8 @@ public class Control implements MouseListener{
     /* Variables  */
     private Etat etat;                              
     private Affichage affichage;
+    private AffichageCommande affichageCommande;
+    private AffichageClient affichageClient;
     private Repaint repaint;
     
     /* Constructeur */
