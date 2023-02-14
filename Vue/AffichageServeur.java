@@ -1,18 +1,14 @@
 package Vue;
 import java.awt.Dimension;
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
 
 import Modele.Etat;
 import java.awt.* ;
-import java.io.File;
-import java.io.IOException;
-import java.awt.image.BufferedImage;
 
 
 /* Ma classe Affichage qui définira la vue, dans notre cas elle traduire les données de la Classe Etat en affichage pour l'utilisateur  */
-public class AffichageServeur extends JPanel implements observer{
+public class AffichageServeur extends JPanel {
 
     /* Constantes Fenetre*/
     public static final int LARGEUR = 1000;                              	/* Largeur Fenetre */

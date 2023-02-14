@@ -46,24 +46,40 @@ public class AffichageProduits extends JPanel {
 
         /* Affichage Image */
 
+        // On charge les fichiers
         File fileBurger = new File("Vue/burger.png");
         File fileFrittes = new File("Vue/french-fries.png");
         File fileBoisson = new File("Vue/plastic-cup.png");
+        File filePizza = new File("Vue/pizza.png");
+        File fileDessert = new File ("vue/piece-of-cake.png");
+        File fileSushi = new File ("Vue/sushi.png");
 
+        // On aura 6 images pour 6 plats ou produits différents
         BufferedImage imageburger = null;
         BufferedImage imagefrittes = null;
         BufferedImage imageboisson = null;
+        BufferedImage imagepizza = null;
+        BufferedImage imagedessert = null;
+        BufferedImage imagesushi = null;
 
+        // On récupère ces images
         try {
             imageburger = ImageIO.read(fileBurger);
             imageboisson = ImageIO.read(fileBoisson);
             imagefrittes = ImageIO.read(fileFrittes);
+            imagepizza = ImageIO.read(filePizza);
+            imagesushi = ImageIO.read(fileSushi);
+            imagedessert = ImageIO.read(fileDessert);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
-        g.drawImage(imageburger, 100, 25, 75, 75,this);
-        g.drawImage(imagefrittes, 250, 25, 75, 75,this);
-        g.drawImage(imageboisson, 400, 25, 75, 75,this);
+        // On affiche les images
+        g.drawImage(imageburger, 80, 50, 75, 75,this);
+        g.drawImage(imagefrittes, 230, 50, 75, 75,this);
+        g.drawImage(imagepizza, 380,50,75,75,this);
+        g.drawImage(imagesushi, 530,50,75,75,this);
+        g.drawImage(imageboisson, 680, 50, 75, 75,this);
+        g.drawImage(imagedessert, 830,50,75,75,this);
     }
 }
