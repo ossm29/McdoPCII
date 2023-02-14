@@ -2,6 +2,7 @@ package Vue;
 
 import Modele.Etat;
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 
 public class AffichageClient extends JPanel {
@@ -22,7 +23,9 @@ public class AffichageClient extends JPanel {
     /* Affichage */
     @Override
     public void paint(Graphics g) {
-        this.setBackground(Color.gray);
+        Border blackline = BorderFactory.createLineBorder(Color.black,1);
+        this.setBorder(blackline);
+        this.setBackground((new Color(255, 193, 59)));
         super.paint(g);                                                     /* Effacer les précédents "dessin" */
     }
 

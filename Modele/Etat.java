@@ -1,5 +1,5 @@
 package Modele;
-import Vue.Affichage;
+import Vue.AffichageServeur;
 
 /* Ensemble des données qui caractériseront l'état de mon interface */
 public class Etat {

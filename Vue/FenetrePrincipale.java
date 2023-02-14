@@ -4,16 +4,18 @@ import javax.swing.*;
 import Modele.Etat;
 
 import java.awt.*;
+import java.io.IOException;
 
 public class FenetrePrincipale extends JFrame{
 	
-	public static Affichage FP (Etat etat){
+	public static AffichagePrincipale FP (Etat etat) throws IOException {
 
         /* Différentes zones d'affichages */
-		Affichage affichage = new Affichage(etat);
+
+		AffichageServeur affichageServeur = new AffichageServeur(etat);
         AffichageClient affichageClient = new AffichageClient(etat);
+        AffichageProduits affichageProduits = new AffichageProduits(etat);
         AffichageCommande affichageCommande = new AffichageCommande(etat);
-        AfffichageProduits afffichageProduits = new AfffichageProduits(etat);
 
         /* Declaration de notre Jframe */
 		JFrame fenetre = new JFrame("McDo Game");
@@ -22,22 +24,19 @@ public class FenetrePrincipale extends JFrame{
         /* Organisation des zones d'affichage */
 
         // partie gauche
-        JPanel jPanelGauche = new JPanel();
-        jPanelGauche.setPreferredSize(new Dimension(1000,800));
-        jPanelGauche.add(affichage, BorderLayout.NORTH);
-        jPanelGauche.add(afffichageProduits, BorderLayout.SOUTH);
-        fenetre.add(jPanelGauche, BorderLayout.WEST);
+        AffichageGauche affichageGauche = new AffichageGauche(affichageServeur, affichageProduits);
 
         // partie droite
-        JPanel jpanelDroite = new JPanel();
-        jpanelDroite.setPreferredSize(new Dimension(400,800));
-        jpanelDroite.add(affichageClient, BorderLayout.NORTH);
-        jpanelDroite.add(affichageCommande, BorderLayout.SOUTH);
-        fenetre.add(jpanelDroite, BorderLayout.EAST);
+        AffichageDroite affichageDroite = new AffichageDroite(affichageClient, affichageCommande);
+
+        // partie principale
+        AffichagePrincipale affichagePrincipale = new AffichagePrincipale(affichageGauche,affichageDroite);
+
+        fenetre.add(affichagePrincipale);
 
         // Fin
         fenetre.pack();
         fenetre.setVisible(true);
-        return affichage;
+        return affichagePrincipale;
 	}
 }

@@ -1,37 +1,32 @@
 package Controleur;
 import java.awt.event.*;
 import Modele.Etat;
-import Vue.AfffichageProduits;
-import Vue.Affichage;
-import Vue.AffichageClient;
-import Vue.AffichageCommande;
+import Vue.*;
 
 /* Ma classe Control qui fera le lien entre ma Classe Etat et ma Classe Affichage suite à toute interaction */
 public class Control implements MouseListener{
 
     /* Variables  utiles au modèle MVC */
     private Etat etat;                              
-    private Affichage affichage;
-    private AffichageCommande affichageCommande;
-    private AffichageClient affichageClient;
-    private AfffichageProduits afffichageProduits;
+    private AffichagePrincipale affichagePrincipale;
 
     /* Threads */
     private Repaint repaint;
     
     /* Constructeur */
-    public Control(Etat etat, Affichage affichage) {
+    public Control(Etat etat, AffichagePrincipale affichagePrincipale) {
 
         this.setEtat(etat);
-        this.affichage = affichage;
+        this.affichagePrincipale = affichagePrincipale;
+
         
         /* On initialise nos threads */
-        this.repaint = new Repaint(this.affichage);
+        //this.repaint = new Repaint(this.affichagePrincipale);
         
         /*On lance les threads */
-        this.repaint.start();
+        //this.repaint.start();
         
-        this.affichage.addMouseListener(this);
+        this.affichagePrincipale.addMouseListener(this);
     }
 
     /* Ce qui se passe quand je presse et relache (entre autre clique) sur les boutons de ma souris  */

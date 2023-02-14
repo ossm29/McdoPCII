@@ -4,6 +4,8 @@ import Modele.Etat;
 
 import javax.swing.*;
 import java.awt.*;
+import javax.swing.BorderFactory;
+import javax.swing.border.Border;
 
 public class AffichageCommande extends JPanel {
     public static final int LARGEUR = 400;                              	/* Largeur Fenetre */
@@ -21,7 +23,9 @@ public class AffichageCommande extends JPanel {
     /* Affichage */
     @Override
     public void paint(Graphics g) {
-        this.setBackground(Color.BLUE);
+        Border blackline = BorderFactory.createLineBorder(Color.black,1);
+        this.setBorder(blackline);
+        this.setBackground((new Color(31, 62, 89)));
         super.paint(g);                                                     /* Effacer les précédents "dessin" */
     }
 
