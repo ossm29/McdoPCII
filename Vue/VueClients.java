@@ -10,17 +10,15 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class VueClients extends Thread{
+public class VueClients {
 
     /* Attributs */
     ArrayList<Client>listeClients;
-    AffichageClient affichageClient;
 
     /* Constructeur */
     public VueClients(AffichageClient affichageClient){
 
         /* On initialise l'affichage et la liste des clients vide */
-        this.setAffichageClient(affichageClient);
         this.listeClients = new ArrayList<Client>();
         this.addClient(new Client(0));
         for (Client client : listeClients) {
@@ -32,14 +30,7 @@ public class VueClients extends Thread{
     public ArrayList<Client>getListeClients(){
         return this.listeClients;
     }
-    public AffichageClient getAffichageClient(){
-        return this.affichageClient;
-    }
 
-    /* Setters */
-    public void setAffichageClient(AffichageClient affichageClient){
-        this.affichageClient = affichageClient;
-    }
     public void setListeClients(){
         this.listeClients = new ArrayList<Client>();
     }

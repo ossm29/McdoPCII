@@ -4,6 +4,8 @@ import javax.swing.*;
 import javax.swing.border.Border;
 
 import Modele.Etat;
+import Vue.VueServeur;
+
 import java.awt.* ;
 
 
@@ -16,11 +18,17 @@ public class AffichageServeur extends JPanel {
     
     /* Variables */
     private Etat etat;                                                  	/* Variable Etat que notre classe retranscrira en affichage */
+    private VueServeur vueServeur;
 
     /* Constructeurs */
     public AffichageServeur(Etat etat){
+        /* On définit les dimensions de notre JPanel */
+        setPreferredSize(new Dimension(LARGEUR,HAUTEUR));
+
+        /* Les attributs */
         this.setEtat(etat);
-        setPreferredSize(new Dimension(LARGEUR,HAUTEUR));               	/* On définit les dimensions de notre JPanel */
+        this.vueServeur = new VueServeur();
+
     }
     
     /*Getter Etat*/
@@ -43,7 +51,7 @@ public class AffichageServeur extends JPanel {
         Border blackline = BorderFactory.createLineBorder(Color.black,1);
         this.setBorder(blackline);
 
-
-
+        /* Affichage Serveur */
+        this.vueServeur.dessiner(g);
     }
 }
