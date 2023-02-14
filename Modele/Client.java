@@ -8,8 +8,8 @@ public class Client extends Thread{
 
     /* Attributs */
     private int identifiant;            /* Identifiant du Client */
-    private int timer;                  /* Le temps qu'il reste avant que le patient ne décide de s'en aller */
-    private int anger;                  /* L'indicateur de colère du Client */
+    private double timer;                  /* Le temps qu'il reste avant que le patient ne décide de s'en aller */
+    private double anger;                  /* L'indicateur de colère du Client */
 
     private String produit;             /* Produit désiré par le client */
 
@@ -32,10 +32,10 @@ public class Client extends Thread{
     public int getIdentifiant(){
         return this.identifiant;
     }
-    public int getTimer(){
+    public double getTimer(){
         return this.timer;
     }
-    public int getAnger(){
+    public double getAnger(){
         return this.anger;
     }
     public String getProduit(){
@@ -69,26 +69,28 @@ public class Client extends Thread{
     }
 
 
-    /* Méthode updateAnger qui met à jour l'état de colère du client */
+    /* Méthode updateAnger qui met à jour la colère du client */
     public void updateAnger(){
-        this.anger++;
+        this.anger = this.anger - 0.2;
     }
 
     /*Méthode updateTimer qui met à jour le temps restant avant le départ du client */
-    public void updateTimer(){
-        this.timer--;
-    }
+    public void updateTimer(){ this.timer = this.timer - 0.2;}
+
+    /* Méthode updateEtat qui met à jour l'état du client */
+    public void updateEtat() { this.etat = this.etat+1; }
 
     @Override
     public void run() {
         /*Tant que timer du client n'est pas fini */
-        while(this.timer>0) {
+        while(true) {   // while(this.timer>0) au future
             try {
                 /* Attendre 1s */
-                Thread.sleep(1000);
+                Thread.sleep(200);
                 /* Mettre a jour la colère et le timer */
                 this.updateAnger();
                 this.updateTimer();
+                this.updateEtat();
             }
             catch (Exception e) { e.printStackTrace(); }
         }

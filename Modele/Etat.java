@@ -1,12 +1,14 @@
 package Modele;
-import Vue.AffichageServeur;
+import Vue.VueClients;
 
 /* Ensemble des données qui caractériseront l'état de mon interface */
 public class Etat {
 
     /* Attributs */
-    int score;
-    int client_insatisfait;
+    private int score;
+    private int client_insatisfait;
+
+    private VueClients listeClients;
     
     /* Constructeur */
     public Etat(){
