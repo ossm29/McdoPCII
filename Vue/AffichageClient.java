@@ -22,6 +22,7 @@ public class AffichageClient extends JPanel {
     /* Variables */
     private Etat etat;                                                  	/* Variable Etat que notre classe retranscrira en affichage */
     private miniAffichageClient miniAffichageClient;
+    private AffichageBarreDeProgression jauge;
 
     /* Constructeurs */
     public AffichageClient(Etat etat){
@@ -50,30 +51,16 @@ public class AffichageClient extends JPanel {
         boutongauche.addMouseListener(new ControlClientClicGauche(this.etat, this.miniAffichageClient));
         boutondroit.addMouseListener((new ControlClientClicDroit(this.etat, this.miniAffichageClient)));
 
-        /* Jpanel du haut pour afficher la colère et une jauge de temps - a faire plus tard dans une classe a part- */
-        JPanel nord = new JPanel();
-        nord.setPreferredSize(new Dimension(380, 40));
-        nord.setBackground(Color.white);
+        /* Barre de progression */
+        this.jauge = new AffichageBarreDeProgression();
 
         /* On organise nos sections */
-        this.add(nord, BorderLayout.NORTH);
+        this.add(jauge, BorderLayout.NORTH);
         this.add(boutongauche, BorderLayout.WEST);
         this.add(miniAffichageClient, BorderLayout.CENTER);
         this.add(boutondroit, BorderLayout.EAST);
 
-
     }
-
-    /* Affichage */
-    @Override
-    public void paint(Graphics g) {
-        super.paint(g);
-        Border blackline = BorderFactory.createLineBorder(Color.black,1);
-        this.setBorder(blackline);
-        this.setBackground((new Color(255, 193, 59)));
-        //g.fillRect(25,25,350,300);*/
-    }
-
 
     /*Getter Etat*/
     public Etat getEtat() {
@@ -84,5 +71,20 @@ public class AffichageClient extends JPanel {
     public void setEtat(Etat etat) {
         this.etat = etat;
     }
+    /* Affichage */
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g);
+        Border blackline = BorderFactory.createLineBorder(Color.black,1);
+        this.setBorder(blackline);
+        this.setBackground((new Color(255, 193, 59)));
+        //g.fillRect(25,25,350,300);*/
+        this.updateProgressBar();
+    }
+
+    public void updateProgressBar(){
+        this.jauge.setValue((int) this.etat.getClients().getListeClients().get(this.etat.getClient_en_cours()).getTimer());
+    }
+
 
 }

@@ -54,9 +54,10 @@ public class Client extends Thread{
         this.identifiant = id;
     }
     public void setTimer(){
-        //Le timer sera compris entre 15 et 30
+        //Le timer sera compris entre 20 et 35
+        //Le timer sera compris entre 20 et 35
         Random random = new Random();
-        this.timer = 15+random.nextInt(15);
+        this.timer = 20+random.nextInt(15);
     }
     public void setProduit(){
         // La liste de notre menu
@@ -85,7 +86,7 @@ public class Client extends Thread{
         /*Tant que timer du client n'est pas fini */
         while(true) {   // while(this.timer>0) au future
             try {
-                /* Attendre 1s */
+                /* Attendre 200ms */
                 Thread.sleep(200);
                 /* Mettre a jour la colère et le timer */
                 this.updateAnger();
