@@ -83,6 +83,8 @@ public class AffichageClient extends JPanel {
         this.setBackground((new Color(255, 193, 59)));
         // Mettre a jour la barre de progression
         this.updateProgressBar();
+        System.out.println("joueurencours"+this.etat.getClient_en_cours());
+        System.out.println("joueursuivant"+(this.etat.getClient_en_cours()+1));
     }
 
     public void updateProgressBar() {

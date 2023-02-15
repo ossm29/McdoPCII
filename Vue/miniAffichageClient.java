@@ -32,7 +32,7 @@ public class miniAffichageClient extends JPanel {
         this.setBorder(blackline);
         try {
             if (this.etat.fileVide() == false) {
-                boolean b = this.etat.gameOver(); this.etat.getClients().dessiner(g);
+                this.etat.getClients().dessiner(g);
             }
         } catch (Exception e) {
             throw new RuntimeException(e);

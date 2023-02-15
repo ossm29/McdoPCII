@@ -14,6 +14,7 @@ public class Etat {
     private int client_en_cours;                /* index ( et NON PAS ID )  du client
                                                 qui se fait traiter sa commande actuellement */
     private GenereClient genereClient;
+    private SupprimeClient supprimeCLient;
 
 
 
@@ -27,9 +28,15 @@ public class Etat {
 
         /* Threads */
         this.genereClient = new GenereClient(this);
+        this.supprimeCLient = new SupprimeClient(this);
 
         /* Lancement des threads */
         this.genereClient.start();
+        this.supprimeCLient.start();
+
+        // TODO ne marche pas IndexOutOfBoundsException : index n out of bounds for length 3
+        // this.supprimeCLient = new SupprimeClient(this);
+        // this.supprimeCLient.start();
 
     }
 

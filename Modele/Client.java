@@ -10,13 +10,9 @@ public class Client extends Thread{
     private int identifiant;            /* Identifiant du Client */
     private double timer;                  /* Le temps qu'il reste avant que le patient ne décide de s'en aller */
     private double anger;                  /* L'indicateur de colère du Client compris entre 0 et 2 inclu*/
-
-    private String produit;             /* Produit désiré par le client */
-
     private boolean traitementcommande; /* La valeur traitementCommande indique si la commande a été traité ou pas */
-
     private int etat;                   /* L'état du client - utile pour l'affichage comme les oiseaux dans flappy-*/
-
+    private Commande commande;
 
     /* Constructeur */
     public Client(){
@@ -24,7 +20,7 @@ public class Client extends Thread{
         this.setAnger();
         this.setIdentifiant();
         this.setTimer();
-        this.setProduit();
+        this.setCommande();
         this.start();
     }
 
@@ -39,8 +35,8 @@ public class Client extends Thread{
     public double getAnger(){
         return this.anger;
     }
-    public String getProduit(){
-        return this.produit;
+    public Commande getCommande(){
+        return this.commande;
     }
     public boolean getTraitementCommande(){
         return this.traitementcommande;
@@ -55,30 +51,25 @@ public class Client extends Thread{
         Random random = new Random();
         this.anger = random.nextInt(3);
     }
+
     public void setTraitementcommande(){
         this.traitementcommande = false;
     }
-    public void setIdentifiant(){
 
+    public void setIdentifiant(){
         Random random = new Random();
         this.identifiant = random.nextInt(2);
     }
+
     public void setTimer(){
         //Le timer sera compris entre 25 et 35
         Random random = new Random();
-        this.timer =10 +random.nextInt(10);
-    }
-    public void setProduit(){
-        // La liste de notre menu
-        ArrayList<String>menu = new ArrayList<>(Arrays.asList("plat0", "plat1", "plat2", "plat3", "plat4"));
-        // Le client choisira un des 5 produits du menu -pour l'instant un produit-
-        Random random = new Random();
-        // Le choix sera aléatoire pour essayer de varier les demandes des clients grace a un int compris entre 0 et 5
-        int produitChoisi = random.nextInt(5);
-        this.produit = menu.get(produitChoisi);
+        this.timer =25 +random.nextInt(10);
     }
 
-
+    public void setCommande(){
+        this.commande = new Commande();
+    }
     /* Méthode updateAnger qui met à jour la colère du client */
     public void updateAnger(){
         this.anger = this.anger - 0.2;
