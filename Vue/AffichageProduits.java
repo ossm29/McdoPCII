@@ -11,8 +11,8 @@ import java.io.File;
 import java.io.IOException;
 
 public class AffichageProduits extends JPanel {
-    public static final int LARGEUR = 1000;                              	/* Largeur Fenetre */
-    public static final int HAUTEUR = 200;                              	/* Hauteur Fenetre */
+    public static final int LARGEUR = (int) (0.7*Etat.WIDTH);                              	/* Largeur Fenetre */
+    public static final int HAUTEUR = (int) (0.25*Etat.HEIGHT);                              	/* Hauteur Fenetre */
 
     /* Variables */
     private Etat etat;                                                  	/* Variable Etat que notre classe retranscrira en affichage */
@@ -46,16 +46,16 @@ public class AffichageProduits extends JPanel {
         /* Affichage Image */
 
         // On charge les fichiers
-        File fileBurger = new File("Vue/burger.png");
-        File fileFrittes = new File("Vue/french-fries.png");
-        File fileBoisson = new File("Vue/plastic-cup.png");
-        File filePizza = new File("Vue/pizza.png");
-        File fileDessert = new File ("Vue/piece-of-cake.png");
-        File fileSushi = new File ("Vue/sushi.png");
+        File fileBurger = new File("ressources/burger.png");
+        File fileFrittes = new File("ressources/french-fries.png");
+        File fileBoisson = new File("ressources/plastic-cup.png");
+        File filePizza = new File("ressources/pizza.png");
+        File fileDessert = new File ("ressources/piece-of-cake.png");
+        File fileSushi = new File ("ressources/sushi.png");
 
         // On aura 6 images pour 6 plats ou produits différents
         BufferedImage imageburger = null;
-        BufferedImage imagefrittes = null;
+        BufferedImage imagefrites = null;
         BufferedImage imageboisson = null;
         BufferedImage imagepizza = null;
         BufferedImage imagedessert = null;
@@ -65,20 +65,33 @@ public class AffichageProduits extends JPanel {
         try {
             imageburger = ImageIO.read(fileBurger);
             imageboisson = ImageIO.read(fileBoisson);
-            imagefrittes = ImageIO.read(fileFrittes);
+            imagefrites = ImageIO.read(fileFrittes);
             imagepizza = ImageIO.read(filePizza);
             imagesushi = ImageIO.read(fileSushi);
             imagedessert = ImageIO.read(fileDessert);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        /** TODO OUSSAMA AFFICHAGE QTES **/
 
         // On affiche les images
         g.drawImage(imageburger, 80, 50, 75, 75,this);
-        g.drawImage(imagefrittes, 230, 50, 75, 75,this);
+        g.fillOval(85,120,60,60);
+
+        g.drawImage(imagefrites, 230, 50, 75, 75,this);
+        g.fillOval(235,120,60,60);
+
         g.drawImage(imagepizza, 380,50,75,75,this);
+        g.fillOval(385,120,60,60);
+
         g.drawImage(imagesushi, 530,50,75,75,this);
+        g.fillOval(535,120,60,60);
+
         g.drawImage(imageboisson, 680, 50, 75, 75,this);
+        g.fillOval(685,120,60,60);
+
         g.drawImage(imagedessert, 830,50,75,75,this);
+        g.fillOval(835,120,60,60);
+
     }
 }

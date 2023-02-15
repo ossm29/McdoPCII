@@ -1,21 +1,19 @@
 package Vue;
 
-import javax.imageio.ImageIO;
+import Modele.Etat;
+
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
-import java.util.jar.JarEntry;
 
-public class AffichagePrincipale extends JPanel {
+public class AffichagePrincipal extends JPanel {
 
     private AffichageGauche affichageGauche;
     private AffichageDroite affichageDroite;
 
-    public AffichagePrincipale(AffichageGauche affichageGauche, AffichageDroite affichageDroite){
+    public AffichagePrincipal(AffichageGauche affichageGauche, AffichageDroite affichageDroite){
         this.affichageGauche = affichageGauche;
         this.affichageDroite = affichageDroite;
-        this.setPreferredSize(new Dimension(1420, 800));
+        this.setPreferredSize(new Dimension(Modele.Etat.WIDTH, Etat.HEIGHT));
         this.add(this.affichageGauche, BorderLayout.EAST);
         this.add(this.affichageDroite, BorderLayout.WEST);
     }

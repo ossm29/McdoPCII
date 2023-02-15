@@ -27,11 +27,11 @@ public class miniAffichageClient extends JPanel {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        this.setBackground(Color.white);
+        this.setBackground(Color.yellow);
         Border blackline = BorderFactory.createLineBorder(Color.black,1);
         this.setBorder(blackline);
         try {
-            if (this.etat.fileVide() == false) {
+            if (!this.etat.fileVide()) {
                 this.etat.getClients().dessiner(g);
             }
         } catch (Exception e) {

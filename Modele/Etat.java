@@ -16,6 +16,11 @@ public class Etat {
     private GenereClient genereClient;
     private SupprimeClient supprimeCLient;
 
+    /*dimensions de la fenêtre ; les dimesnsions des autres affichages sont proportionnelles*/
+    public static final int WIDTH = 1420;
+    public static final int HEIGHT = 800;
+
+
 
 
     /* Thread */

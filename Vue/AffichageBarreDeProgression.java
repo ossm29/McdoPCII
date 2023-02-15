@@ -12,6 +12,8 @@ public class AffichageBarreDeProgression extends JProgressBar {
         this.setMinimum(0);
         this.setMaximum(35);
         this.setStringPainted(true);
+        //texte sur la barre
+        this.setString("PATIENCE");
 
     }
 }

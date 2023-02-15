@@ -3,12 +3,11 @@ import javax.swing.*;
 
 import Modele.Etat;
 
-import java.awt.*;
 import java.io.IOException;
 
 public class FenetrePrincipale extends JFrame{
 	
-	public static AffichagePrincipale FP (Etat etat) throws IOException {
+	public static AffichagePrincipal FP (Etat etat) throws IOException {
 
         /* Différentes zones d'affichages */
 
@@ -30,13 +29,13 @@ public class FenetrePrincipale extends JFrame{
         AffichageDroite affichageDroite = new AffichageDroite(affichageClient, affichageCommande);
 
         // partie principale
-        AffichagePrincipale affichagePrincipale = new AffichagePrincipale(affichageGauche,affichageDroite);
+        AffichagePrincipal affichagePrincipal = new AffichagePrincipal(affichageGauche,affichageDroite);
 
-        fenetre.add(affichagePrincipale);
+        fenetre.add(affichagePrincipal);
 
         // Fin
         fenetre.pack();
         fenetre.setVisible(true);
-        return affichagePrincipale;
+        return affichagePrincipal;
 	}
 }

@@ -12,8 +12,8 @@ import javax.swing.BorderFactory;
 import javax.swing.border.Border;
 
 public class AffichageCommande extends JPanel {
-    public static final int LARGEUR = 400;                              	/* Largeur Fenetre */
-    public static final int HAUTEUR = 450;                              	/* Hauteur Fenetre */
+    public static final int LARGEUR = (int) (0.3* Etat.WIDTH);       	/* Largeur Fenetre */
+    public static final int HAUTEUR = (int) (0.55*Etat.HEIGHT);       	/* Hauteur Fenetre */
 
     /* Variables */
     private Etat etat;                                                  	/* Variable Etat que notre classe retranscrira en affichage */
@@ -35,7 +35,7 @@ public class AffichageCommande extends JPanel {
 
         this.paintBurger(g);
         this.paintPizza(g);
-        this.paintFrittes(g);
+        this.paintFrites(g);
         this.paintSushi(g);
         this.paintBoisson(g);
         this.paintDessert(g);
@@ -56,7 +56,7 @@ public class AffichageCommande extends JPanel {
         /* Affichage Image */
 
         // On charge les fichiers
-        File fileBurger = new File("Vue/burger.png");
+        File fileBurger = new File("ressources/burger.png");
 
         // On aura 1 images pour le produit
         BufferedImage imageburger = null;
@@ -77,7 +77,7 @@ public class AffichageCommande extends JPanel {
         /* Affichage Image */
 
         // On charge les fichiers
-        File filePizza = new File("Vue/pizza.png");
+        File filePizza = new File("ressources/pizza.png");
 
         // On aura 1 images pour le produit
         BufferedImage imagepizza = null;
@@ -95,11 +95,11 @@ public class AffichageCommande extends JPanel {
 
     // Paint Frittes
 
-    public void paintFrittes(Graphics g){
+    public void paintFrites(Graphics g){
         /* Affichage Image */
 
         // On charge les fichiers
-        File file = new File("Vue/french-fries.png");
+        File file = new File("ressources/french-fries.png");
 
         // On aura 1 images pour le produit
         BufferedImage image = null;
@@ -119,7 +119,7 @@ public class AffichageCommande extends JPanel {
         /* Affichage Image */
 
         // On charge les fichiers
-        File file = new File("Vue/sushi.png");
+        File file = new File("ressources/sushi.png");
 
         // On aura 1 images pour le produit
         BufferedImage image = null;
@@ -139,7 +139,7 @@ public class AffichageCommande extends JPanel {
         /* Affichage Image */
 
         // On charge les fichiers
-        File file = new File("Vue/plastic-cup.png");
+        File file = new File("ressources/plastic-cup.png");
 
         // On aura 1 images pour le produit
         BufferedImage image = null;
@@ -159,7 +159,7 @@ public class AffichageCommande extends JPanel {
         /* Affichage Image */
 
         // On charge les fichiers
-        File file = new File("Vue/piece-of-cake.png");
+        File file = new File("ressources/piece-of-cake.png");
 
         // On aura 1 images pour le produit
         BufferedImage image = null;

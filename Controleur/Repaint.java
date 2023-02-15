@@ -1,16 +1,14 @@
 package Controleur;
-import Vue.AffichagePrincipale;
-import Vue.AffichageProduits;
-import Vue.AffichagePrincipale;
+import Vue.AffichagePrincipal;
 
 public class Repaint extends Thread{
 
 	/* Attributs */
-	AffichagePrincipale affichagePrincipale;
+	AffichagePrincipal affichagePrincipal;
 	
   /* Constructeur  */
-	public Repaint(AffichagePrincipale affichagePrincipale) {
-        this.affichagePrincipale = affichagePrincipale;
+	public Repaint(AffichagePrincipal affichagePrincipal) {
+        this.affichagePrincipal = affichagePrincipal;
 	}
 	
   /* Ma méthode run grace à laquelle je redessine mon vue à chaque fois */
@@ -20,8 +18,8 @@ public class Repaint extends Thread{
         try {
             Thread.sleep(50);
             System.out.println("Dessin fait");
-            this.affichagePrincipale.repaint();
-            this.affichagePrincipale.revalidate();
+            this.affichagePrincipal.repaint();
+            this.affichagePrincipal.revalidate();
         }  /* Je redessine à chaque fois  */
         catch (Exception e) { e.printStackTrace(); }
       }

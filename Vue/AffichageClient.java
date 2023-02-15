@@ -8,6 +8,8 @@ import Modele.Etat;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.plaf.basic.BasicProgressBarUI;
+import javax.swing.plaf.synth.SynthProgressBarUI;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -16,8 +18,8 @@ import java.io.IOException;
 public class AffichageClient extends JPanel {
 
     /* Constantes Fenetre*/
-    public static final int LARGEUR = 400;                              	/* Largeur Fenetre */
-    public static final int HAUTEUR = 350;                              	/* Hauteur Fenetre */
+    public static final int LARGEUR = (int) (0.3* Etat.WIDTH);                              	/* Largeur Fenetre */
+    public static final int HAUTEUR = (int) (0.45*Etat.HEIGHT);                              	/* Hauteur Fenetre */
 
     /* Variables */
     private Etat etat;                                                  	/* Variable Etat que notre classe retranscrira en affichage */
@@ -36,8 +38,8 @@ public class AffichageClient extends JPanel {
         JButton boutongauche = new JButton("<");
         JButton boutondroit = new JButton(">");
         /* Dimensions Boutons */
-        boutongauche.setPreferredSize(new Dimension(40, 290));
-        boutondroit.setPreferredSize(new Dimension(40,290));
+        boutongauche.setPreferredSize(new Dimension(40, 230));
+        boutondroit.setPreferredSize(new Dimension(40,230));
         /* Decoration boutons */
         Font police = boutongauche.getFont(); // récupère la police actuelle
         Font nouvellePolice = new Font(police.getName(), police.getStyle(), police.getSize()-2);
@@ -60,6 +62,7 @@ public class AffichageClient extends JPanel {
         this.add(miniAffichageClient, BorderLayout.CENTER);
         this.add(boutondroit, BorderLayout.EAST);
 
+
     }
 
     /*Getter Etat*/
@@ -80,7 +83,7 @@ public class AffichageClient extends JPanel {
         Border blackline = BorderFactory.createLineBorder(Color.black,1);
         this.setBorder(blackline);
         // Arrière plan
-        this.setBackground((new Color(255, 193, 59)));
+        this.setBackground(Color.yellow);
         // Mettre a jour la barre de progression
         this.updateProgressBar();
         System.out.println("joueurencours"+this.etat.getClient_en_cours());
@@ -88,8 +91,11 @@ public class AffichageClient extends JPanel {
     }
 
     public void updateProgressBar() {
+        //écris le numéro du client sur la barre
+        //this.jauge.setFont();
+        this.jauge.setString("CLIENT N°"+this.etat.getClient_en_cours());
         // La valeur de la barre de progression reflètera le timer du client
-        if (this.etat.fileVide() == false) {
+        if (!this.etat.fileVide()) {
             this.jauge.setValue((int) this.etat.getClients().getListeClients().get(this.etat.getClient_en_cours()).getTimer());
             // Si il timer est supèrieur à 25 secondes
             if (this.jauge.getValue() > 25) {

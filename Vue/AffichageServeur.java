@@ -13,8 +13,8 @@ import java.awt.* ;
 public class AffichageServeur extends JPanel {
 
     /* Constantes Fenetre*/
-    public static final int LARGEUR = 1000;                              	/* Largeur Fenetre */
-    public static final int HAUTEUR = 600;                              	/* Hauteur Fenetre */
+    public static final int LARGEUR = (int) (0.7*Etat.WIDTH);                              	/* Largeur Fenetre */
+    public static final int HAUTEUR = (int) (0.75*Etat.HEIGHT);                              	/* Hauteur Fenetre */
     
     /* Variables */
     private Etat etat;                                                  	/* Variable Etat que notre classe retranscrira en affichage */
@@ -48,7 +48,7 @@ public class AffichageServeur extends JPanel {
         super.paint(g);
 
         /* Arrière Plan et Bordures */
-        setBackground((new Color(255, 110, 65)));
+        setBackground((new Color(48, 78, 56)));
         Border blackline = BorderFactory.createLineBorder(Color.black,1);
         this.setBorder(blackline);
 

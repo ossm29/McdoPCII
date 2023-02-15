@@ -11,11 +11,11 @@ import java.util.ArrayList;
 
 public class Clients {
 
-    /* Attributs */
+    /** Attributs **/
     ArrayList<Client>listeClients;
     miniAffichageClient miniAffichageClient;
 
-    /* Constructeur */
+    /** Constructeur **/
     public Clients(miniAffichageClient miniAffichageClient){
 
         this.miniAffichageClient = miniAffichageClient;
@@ -31,7 +31,7 @@ public class Clients {
         }*/
     }
 
-    /* Getters */
+    /** Getters **/
     public ArrayList<Client>getListeClients(){
         return this.listeClients;
     }
@@ -43,7 +43,7 @@ public class Clients {
         this.listeClients = new ArrayList<Client>();
     }
 
-    /* Méthode */
+    /** METHODES **/
 
     /* Méthode addClient qui rajoute le client a notre liste de client */
     public void addClient(Client client){
@@ -58,7 +58,7 @@ public class Clients {
 
     public void dessiner(Graphics g) throws IOException {
             /* Si la file n'est pas vide */
-            if (this.miniAffichageClient.getEtat().fileVide() == false) {
+            if (!this.miniAffichageClient.getEtat().fileVide()) {
 
                 // On définit le client à afficher
                 Client client = this.miniAffichageClient.getEtat().getClients().getListeClients().get(this.miniAffichageClient.getEtat().getClient_en_cours());
@@ -71,7 +71,7 @@ public class Clients {
                 /* Affichage ecurueil */
                 if (client.getIdentifiant() == 0) {
                     // On choisit l'image selon l'état du client
-                    String path_name = "Vue/client" + (client.getEtat() % 12 + 1) + ".png";
+                    String path_name = "ressources/client" + (client.getEtat() % 12 + 1) + ".png";
                     File fileClient = new File(path_name);
                     // On aura 12 images pour 12 états différents
                     BufferedImage imageclient = null;
@@ -87,7 +87,7 @@ public class Clients {
                 // Affichage angrybird
                 else {
                     // On choisit l'image selon l'état du client
-                    String path_name = "Vue/angrybirds" + (client.getEtat() % 12 + 1) + ".png";
+                    String path_name = "ressources/angrybirds" + (client.getEtat() % 12 + 1) + ".png";
                     File fileClient = new File(path_name);
                     // On aura 12 images pour 12 états différents
                     BufferedImage imageclient = null;

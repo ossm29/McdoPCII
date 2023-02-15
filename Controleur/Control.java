@@ -8,25 +8,25 @@ public class Control implements MouseListener{
 
     /* Variables  utiles au modèle MVC */
     private Etat etat;                              
-    private AffichagePrincipale affichagePrincipale;
+    private AffichagePrincipal affichagePrincipal;
 
     /* Threads */
     private Repaint repaint;
     
     /* Constructeur */
-    public Control(Etat etat, AffichagePrincipale affichagePrincipale) {
+    public Control(Etat etat, AffichagePrincipal affichagePrincipal) {
 
         this.setEtat(etat);
-        this.affichagePrincipale = affichagePrincipale;
+        this.affichagePrincipal = affichagePrincipal;
 
         
         /* On initialise nos threads */
-        //this.repaint = new Repaint(this.affichagePrincipale);
+        //this.repaint = new Repaint(this.affichagePrincipal);
         
         /*On lance les threads */
         //this.repaint.start();
         
-        this.affichagePrincipale.addMouseListener(this);
+        this.affichagePrincipal.addMouseListener(this);
     }
 
     /* Ce qui se passe quand je presse et relache (entre autre clique) sur les boutons de ma souris  */
