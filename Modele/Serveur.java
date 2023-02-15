@@ -30,7 +30,7 @@ public class Serveur extends Thread{
         /*Tant que true */
         while(true) {
             try {
-                /* Attendre 200ms */
+                /* Attendre 150ms */
                 Thread.sleep(100);
                 /* Mettre a jour l'état du serveur*/
                 this.updateEtatServeur();

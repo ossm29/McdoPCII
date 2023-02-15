@@ -1,5 +1,8 @@
 package Vue;
 
+import Controleur.Control;
+import Controleur.ControlClientClicDroit;
+import Controleur.ControlClientClicGauche;
 import Modele.Etat;
 
 import javax.imageio.ImageIO;
@@ -18,14 +21,46 @@ public class AffichageClient extends JPanel {
 
     /* Variables */
     private Etat etat;                                                  	/* Variable Etat que notre classe retranscrira en affichage */
-    private VueClients vueClients;
+    private miniAffichageClient miniAffichageClient;
 
     /* Constructeurs */
     public AffichageClient(Etat etat){
         setPreferredSize(new Dimension(LARGEUR,HAUTEUR));               	/* On définit les dimensions de notre JPanel */
 
         this.setEtat(etat);
-        this.vueClients = new VueClients(this);
+        this.miniAffichageClient = new miniAffichageClient(this.etat);
+
+
+        /* Boutton Gauche et Droit*/
+        JButton boutongauche = new JButton("<");
+        JButton boutondroit = new JButton(">");
+        /* Dimensions Boutons */
+        boutongauche.setPreferredSize(new Dimension(40, 290));
+        boutondroit.setPreferredSize(new Dimension(40,290));
+        /* Decoration boutons */
+        Font police = boutongauche.getFont(); // récupère la police actuelle
+        Font nouvellePolice = new Font(police.getName(), police.getStyle(), police.getSize()-2);
+        boutongauche.setFont(nouvellePolice);
+        boutondroit.setFont(nouvellePolice);
+
+        boutongauche.setBackground(Color.white);
+        boutondroit.setBackground(Color.white);
+
+        /* On ajoute les controleurs */
+        boutongauche.addMouseListener(new ControlClientClicGauche(this.etat, this.miniAffichageClient));
+        boutondroit.addMouseListener((new ControlClientClicDroit(this.etat, this.miniAffichageClient)));
+
+        /* Jpanel du haut pour afficher la colère et une jauge de temps - a faire plus tard dans une classe a part- */
+        JPanel nord = new JPanel();
+        nord.setPreferredSize(new Dimension(380, 40));
+        nord.setBackground(Color.white);
+
+        /* On organise nos sections */
+        this.add(nord, BorderLayout.NORTH);
+        this.add(boutongauche, BorderLayout.WEST);
+        this.add(miniAffichageClient, BorderLayout.CENTER);
+        this.add(boutondroit, BorderLayout.EAST);
+
 
     }
 
@@ -36,28 +71,7 @@ public class AffichageClient extends JPanel {
         Border blackline = BorderFactory.createLineBorder(Color.black,1);
         this.setBorder(blackline);
         this.setBackground((new Color(255, 193, 59)));
-        try {
-            this.vueClients.dessiner(g);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        /*File fileClient = new File("Vue/client10.png");
-
-        // On aura 6 images pour 6 plats ou produits différents
-        BufferedImage imageclient = null;
-
-        // On récupère ces images
-        try {
-            imageclient = ImageIO.read(fileClient);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        // On affiche l'image
-        g.drawImage(imageclient, 25, 25, 350, 300,this);
         //g.fillRect(25,25,350,300);*/
-
     }
 
 

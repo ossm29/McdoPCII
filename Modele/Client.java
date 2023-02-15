@@ -15,7 +15,7 @@ public class Client extends Thread{
 
     private boolean traitementcommande; /* La valeur traitementCommande indique si la commande a été traité ou pas */
 
-    private int etat;                   /* L'état du client - utile pour l'affichage comme les oiseaux dans flappy-
+    private int etat;                   /* L'état du client - utile pour l'affichage comme les oiseaux dans flappy-*/
 
 
     /* Constructeur */

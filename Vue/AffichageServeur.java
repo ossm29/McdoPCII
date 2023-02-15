@@ -29,6 +29,7 @@ public class AffichageServeur extends JPanel {
         this.setEtat(etat);
         this.vueServeur = new VueServeur();
 
+
     }
     
     /*Getter Etat*/
@@ -52,6 +53,6 @@ public class AffichageServeur extends JPanel {
         this.setBorder(blackline);
 
         /* Affichage Serveur */
-        this.vueServeur.dessiner(g);
+        //this.vueServeur.dessiner(g);
     }
 }
