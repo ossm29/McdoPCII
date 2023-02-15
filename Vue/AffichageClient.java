@@ -85,8 +85,9 @@ public class AffichageClient extends JPanel {
         this.updateProgressBar();
     }
 
-    public void updateProgressBar(){
-            // La valeur de la barre de progression reflètera le timer du client
+    public void updateProgressBar() {
+        // La valeur de la barre de progression reflètera le timer du client
+        if (this.etat.fileVide() == false) {
             this.jauge.setValue((int) this.etat.getClients().getListeClients().get(this.etat.getClient_en_cours()).getTimer());
             // Si il timer est supèrieur à 25 secondes
             if (this.jauge.getValue() > 25) {
@@ -103,5 +104,6 @@ public class AffichageClient extends JPanel {
                 // Colorier en rouge car il reste moins de 10 secondes
                 this.jauge.setForeground(Color.RED);
             }
+        }
     }
 }

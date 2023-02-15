@@ -12,6 +12,7 @@ public class Etat {
     private int client_insatisfait;             /* Nb de client insatisfait */
 
     private Clients clients;                    /* La liste de tous les clients dans le magasin */
+    /*Initialisation */
     private int client_en_cours;                /* index ( et NON PAS ID )  du client
                                                 qui se fait traiter sa commande actuellement */
 
@@ -19,7 +20,6 @@ public class Etat {
     
     /* Constructeur */
     public Etat(){
-        /*Initialisation */
         this.score = 0;
         this.client_insatisfait = 0;
         this.clients = new Clients(new miniAffichageClient(this));
@@ -38,8 +38,8 @@ public class Etat {
     }
     public Clients getClients(){
         // TODO SUPPrimer les clients avec un timer nul
-        /*Clients nosClients = new Clients(this.clients.getMiniAffichageClient());
-        for (Client client : clients.getListeClients()){
+        Clients nosClients = new Clients(this.clients.getMiniAffichageClient());
+        /*for (Client client : clients.getListeClients()){
             if (client.getTimer()<0){
                 clients.removeClient(client);
             }
@@ -74,6 +74,11 @@ public class Etat {
         }
     }
 
+    // Méthode qui renvoie true si la file est vide est qu'il n'y'a aucun client a servir
+    public boolean fileVide(){
+        if (this.clients.getListeClients().size() == 0) { return true; }
+        else { return false; }
+    }
 
     // Méthode qui renvoie true si le jeu est fini sinon false
     public boolean gameOver(){

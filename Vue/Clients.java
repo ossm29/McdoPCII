@@ -57,37 +57,41 @@ public class Clients {
     }
 
     public void dessiner(Graphics g) throws IOException {
-        /* On initialise Le client en cours a dessiner */
-            Client client = this.miniAffichageClient.getEtat().getClients().getListeClients().get(this.miniAffichageClient.getEtat().getClient_en_cours());
-            if (client.getTimer()<0){
-                this.miniAffichageClient.getEtat().getClients().removeClient(client);
-            }
-            if (client.getIdentifiant() == 0) {
-                // On choisit l'image selon l'état du client
-                String path_name = "Vue/client" + (client.getEtat() % 12 + 1) + ".png";
-                File fileClient = new File(path_name);
-                // On aura 12 images pour 12 états différents
-                BufferedImage imageclient = null;
-                // On récupère ces images
-                try {
-                    imageclient = ImageIO.read(fileClient);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
+            /* Si la file n'est pas vide */
+            if (this.miniAffichageClient.getEtat().fileVide() == false) {
+                System.out.println(this.miniAffichageClient.getEtat().getClients().getListeClients());
+                Client client = this.miniAffichageClient.getEtat().getClients().getListeClients().get(this.miniAffichageClient.getEtat().getClient_en_cours());
+                // TODO IL FAUDRA SUPPRIMER LES CLIENTS AVEC UN TIMER < 0
+                /*if (client.getTimer() < 0) {
+                    this.miniAffichageClient.getEtat().getClients().removeClient(client);
+                }*/
+                if (client.getIdentifiant() == 0) {
+                    // On choisit l'image selon l'état du client
+                    String path_name = "Vue/client" + (client.getEtat() % 12 + 1) + ".png";
+                    File fileClient = new File(path_name);
+                    // On aura 12 images pour 12 états différents
+                    BufferedImage imageclient = null;
+                    // On récupère ces images
+                    try {
+                        imageclient = ImageIO.read(fileClient);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    g.drawImage(imageclient, 0, 0, 300, 300, null);
+                } else {
+                    // On choisit l'image selon l'état du client
+                    String path_name = "Vue/angrybirds" + (client.getEtat() % 12 + 1) + ".png";
+                    File fileClient = new File(path_name);
+                    // On aura 12 images pour 12 états différents
+                    BufferedImage imageclient = null;
+                    // On récupère ces images
+                    try {
+                        imageclient = ImageIO.read(fileClient);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    g.drawImage(imageclient, 0, 0, 300, 300, null);
                 }
-                g.drawImage(imageclient, 0, 0, 300, 300, null);
-            } else {
-                // On choisit l'image selon l'état du client
-                String path_name = "Vue/angrybirds" + (client.getEtat() % 12 + 1) + ".png";
-                File fileClient = new File(path_name);
-                // On aura 12 images pour 12 états différents
-                BufferedImage imageclient = null;
-                // On récupère ces images
-                try {
-                    imageclient = ImageIO.read(fileClient);
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-                g.drawImage(imageclient, 0, 0, 300, 300, null);
             }
     }
 }

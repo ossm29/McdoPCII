@@ -31,8 +31,10 @@ public class miniAffichageClient extends JPanel {
         Border blackline = BorderFactory.createLineBorder(Color.black,1);
         this.setBorder(blackline);
         try {
-            this.etat.getClients().dessiner(g);
-        } catch (IOException e) {
+            if (this.etat.fileVide() == false) {
+                boolean b = this.etat.gameOver(); this.etat.getClients().dessiner(g);
+            }
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
 

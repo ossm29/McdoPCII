@@ -51,7 +51,7 @@ public class AffichageProduits extends JPanel {
         File fileFrittes = new File("Vue/french-fries.png");
         File fileBoisson = new File("Vue/plastic-cup.png");
         File filePizza = new File("Vue/pizza.png");
-        File fileDessert = new File ("vue/piece-of-cake.png");
+        File fileDessert = new File ("Vue/piece-of-cake.png");
         File fileSushi = new File ("Vue/sushi.png");
 
         // On aura 6 images pour 6 plats ou produits différents
