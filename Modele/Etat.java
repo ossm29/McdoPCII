@@ -10,11 +10,12 @@ public class Etat {
     /* Attributs */
     private int score;                          /* Score Joueur */
     private int client_insatisfait;             /* Nb de client insatisfait */
-
     private Clients clients;                    /* La liste de tous les clients dans le magasin */
-    /*Initialisation */
     private int client_en_cours;                /* index ( et NON PAS ID )  du client
                                                 qui se fait traiter sa commande actuellement */
+    private GenereClient genereClient;
+
+
 
     /* Thread */
     
@@ -25,10 +26,10 @@ public class Etat {
         this.clients = new Clients(new miniAffichageClient(this));
 
         /* Threads */
-        //this.genereClient = new GenereClient(this);
+        this.genereClient = new GenereClient(this);
 
         /* Lancement des threads */
-        //this.genereClient.start();
+        this.genereClient.start();
 
     }
 
@@ -38,8 +39,8 @@ public class Etat {
     }
     public Clients getClients(){
         // TODO SUPPrimer les clients avec un timer nul
-        Clients nosClients = new Clients(this.clients.getMiniAffichageClient());
-        /*for (Client client : clients.getListeClients()){
+        /*Clients nosClients = new Clients(this.clients.getMiniAffichageClient());
+        for (Client client : clients.getListeClients()){
             if (client.getTimer()<0){
                 clients.removeClient(client);
             }

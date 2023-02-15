@@ -10,7 +10,7 @@ public class AffichageBarreDeProgression extends JProgressBar {
 
         this.setPreferredSize(new Dimension(380, 40));
         this.setMinimum(0);
-        this.setMaximum(35);
+        this.setMaximum(20);
         this.setStringPainted(true);
 
     }

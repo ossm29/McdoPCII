@@ -26,9 +26,9 @@ public class Clients {
         this.addClient(new Client ());
 
         /* On lance les threads */
-        for (Client client : listeClients){
+        /*for (Client client : listeClients){
             client.start();
-        }
+        }*/
     }
 
     /* Getters */
@@ -59,12 +59,16 @@ public class Clients {
     public void dessiner(Graphics g) throws IOException {
             /* Si la file n'est pas vide */
             if (this.miniAffichageClient.getEtat().fileVide() == false) {
-                System.out.println(this.miniAffichageClient.getEtat().getClients().getListeClients());
+
+                // On définit le client à afficher
                 Client client = this.miniAffichageClient.getEtat().getClients().getListeClients().get(this.miniAffichageClient.getEtat().getClient_en_cours());
+
                 // TODO IL FAUDRA SUPPRIMER LES CLIENTS AVEC UN TIMER < 0
                 /*if (client.getTimer() < 0) {
                     this.miniAffichageClient.getEtat().getClients().removeClient(client);
                 }*/
+
+                /* Affichage ecurueil */
                 if (client.getIdentifiant() == 0) {
                     // On choisit l'image selon l'état du client
                     String path_name = "Vue/client" + (client.getEtat() % 12 + 1) + ".png";
@@ -78,7 +82,10 @@ public class Clients {
                         throw new RuntimeException(e);
                     }
                     g.drawImage(imageclient, 0, 0, 300, 300, null);
-                } else {
+                }
+
+                // Affichage angrybird
+                else {
                     // On choisit l'image selon l'état du client
                     String path_name = "Vue/angrybirds" + (client.getEtat() % 12 + 1) + ".png";
                     File fileClient = new File(path_name);
