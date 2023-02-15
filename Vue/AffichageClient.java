@@ -74,17 +74,34 @@ public class AffichageClient extends JPanel {
     /* Affichage */
     @Override
     public void paint(Graphics g) {
+
         super.paint(g);
+        // Bordure
         Border blackline = BorderFactory.createLineBorder(Color.black,1);
         this.setBorder(blackline);
+        // Arrière plan
         this.setBackground((new Color(255, 193, 59)));
-        //g.fillRect(25,25,350,300);*/
+        // Mettre a jour la barre de progression
         this.updateProgressBar();
     }
 
     public void updateProgressBar(){
-        this.jauge.setValue((int) this.etat.getClients().getListeClients().get(this.etat.getClient_en_cours()).getTimer());
+            // La valeur de la barre de progression reflètera le timer du client
+            this.jauge.setValue((int) this.etat.getClients().getListeClients().get(this.etat.getClient_en_cours()).getTimer());
+            // Si il timer est supèrieur à 25 secondes
+            if (this.jauge.getValue() > 25) {
+                // Colorier en vert
+                this.jauge.setForeground(Color.GREEN);
+            }
+            // Sinon si il est supèrieur à 10
+            else if (this.jauge.getValue() > 10) {
+                // Colorier en jaune
+                this.jauge.setForeground(Color.yellow);
+            }
+            // Sinon
+            else {
+                // Colorier en rouge car il reste moins de 10 secondes
+                this.jauge.setForeground(Color.RED);
+            }
     }
-
-
 }

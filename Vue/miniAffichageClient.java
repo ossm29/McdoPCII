@@ -27,7 +27,7 @@ public class miniAffichageClient extends JPanel {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        this.setBackground(Color.red);
+        this.setBackground(Color.white);
         Border blackline = BorderFactory.createLineBorder(Color.black,1);
         this.setBorder(blackline);
         try {
@@ -35,7 +35,6 @@ public class miniAffichageClient extends JPanel {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        //g.fillRect(25,25,350,300);*/
 
     }
 

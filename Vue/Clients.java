@@ -19,11 +19,14 @@ public class Clients {
     public Clients(miniAffichageClient miniAffichageClient){
 
         this.miniAffichageClient = miniAffichageClient;
+
         /* On initialise l'affichage et la liste des clients vide */
         this.listeClients = new ArrayList<Client>();
-        this.addClient(new Client(0));
-        this.addClient(new Client (1));
-        for (Client client : listeClients) {
+        this.addClient(new Client());
+        this.addClient(new Client ());
+
+        /* On lance les threads */
+        for (Client client : listeClients){
             client.start();
         }
     }
@@ -31,6 +34,9 @@ public class Clients {
     /* Getters */
     public ArrayList<Client>getListeClients(){
         return this.listeClients;
+    }
+    public miniAffichageClient getMiniAffichageClient(){
+        return this.miniAffichageClient;
     }
 
     public void setListeClients(){
@@ -52,35 +58,37 @@ public class Clients {
 
     public void dessiner(Graphics g) throws IOException {
         /* On initialise Le client en cours a dessiner */
-        Client client = this.miniAffichageClient.getEtat().getClients().listeClients.get(this.miniAffichageClient.getEtat().getClient_en_cours());
-        if (client.getIdentifiant() == 0 ) {
-            // On choisit l'image selon l'état du client
-            String path_name = "Vue/client" + (client.getEtat() % 12 + 1) + ".png";
-            File fileClient = new File(path_name);
-            // On aura 12 images pour 12 états différents
-            BufferedImage imageclient = null;
-            // On récupère ces images
-            try {
-                imageclient = ImageIO.read(fileClient);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+            Client client = this.miniAffichageClient.getEtat().getClients().getListeClients().get(this.miniAffichageClient.getEtat().getClient_en_cours());
+            if (client.getTimer()<0){
+                this.miniAffichageClient.getEtat().getClients().removeClient(client);
             }
-            g.drawImage(imageclient, 0, 0, 300, 300,null);
-        }
-        else {
-            // On choisit l'image selon l'état du client
-            String path_name = "Vue/angrybirds" + (client.getEtat() % 12 + 1) + ".png";
-            File fileClient = new File(path_name);
-            // On aura 12 images pour 12 états différents
-            BufferedImage imageclient = null;
-            // On récupère ces images
-            try {
-                imageclient = ImageIO.read(fileClient);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+            if (client.getIdentifiant() == 0) {
+                // On choisit l'image selon l'état du client
+                String path_name = "Vue/client" + (client.getEtat() % 12 + 1) + ".png";
+                File fileClient = new File(path_name);
+                // On aura 12 images pour 12 états différents
+                BufferedImage imageclient = null;
+                // On récupère ces images
+                try {
+                    imageclient = ImageIO.read(fileClient);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                g.drawImage(imageclient, 0, 0, 300, 300, null);
+            } else {
+                // On choisit l'image selon l'état du client
+                String path_name = "Vue/angrybirds" + (client.getEtat() % 12 + 1) + ".png";
+                File fileClient = new File(path_name);
+                // On aura 12 images pour 12 états différents
+                BufferedImage imageclient = null;
+                // On récupère ces images
+                try {
+                    imageclient = ImageIO.read(fileClient);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                g.drawImage(imageclient, 0, 0, 300, 300, null);
             }
-            g.drawImage(imageclient, 0, 0, 300, 300,null);
-        }
     }
 }
 

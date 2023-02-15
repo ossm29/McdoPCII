@@ -18,7 +18,7 @@ public class VueServeur {
     }
 
     public void dessiner(Graphics g){
-        // On choisit l'image selon l'état du client
+        // On choisit l'image selon l'etat du client
         String path_name = "Vue/serveur"+ (serveur.getEtatServeur()%11 + 1) + ".png";
         File fileClient = new File(path_name);
         // On aura 12 images pour 12 états différents

@@ -14,12 +14,22 @@ public class Etat {
     private Clients clients;                    /* La liste de tous les clients dans le magasin */
     private int client_en_cours;                /* index ( et NON PAS ID )  du client
                                                 qui se fait traiter sa commande actuellement */
+
+    /* Thread */
     
     /* Constructeur */
     public Etat(){
+        /*Initialisation */
         this.score = 0;
         this.client_insatisfait = 0;
         this.clients = new Clients(new miniAffichageClient(this));
+
+        /* Threads */
+        //this.genereClient = new GenereClient(this);
+
+        /* Lancement des threads */
+        //this.genereClient.start();
+
     }
 
     /* Getters */
@@ -27,7 +37,14 @@ public class Etat {
         return this.client_en_cours;
     }
     public Clients getClients(){
-        return this.clients;
+        // TODO SUPPrimer les clients avec un timer nul
+        /*Clients nosClients = new Clients(this.clients.getMiniAffichageClient());
+        for (Client client : clients.getListeClients()){
+            if (client.getTimer()<0){
+                clients.removeClient(client);
+            }
+        }*/
+        return clients;
     }
     /* Setters */
 
@@ -56,7 +73,6 @@ public class Etat {
             this.client_en_cours --;
         }
     }
-
 
 
     // Méthode qui renvoie true si le jeu est fini sinon false

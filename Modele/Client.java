@@ -9,7 +9,7 @@ public class Client extends Thread{
     /* Attributs */
     private int identifiant;            /* Identifiant du Client */
     private double timer;                  /* Le temps qu'il reste avant que le patient ne décide de s'en aller */
-    private double anger;                  /* L'indicateur de colère du Client */
+    private double anger;                  /* L'indicateur de colère du Client compris entre 0 et 2 inclu*/
 
     private String produit;             /* Produit désiré par le client */
 
@@ -19,10 +19,10 @@ public class Client extends Thread{
 
 
     /* Constructeur */
-    public Client(int id){
-        this.anger = 0;
-        this.traitementcommande = false;
-        this.setIdentifiant(id);
+    public Client(){
+        this.setTraitementcommande();
+        this.setAnger();
+        this.setIdentifiant();
         this.setTimer();
         this.setProduit();
     }
@@ -50,14 +50,22 @@ public class Client extends Thread{
 
 
     /* Setters */
-    public void setIdentifiant(int id){
-        this.identifiant = id;
+    public void setAnger(){
+        Random random = new Random();
+        this.anger = random.nextInt(3);
+    }
+    public void setTraitementcommande(){
+        this.traitementcommande = false;
+    }
+    public void setIdentifiant(){
+
+        Random random = new Random();
+        this.identifiant = random.nextInt(2);
     }
     public void setTimer(){
-        //Le timer sera compris entre 20 et 35
-        //Le timer sera compris entre 20 et 35
+        //Le timer sera compris entre 25 et 35
         Random random = new Random();
-        this.timer = 20+random.nextInt(15);
+        this.timer =25 +random.nextInt(10);
     }
     public void setProduit(){
         // La liste de notre menu
