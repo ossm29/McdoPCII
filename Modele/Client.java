@@ -70,6 +70,7 @@ public class Client extends Thread{
     public void setCommande(){
         this.commande = new Commande();
     }
+
     /* Méthode updateAnger qui met à jour la colère du client */
     public void updateAnger(){
         this.anger = this.anger - 0.2;
@@ -80,6 +81,7 @@ public class Client extends Thread{
 
     /* Méthode updateEtat qui met à jour l'état du client */
     public void updateEtat() { this.etat = this.etat+1; }
+
 
     @Override
     public void run() {

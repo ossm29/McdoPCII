@@ -42,7 +42,6 @@ public class AffichageProduits extends JPanel {
         Border blackline = BorderFactory.createLineBorder(Color.black,1);
         this.setBorder(blackline);
         setBackground((new Color(245, 240, 225)));
-        super.paint(g);
 
         /* Affichage Image */
 
