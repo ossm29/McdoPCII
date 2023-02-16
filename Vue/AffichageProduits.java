@@ -74,8 +74,6 @@ public class AffichageProduits extends JPanel {
             throw new RuntimeException(e);
         }
 
-        /** TODO OUSSAMA AFFICHAGE QTES **/
-
         // Police d'ecriture
         g.setColor(Color.white);
         // On affiche les images des produits
