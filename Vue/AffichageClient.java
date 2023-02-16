@@ -24,7 +24,7 @@ public class AffichageClient extends JPanel {
     /* Variables */
     private Etat etat;                                                  	/* Variable Etat que notre classe retranscrira en affichage */
     private miniAffichageClient miniAffichageClient;
-    private AffichageBarreDeProgression jauge;
+    private AffichageIndicateurs indicateurs;
 
     /* Constructeurs */
     public AffichageClient(Etat etat){
@@ -54,10 +54,10 @@ public class AffichageClient extends JPanel {
         boutondroit.addMouseListener((new ControlClientClicDroit(this.etat, this.miniAffichageClient)));
 
         /* Barre de progression */
-        this.jauge = new AffichageBarreDeProgression();
+        this.indicateurs = new AffichageIndicateurs(this.etat);
 
         /* On organise nos sections */
-        this.add(jauge, BorderLayout.NORTH);
+        this.add(this.indicateurs, BorderLayout.NORTH);
         this.add(boutongauche, BorderLayout.WEST);
         this.add(miniAffichageClient, BorderLayout.CENTER);
         this.add(boutondroit, BorderLayout.EAST);
@@ -77,43 +77,11 @@ public class AffichageClient extends JPanel {
     /* Affichage */
     @Override
     public void paint(Graphics g) {
-
         super.paint(g);
         // Bordure
         Border blackline = BorderFactory.createLineBorder(Color.black, 1);
         this.setBorder(blackline);
         // Arrière plan
-        this.setBackground(Color.yellow);
-        // Mettre a jour la barre de progression
-        this.updateProgressBar();
-        if (etat.fileVide() == false) {
-            System.out.println("nbproduit = " + this.etat.getClients().getListeClients().get(this.etat.getClient_en_cours()).getCommande().calculTout());
-        }
-    }
-
-
-    public void updateProgressBar() {
-        //écris le numéro du client sur la barre
-        //this.jauge.setFont();
-        this.jauge.setString("CLIENT N°"+this.etat.getClient_en_cours());
-        // La valeur de la barre de progression reflètera le timer du client
-        if (!this.etat.fileVide()) {
-            this.jauge.setValue((int) this.etat.getClients().getListeClients().get(this.etat.getClient_en_cours()).getTimer());
-            // Si il timer est supèrieur à 25 secondes
-            if (this.jauge.getValue() > 25) {
-                // Colorier en vert
-                this.jauge.setForeground(Color.GREEN);
-            }
-            // Sinon si il est supèrieur à 10
-            else if (this.jauge.getValue() > 10) {
-                // Colorier en jaune
-                this.jauge.setForeground(Color.yellow);
-            }
-            // Sinon
-            else {
-                // Colorier en rouge car il reste moins de 10 secondes
-                this.jauge.setForeground(Color.RED);
-            }
-        }
+        this.setBackground(new Color(119, 181, 254));
     }
 }

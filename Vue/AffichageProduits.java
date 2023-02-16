@@ -11,7 +11,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class AffichageProduits extends JPanel {
-    public static final int LARGEUR = (int) (0.7*Etat.WIDTH);                              	/* Largeur Fenetre */
+    public static final int LARGEUR = (int) (0.7*Etat.WIDTH);                              	   /* Largeur Fenetre */
     public static final int HAUTEUR = (int) (0.25*Etat.HEIGHT);                              	/* Hauteur Fenetre */
 
     /* Variables */

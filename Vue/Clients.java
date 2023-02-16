@@ -48,12 +48,20 @@ public class Clients {
     /* Méthode addClient qui rajoute le client a notre liste de client */
     public void addClient(Client client){
         this.listeClients.add(client);
-
     }
 
     /* Méthode genereClients qui génère des clients */
     public void removeClient(Client client){
         this.listeClients.remove(client);
+    }
+
+    public void removeClientById(int id) {
+        ArrayList<Client>liste = listeClients;
+        for (Client client: liste){
+            if (client.getIdentifiant() == id){
+                this.listeClients.remove(client);
+            }
+        }
     }
 
     public void dessiner(Graphics g) throws IOException {
@@ -62,11 +70,10 @@ public class Clients {
 
                 // On définit le client à afficher
                 Client client = this.miniAffichageClient.getEtat().getClients().getListeClients().get(this.miniAffichageClient.getEtat().getClient_en_cours());
-
-                // TODO IL FAUDRA SUPPRIMER LES CLIENTS AVEC UN TIMER < 0
-                /*if (client.getTimer() < 0) {
+                // Si le timer < 0 on supprime le client
+                if (client.getTimer() < 0) {
                     this.miniAffichageClient.getEtat().getClients().removeClient(client);
-                }*/
+                }
 
                 /* Affichage ecurueil */
                 if (client.getIdentifiant() == 0) {
@@ -85,9 +92,25 @@ public class Clients {
                 }
 
                 // Affichage angrybird
-                else {
+                else if (client.getIdentifiant() == 1) {
                     // On choisit l'image selon l'état du client
                     String path_name = "ressources/angrybirds" + (client.getEtat() % 12 + 1) + ".png";
+                    File fileClient = new File(path_name);
+                    // On aura 12 images pour 12 états différents
+                    BufferedImage imageclient = null;
+                    // On récupère ces images
+                    try {
+                        imageclient = ImageIO.read(fileClient);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    g.drawImage(imageclient, 0, 0, 300, 300, null);
+                }
+
+                // Affichage humain
+                else if (client.getIdentifiant() == 2) {
+                    // On choisit l'image selon l'état du client
+                    String path_name = "ressources/humain" + (client.getEtat() % 14 + 1) + ".png";
                     File fileClient = new File(path_name);
                     // On aura 12 images pour 12 états différents
                     BufferedImage imageclient = null;

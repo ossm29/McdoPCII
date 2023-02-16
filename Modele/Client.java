@@ -9,7 +9,7 @@ public class Client extends Thread{
     /* Attributs */
     private int identifiant;            /* Identifiant du Client */
     private double timer;                  /* Le temps qu'il reste avant que le patient ne décide de s'en aller */
-    private double anger;                  /* L'indicateur de colère du Client compris entre 0 et 2 inclu*/
+    private int anger;                  /* L'indicateur de colère du Client compris entre 0 et 5 inclu*/
     private boolean traitementcommande; /* La valeur traitementCommande indique si la commande a été traité ou pas */
     private int etat;                   /* L'état du client - utile pour l'affichage comme les oiseaux dans flappy-*/
     private Commande commande;
@@ -32,7 +32,7 @@ public class Client extends Thread{
     public double getTimer(){
         return this.timer;
     }
-    public double getAnger(){
+    public int getAnger(){
         return this.anger;
     }
     public Commande getCommande(){
@@ -49,7 +49,7 @@ public class Client extends Thread{
     /* Setters */
     public void setAnger(){
         Random random = new Random();
-        this.anger = random.nextInt(3);
+        this.anger = random.nextInt(6);
     }
 
     public void setTraitementcommande(){
@@ -58,7 +58,7 @@ public class Client extends Thread{
 
     public void setIdentifiant(){
         Random random = new Random();
-        this.identifiant = random.nextInt(2);
+        this.identifiant = random.nextInt(3);
     }
 
     public void setTimer(){
@@ -69,11 +69,6 @@ public class Client extends Thread{
 
     public void setCommande(){
         this.commande = new Commande();
-    }
-
-    /* Méthode updateAnger qui met à jour la colère du client */
-    public void updateAnger(){
-        this.anger = this.anger - 0.2;
     }
 
     /*Méthode updateTimer qui met à jour le temps restant avant le départ du client */
@@ -89,9 +84,8 @@ public class Client extends Thread{
         while(this.timer>0) {
             try {
                 /* Attendre 200ms */
-                Thread.sleep(200);
+                Thread.sleep(400/(this.anger+1));
                 /* Mettre a jour la colère et le timer */
-                this.updateAnger();
                 this.updateTimer();
                 this.updateEtat();
             }

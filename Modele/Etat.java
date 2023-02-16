@@ -1,8 +1,6 @@
 package Modele;
 import Vue.Clients;
 import Vue.miniAffichageClient;
-
-import java.util.ArrayList;
 import java.util.Random;
 
 /* Ensemble des données qui caractériseront l'état de mon interface */
@@ -25,7 +23,6 @@ public class Etat {
 
     /* Les threads */
     private GenereClient genereClient;
-    private SupprimeClient supprimeCLient;
 
     /*dimensions de la fenêtre ; les dimesnsions des autres affichages sont proportionnelles*/
     public static final int WIDTH = 1420;
@@ -38,6 +35,7 @@ public class Etat {
     
     /* Constructeur */
     public Etat(){
+        /* Initialisation */
         this.score = 0;
         this.client_insatisfait = 0;
         this.clients = new Clients(new miniAffichageClient(this));
@@ -56,9 +54,7 @@ public class Etat {
         /* Lancement des threads */
         this.genereClient.start();
 
-        // TODO ne marche pas IndexOutOfBoundsException : index n out of bounds for length 3
-        // this.supprimeCLient = new SupprimeClient(this);
-        // this.supprimeCLient.start();
+        // TODO ne marche pas IndexOutOfBoundsException : index n out of bounds for length n
 
     }
 

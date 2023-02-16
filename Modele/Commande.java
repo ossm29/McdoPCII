@@ -32,7 +32,6 @@ public class Commande {
             int quantiteProduit = 1 + random.nextInt(nbProduit);
             // On ajoute le produit a notre commande
             this.produits.add(new Produit(nomProduit,quantiteProduit));
-            System.out.println("ajoute");
             // On met a jour le nbProduit auquel on a droit pour le prochain tirage
             nbProduit = nbProduit - quantiteProduit;
         }
