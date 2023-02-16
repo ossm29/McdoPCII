@@ -3,16 +3,27 @@ import Vue.Clients;
 import Vue.miniAffichageClient;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /* Ensemble des données qui caractériseront l'état de mon interface */
 public class Etat {
 
-    /* Attributs */
+    /* Attributs concernant le Joueur et les clients */
     private int score;                          /* Score Joueur */
     private int client_insatisfait;             /* Nb de client insatisfait */
     private Clients clients;                    /* La liste de tous les clients dans le magasin */
     private int client_en_cours;                /* index ( et NON PAS ID )  du client
                                                 qui se fait traiter sa commande actuellement */
+
+    /* Attributs concernants les stocks */
+    private int quantiteBurger;
+    private int quantitePizza;
+    private int quantiteBoisson;
+    private int quantiteSushi;
+    private int quantiteFrittes;
+    private int quantiteDessert;
+
+    /* Les threads */
     private GenereClient genereClient;
     private SupprimeClient supprimeCLient;
 
@@ -31,13 +42,19 @@ public class Etat {
         this.client_insatisfait = 0;
         this.clients = new Clients(new miniAffichageClient(this));
 
+        /* Attributs Stockage Pour Chaque Produits */
+        this.setQuantiteBoisson();
+        this.setQuantiteBurger();
+        this.setQuantiteDessert();
+        this.setQuantiteFrittes();
+        this.setQuantiteSushi();
+        this.setQuantitePizza();
+
         /* Threads */
         this.genereClient = new GenereClient(this);
-        this.supprimeCLient = new SupprimeClient(this);
 
         /* Lancement des threads */
         this.genereClient.start();
-        this.supprimeCLient.start();
 
         // TODO ne marche pas IndexOutOfBoundsException : index n out of bounds for length 3
         // this.supprimeCLient = new SupprimeClient(this);
@@ -49,6 +66,7 @@ public class Etat {
     public int getClient_en_cours(){
         return this.client_en_cours;
     }
+
     public Clients getClients(){
         // TODO SUPPrimer les clients avec un timer nul
         /*Clients nosClients = new Clients(this.clients.getMiniAffichageClient());
@@ -59,8 +77,67 @@ public class Etat {
         }*/
         return clients;
     }
+
+    public int getQuantiteBurger() {
+        return quantiteBurger;
+    }
+
+    public int getQuantitePizza() {
+        return quantitePizza;
+    }
+
+    public int getQuantiteBoisson() {
+        return quantiteBoisson;
+    }
+
+    public int getQuantiteSushi() {
+        return quantiteSushi;
+    }
+
+    public int getQuantiteFrittes() {
+        return quantiteFrittes;
+    }
+
+    public int getQuantiteDessert() {
+        return quantiteDessert;
+    }
+
     /* Setters */
 
+    public void setQuantiteBurger() {
+        /* Entre 8 et 15 */
+        Random random = new Random();
+        this.quantiteBurger = 8 + random.nextInt(8);
+    }
+    public void setQuantitePizza() {
+        /* Entre 8 et 15 */
+        Random random = new Random();
+        this.quantitePizza = 8 + random.nextInt(8);
+    }
+
+    public void setQuantiteSushi() {
+        /* Entre 8 et 15 */
+        Random random = new Random();
+        this.quantiteSushi = 8 + random.nextInt(8);
+    }
+
+    public void setQuantiteBoisson() {
+        /* Entre 8 et 15 */
+        Random random = new Random();
+        this.quantiteBoisson = 8 + random.nextInt(8);
+    }
+
+    public void setQuantiteDessert() {
+        /* Entre 8 et 15 */
+        Random random = new Random();
+        this.quantiteDessert = 8 + random.nextInt(8);
+    }
+
+    public void setQuantiteFrittes() {
+        /* Entre 8 et 15 */
+        Random random = new Random();
+        this.quantiteFrittes= 8 + random.nextInt(8);
+    }
     /* Méthodes */
 
     // Méthode qui met a jour le score

@@ -36,6 +36,7 @@ public class AffichageProduits extends JPanel {
     /* Affichage */
     @Override
     public void paint(Graphics g) {
+
         super.paint(g);
 
         /* Arrière Plan et Bordures */
@@ -72,26 +73,61 @@ public class AffichageProduits extends JPanel {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
         /** TODO OUSSAMA AFFICHAGE QTES **/
 
-        // On affiche les images
-        g.drawImage(imageburger, 80, 50, 75, 75,this);
-        g.fillOval(85,120,60,60);
+        // Police d'ecriture
+        g.setColor(Color.white);
+        // On affiche les images des produits
+        g.drawImage(imageburger, 80, 25, 75, 75,this);
+        g.fillOval(85,110,60,60);
 
-        g.drawImage(imagefrites, 230, 50, 75, 75,this);
-        g.fillOval(235,120,60,60);
+        g.drawImage(imagefrites, 230, 25, 75, 75,this);
+        g.fillOval(235,110,60,60);
 
-        g.drawImage(imagepizza, 380,50,75,75,this);
-        g.fillOval(385,120,60,60);
+        g.drawImage(imagepizza, 380,25,75,75,this);
+        g.fillOval(385,110,60,60);
 
-        g.drawImage(imagesushi, 530,50,75,75,this);
-        g.fillOval(535,120,60,60);
+        g.drawImage(imagesushi, 530,25,75,75,this);
+        g.fillOval(535,110,60,60);
 
-        g.drawImage(imageboisson, 680, 50, 75, 75,this);
-        g.fillOval(685,120,60,60);
+        g.drawImage(imageboisson, 680, 25, 75, 75,this);
+        g.fillOval(685,110,60,60);
 
-        g.drawImage(imagedessert, 830,50,75,75,this);
-        g.fillOval(835,120,60,60);
+        g.drawImage(imagedessert, 830,25,75,75,this);
+        g.fillOval(835,110,60,60);
+
+        // On affiche les quantités des produits dans le stock
+        g.setColor(Color.black);
+        Font font = new Font("Serif", Font.PLAIN, 32);
+        g.setFont(font);
+
+        // Quantite
+        int quantiteburger = this.etat.getQuantiteBurger();
+        int quantitepizza = this.etat.getQuantitePizza();
+        int quantitefritte = this.etat.getQuantiteFrittes();
+        int quantitesushi = this.etat.getQuantiteSushi();
+        int quantiteboisson = this.etat.getQuantiteBoisson();
+        int quantitedessert = this.etat.getQuantiteDessert();
+
+
+        if(quantiteburger>9){ g.drawString(quantiteburger+"", 100, 150); }
+        else { g.drawString(quantiteburger+"", 108, 150); }
+
+        if (quantitepizza>9){ g.drawString(quantitepizza+"", 251, 150);}
+        else { g.drawString(quantitepizza+"", 257, 150);}
+
+        if (quantitefritte>9) {g.drawString(quantitefritte+"", 400, 150); }
+        else { g.drawString(quantitefritte+"", 408, 150); }
+
+        if (quantitesushi>9) {g.drawString(quantitesushi+"", 550, 150); }
+        else { g.drawString(quantitesushi+"", 559, 150); }
+
+        if (quantiteboisson>9) {g.drawString(quantiteboisson+"", 700, 150); }
+        else { g.drawString(quantiteboisson+"", 707, 150); }
+
+        if (quantitedessert>9) {g.drawString(quantitedessert+"", 850, 150); }
+        else { g.drawString(quantitedessert+"", 858, 150); }
 
     }
 }

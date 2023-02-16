@@ -4,9 +4,9 @@ import java.util.Random;
 
 public class Commande {
 
-    private ArrayList<Produit>produits = new ArrayList<>();
+    private ArrayList<Produit>produits;
 
-    public void Commande() {
+    public Commande() {
 
         // Pour l'instant aucun produit n'est dans notre panier
         this.produits = new ArrayList<Produit>();
@@ -22,14 +22,14 @@ public class Commande {
 
         // Chaque client commande au plus 6 article - non produits - et au minimum 1 article
         Random random = new Random();
-        int nbProduit = 1 + random.nextInt(6);
+        int nbProduit = 1+random.nextInt(6);
         // Chaque client commande au plus 3 produits différents
-        for ( int i = 0;i<3 && nbProduit>0; i++){
+        for ( int i = 0; i<3 && nbProduit>0; i++){
             // On tire le produit aléatoirement
             int reference = random.nextInt(6);
             String nomProduit = menu.get(reference);
-            // On tire une quantité au hasard
-            int quantiteProduit = random.nextInt(nbProduit);
+            // On tire une quantité au hasard entre 1 et notre nb de produit max restant
+            int quantiteProduit = 1 + random.nextInt(nbProduit);
             // On ajoute le produit a notre commande
             this.produits.add(new Produit(nomProduit,quantiteProduit));
             System.out.println("ajoute");
@@ -93,6 +93,14 @@ public class Commande {
             if (produit.getNom() == "french-fries"){
                 total = total + produit.getQuantite();
             }
+        }
+        return total;
+    }
+
+    public int calculTout(){
+        int total = 0;
+        for (Produit produit : this.produits) {
+            total = total + produit.getQuantite();
         }
         return total;
     }

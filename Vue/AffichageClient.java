@@ -80,15 +80,17 @@ public class AffichageClient extends JPanel {
 
         super.paint(g);
         // Bordure
-        Border blackline = BorderFactory.createLineBorder(Color.black,1);
+        Border blackline = BorderFactory.createLineBorder(Color.black, 1);
         this.setBorder(blackline);
         // Arrière plan
         this.setBackground(Color.yellow);
         // Mettre a jour la barre de progression
         this.updateProgressBar();
-        System.out.println("joueurencours"+this.etat.getClient_en_cours());
-        System.out.println("joueursuivant"+(this.etat.getClient_en_cours()+1));
+        if (etat.fileVide() == false) {
+            System.out.println("nbproduit = " + this.etat.getClients().getListeClients().get(this.etat.getClient_en_cours()).getCommande().calculTout());
+        }
     }
+
 
     public void updateProgressBar() {
         //écris le numéro du client sur la barre
