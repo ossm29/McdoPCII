@@ -9,7 +9,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
+/** Classe qui gère l'affichage de la barre de produits en bas de l'écran */
 public class AffichageProduits extends JPanel {
     public static final int LARGEUR = (int) (0.7*Etat.WIDTH);                              	   /* Largeur Fenetre */
     public static final int HAUTEUR = (int) (0.25*Etat.HEIGHT);                              	/* Hauteur Fenetre */
@@ -55,12 +55,12 @@ public class AffichageProduits extends JPanel {
         File fileSushi = new File ("ressources/sushi.png");
 
         // On aura 6 images pour 6 plats ou produits différents
-        BufferedImage imageburger = null;
-        BufferedImage imagefrites = null;
-        BufferedImage imageboisson = null;
-        BufferedImage imagepizza = null;
-        BufferedImage imagedessert = null;
-        BufferedImage imagesushi = null;
+        BufferedImage imageburger;
+        BufferedImage imagefrites;
+        BufferedImage imageboisson;
+        BufferedImage imagepizza;
+        BufferedImage imagedessert;
+        BufferedImage imagesushi;
 
         // On récupère ces images
         try {
@@ -103,7 +103,7 @@ public class AffichageProduits extends JPanel {
         // Quantite
         int quantiteburger = this.etat.getQuantiteBurger();
         int quantitepizza = this.etat.getQuantitePizza();
-        int quantitefritte = this.etat.getQuantiteFrittes();
+        int quantitefrites = this.etat.getQuantiteFrittes();
         int quantitesushi = this.etat.getQuantiteSushi();
         int quantiteboisson = this.etat.getQuantiteBoisson();
         int quantitedessert = this.etat.getQuantiteDessert();
@@ -115,8 +115,8 @@ public class AffichageProduits extends JPanel {
         if (quantitepizza>9){ g.drawString(quantitepizza+"", 251, 150);}
         else { g.drawString(quantitepizza+"", 257, 150);}
 
-        if (quantitefritte>9) {g.drawString(quantitefritte+"", 400, 150); }
-        else { g.drawString(quantitefritte+"", 408, 150); }
+        if (quantitefrites>9) {g.drawString(quantitefrites+"", 400, 150); }
+        else { g.drawString(quantitefrites+"", 408, 150); }
 
         if (quantitesushi>9) {g.drawString(quantitesushi+"", 550, 150); }
         else { g.drawString(quantitesushi+"", 559, 150); }

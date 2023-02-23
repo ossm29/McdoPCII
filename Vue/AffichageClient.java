@@ -26,6 +26,8 @@ public class AffichageClient extends JPanel {
     private miniAffichageClient miniAffichageClient;
     private AffichageIndicateurs indicateurs;
 
+
+
     /* Constructeurs */
     public AffichageClient(Etat etat){
         setPreferredSize(new Dimension(LARGEUR,HAUTEUR));               	/* On définit les dimensions de notre JPanel */

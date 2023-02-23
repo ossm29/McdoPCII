@@ -4,12 +4,15 @@ import Modele.Etat;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 public class AffichageIndicateurs extends JPanel{
 
     Etat etat;
     AffichageColere affichageColere;
     AffichageBarreDeProgression affichageBarreDeProgression;
+
+
 
     public AffichageIndicateurs(Etat etat){
 
@@ -31,8 +34,8 @@ public class AffichageIndicateurs extends JPanel{
     }
 
     public void updateProgressBar() {
-        // écris le numéro du client sur la barre
-        // this.jauge.setFont();
+        // écrit le numéro du client sur la barre
+        //this.affichageBarreDeProgression.setFont(angryFont);
         this.affichageBarreDeProgression.setString("CLIENT N°"+ this.etat.getClient_en_cours());
         // La valeur de la barre de progression reflètera le timer du client
         if (!this.etat.fileVide()) {

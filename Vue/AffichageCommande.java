@@ -11,6 +11,8 @@ import java.io.IOException;
 import javax.swing.BorderFactory;
 import javax.swing.border.Border;
 
+/** Classe qui gère l'affichage des commandes en bas à droite de l'écran*/
+
 public class AffichageCommande extends JPanel {
     public static final int LARGEUR = (int) (0.3* Etat.WIDTH);       	/* Largeur Fenetre */
     public static final int HAUTEUR = (int) (0.55*Etat.HEIGHT);       	/* Hauteur Fenetre */
