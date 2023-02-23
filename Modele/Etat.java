@@ -6,6 +6,8 @@ import java.util.Random;
 /* Ensemble des données qui caractériseront l'état de mon interface */
 public class Etat {
 
+    //
+
     /* Attributs concernant le Joueur et les clients */
     private int score;                          /* Score Joueur */
     private int client_insatisfait;             /* Nb de client insatisfait */
