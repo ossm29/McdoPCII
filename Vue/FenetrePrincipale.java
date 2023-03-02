@@ -4,7 +4,7 @@ import javax.swing.*;
 import Modele.Etat;
 
 import java.io.IOException;
-
+/** Classe qui correspond à la fenêtre principale dans laquelle on ajoute les affichages */
 public class FenetrePrincipale extends JFrame{
 	
 	public static AffichagePrincipal FP (Etat etat) throws IOException {

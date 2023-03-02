@@ -31,6 +31,20 @@ public class AffichageServeur extends JPanel {
 
 
     }
+
+    /** fonction de dessin du score et des clients insatisfaits
+     * @param g objet graphique
+     */
+    public void drawStats(Graphics g) {
+        /* on dessine un carré blanc à l'endroit où on écrira le score*/
+        g.clearRect(LARGEUR/2-90/2,0,290,30);
+        /* on affiche le score (converti en chaîne de caractères) */
+
+        g.drawString("SCORE : "+Integer.toString(this.etat.getScore()),LARGEUR/2-20,15);
+        g.setColor(Color.red);
+        g.drawString(" | Clients insatisfaits : "+Integer.toString(this.etat.getClients_insatisfaits()),LARGEUR/2+40,15);
+
+    }
     
     /*Getter Etat*/
 	public Etat getEtat() {
@@ -52,6 +66,8 @@ public class AffichageServeur extends JPanel {
         Border blackline = BorderFactory.createLineBorder(Color.black,1);
         this.setBorder(blackline);
 
+        /* Score*/
+        this.drawStats(g);
         /* Affichage Serveur */
         //this.vueServeur.dessiner(g);
     }

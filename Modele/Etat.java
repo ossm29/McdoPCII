@@ -10,7 +10,7 @@ public class Etat {
 
     /* Attributs concernant le Joueur et les clients */
     private int score;                          /* Score Joueur */
-    private int client_insatisfait;             /* Nb de client insatisfait */
+    private static int clients_insatisfaits;             /* Nb de client insatisfait */
     private Clients clients;                    /* La liste de tous les clients dans le magasin */
     private int client_en_cours;                /* index ( et NON PAS ID )  du client
                                                 qui se fait traiter sa commande actuellement */
@@ -39,7 +39,7 @@ public class Etat {
     public Etat(){
         /* Initialisation */
         this.score = 0;
-        this.client_insatisfait = 0;
+        clients_insatisfaits = 0;
         this.clients = new Clients(new miniAffichageClient(this));
 
         /* Attributs Stockage Pour Chaque Produits */
@@ -100,6 +100,9 @@ public class Etat {
         return quantiteDessert;
     }
 
+    public int getScore() { return score; }
+
+    public int getClients_insatisfaits() { return clients_insatisfaits; }
     /* Setters */
 
     public void setQuantiteBurger() {
@@ -144,8 +147,8 @@ public class Etat {
     }
 
     // Méthode qui met a jour le nombre de client insatisfait du service
-    public void updateClientInsatisfait(){
-        this.client_insatisfait++;
+    public static void updateClientInsatisfait(){
+        clients_insatisfaits++;
     }
 
     // Méthode qui update l'index du client en cours en passant au suivant
@@ -170,12 +173,9 @@ public class Etat {
 
     // Méthode qui renvoie true si le jeu est fini sinon false
     public boolean gameOver(){
-        // Si le nombre de client insastisfait dépasse 3
-        if ( this.client_insatisfait > 2){
-            // Alors le jeu est fini
-            return true;
-        }
+        // Si le nombre de client insastisfait dépasse 5
+        // Alors le jeu est fini
+        return clients_insatisfaits > 5;
         // Sinon non
-        return false;
     }
 }

@@ -78,7 +78,7 @@ public class Clients {
                 /* Affichage ecurueil */
                 if (client.getIdentifiant() == 0) {
                     // On choisit l'image selon l'état du client
-                    String path_name = "ressources/client" + (client.getEtat() % 12 + 1) + ".png";
+                    String path_name = "ressources/client" + (client.getEtatclient() % 12 + 1) + ".png";
                     File fileClient = new File(path_name);
                     // On aura 12 images pour 12 états différents
                     BufferedImage imageclient = null;
@@ -94,7 +94,7 @@ public class Clients {
                 // Affichage angrybird
                 else if (client.getIdentifiant() == 1) {
                     // On choisit l'image selon l'état du client
-                    String path_name = "ressources/angrybirds" + (client.getEtat() % 12 + 1) + ".png";
+                    String path_name = "ressources/angrybirds" + (client.getEtatclient() % 12 + 1) + ".png";
                     File fileClient = new File(path_name);
                     // On aura 12 images pour 12 états différents
                     BufferedImage imageclient = null;
@@ -110,7 +110,7 @@ public class Clients {
                 // Affichage humain
                 else if (client.getIdentifiant() == 2) {
                     // On choisit l'image selon l'état du client
-                    String path_name = "ressources/humain" + (client.getEtat() % 14 + 1) + ".png";
+                    String path_name = "ressources/humain" + (client.getEtatclient() % 14 + 1) + ".png";
                     File fileClient = new File(path_name);
                     // On aura 12 images pour 12 états différents
                     BufferedImage imageclient = null;

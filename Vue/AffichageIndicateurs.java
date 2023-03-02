@@ -36,7 +36,9 @@ public class AffichageIndicateurs extends JPanel{
     public void updateProgressBar() {
         // écrit le numéro du client sur la barre
         //this.affichageBarreDeProgression.setFont(angryFont);
+        //écrit l'index (et non pas l'id du client en cours
         this.affichageBarreDeProgression.setString("CLIENT N°"+ this.etat.getClient_en_cours());
+
         // La valeur de la barre de progression reflètera le timer du client
         if (!this.etat.fileVide()) {
             this.affichageBarreDeProgression.setValue((int) this.etat.getClients().getListeClients().get(this.etat.getClient_en_cours()).getTimer());

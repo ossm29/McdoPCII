@@ -1,7 +1,5 @@
 package Modele;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 
 public class Client extends Thread{
@@ -9,10 +7,13 @@ public class Client extends Thread{
     /* Attributs */
     private int identifiant;            /* Identifiant du Client */
     private double timer;                  /* Le temps qu'il reste avant que le patient ne décide de s'en aller */
-    private int anger;                  /* L'indicateur de colère du Client compris entre 0 et 5 inclu*/
+    private int anger;                  /* L'indicateur de colère du Client compris entre 0 et 5 inclus*/
     private boolean traitementcommande; /* La valeur traitementCommande indique si la commande a été traité ou pas */
-    private int etat;                   /* L'état du client - utile pour l'affichage comme les oiseaux dans flappy-*/
+    private int etatclient;                   /* L'état du client - utile pour l'affichage comme les oiseaux dans flappy-*/
     private Commande commande;
+
+    private Etat modele; /*permet de mettre à jour les variables score et client insatisfaits*/
+
 
     /* Constructeur */
     public Client(){
@@ -41,8 +42,8 @@ public class Client extends Thread{
     public boolean getTraitementCommande(){
         return this.traitementcommande;
     }
-    public int getEtat(){
-        return this.etat;
+    public int getEtatclient(){
+        return this.etatclient;
     }
 
 
@@ -71,11 +72,18 @@ public class Client extends Thread{
         this.commande = new Commande();
     }
 
-    /*Méthode updateTimer qui met à jour le temps restant avant le départ du client */
-    public void updateTimer(){ this.timer = this.timer - 0.2;}
+    /*Méthode updateTimer qui met à jour le temps restant avant le départ du client
+    * si temps est égal à 0, on incrémente le nb de clients insatisfaits
+    *  */
+    public void updateTimer(){
+        this.timer = this.timer - 0.2;
+        if(this.timer <= 0) {
+            Etat.updateClientInsatisfait();
+        }
+    }
 
     /* Méthode updateEtat qui met à jour l'état du client */
-    public void updateEtat() { this.etat = this.etat+1; }
+    public void updateEtat() { this.etatclient = this.etatclient +1; }
 
 
     @Override
@@ -88,6 +96,7 @@ public class Client extends Thread{
                 /* Mettre a jour la colère et le timer */
                 this.updateTimer();
                 this.updateEtat();
+
             }
             catch (Exception e) { e.printStackTrace(); }
         }
