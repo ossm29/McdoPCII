@@ -64,7 +64,6 @@ public class AffichageClient extends JPanel {
         this.add(miniAffichageClient, BorderLayout.CENTER);
         this.add(boutondroit, BorderLayout.EAST);
 
-
     }
 
     /*Getter Etat*/

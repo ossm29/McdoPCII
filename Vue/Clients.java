@@ -22,8 +22,8 @@ public class Clients {
 
         /* On initialise l'affichage et la liste des clients vide */
         this.listeClients = new ArrayList<Client>();
-        this.addClient(new Client());
-        this.addClient(new Client ());
+        this.addClient(new Client(0));
+        this.addClient(new Client (1));
 
         /* On lance les threads */
         /*for (Client client : listeClients){
@@ -58,7 +58,7 @@ public class Clients {
     public void removeClientById(int id) {
         ArrayList<Client>liste = listeClients;
         for (Client client: liste){
-            if (client.getIdentifiant() == id){
+            if (client.getIdImage() == id){
                 this.listeClients.remove(client);
             }
         }
@@ -76,7 +76,7 @@ public class Clients {
                 }
 
                 /* Affichage ecurueil */
-                if (client.getIdentifiant() == 0) {
+                if (client.getIdImage() == 0) {
                     // On choisit l'image selon l'état du client
                     String path_name = "ressources/client" + (client.getEtatclient() % 12 + 1) + ".png";
                     File fileClient = new File(path_name);
@@ -92,7 +92,7 @@ public class Clients {
                 }
 
                 // Affichage angrybird
-                else if (client.getIdentifiant() == 1) {
+                else if (client.getIdImage() == 1) {
                     // On choisit l'image selon l'état du client
                     String path_name = "ressources/angrybirds" + (client.getEtatclient() % 12 + 1) + ".png";
                     File fileClient = new File(path_name);
@@ -108,7 +108,7 @@ public class Clients {
                 }
 
                 // Affichage humain
-                else if (client.getIdentifiant() == 2) {
+                else if (client.getIdImage() == 2) {
                     // On choisit l'image selon l'état du client
                     String path_name = "ressources/humain" + (client.getEtatclient() % 14 + 1) + ".png";
                     File fileClient = new File(path_name);

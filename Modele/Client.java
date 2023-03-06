@@ -5,30 +5,33 @@ import java.util.Random;
 public class Client extends Thread{
 
     /* Attributs */
-    private int identifiant;            /* Identifiant du Client */
+    private int identifiant;        /* identifiant unique du client (clef) */
+    private int idImage;            /* Identifiant de l'image du client */
     private double timer;                  /* Le temps qu'il reste avant que le patient ne décide de s'en aller */
     private int anger;                  /* L'indicateur de colère du Client compris entre 0 et 5 inclus*/
     private boolean traitementcommande; /* La valeur traitementCommande indique si la commande a été traité ou pas */
     private int etatclient;                   /* L'état du client - utile pour l'affichage comme les oiseaux dans flappy-*/
     private Commande commande;
 
-    private Etat modele; /*permet de mettre à jour les variables score et client insatisfaits*/
+    //private Etat modele;            /*permet de mettre à jour les variables score et client insatisfaits*/
 
 
     /* Constructeur */
-    public Client(){
+    public Client( int id){
+        this.setIdentifiant(id);
         this.setTraitementcommande();
         this.setAnger();
-        this.setIdentifiant();
+        this.setIdImage();
         this.setTimer();
         this.setCommande();
         this.start();
+
     }
 
 
     /* Getters */
-    public int getIdentifiant(){
-        return this.identifiant;
+    public int getIdImage(){
+        return this.idImage;
     }
     public double getTimer(){
         return this.timer;
@@ -45,9 +48,13 @@ public class Client extends Thread{
     public int getEtatclient(){
         return this.etatclient;
     }
+    public int getIdentifiant(){ return this.identifiant; }
 
 
     /* Setters */
+    public void setIdentifiant(int id ){
+        this.identifiant = id;
+    }
     public void setAnger(){
         Random random = new Random();
         this.anger = random.nextInt(6);
@@ -57,9 +64,9 @@ public class Client extends Thread{
         this.traitementcommande = false;
     }
 
-    public void setIdentifiant(){
+    public void setIdImage(){
         Random random = new Random();
-        this.identifiant = random.nextInt(3);
+        this.idImage = random.nextInt(3);
     }
 
     public void setTimer(){

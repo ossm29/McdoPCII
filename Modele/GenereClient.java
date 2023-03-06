@@ -13,7 +13,8 @@ public class GenereClient extends Thread{
         while(true){
             try {
                 Thread.sleep(10000);
-                this.etat.getClients().addClient(new Client());
+                this.etat.getClients().addClient(new Client(this.etat.getCompteurCLients()));
+                this.etat.updateCompteurClients();
             } catch (Exception e) { e.printStackTrace(); }
         }
     }

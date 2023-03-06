@@ -10,7 +10,8 @@ public class Etat {
 
     /* Attributs concernant le Joueur et les clients */
     private int score;                          /* Score Joueur */
-    private static int clients_insatisfaits;             /* Nb de client insatisfait */
+    private int compteurCLients = 2;            /* Nb de clients générés */
+    private static int clients_insatisfaits;    /* Nb de client insatisfait */
     private Clients clients;                    /* La liste de tous les clients dans le magasin */
     private int client_en_cours;                /* index ( et NON PAS ID )  du client
                                                 qui se fait traiter sa commande actuellement */
@@ -61,6 +62,10 @@ public class Etat {
     }
 
     /* Getters */
+    public int getCompteurCLients(){
+        return this.compteurCLients;
+    }
+
     public int getClient_en_cours(){
         return this.client_en_cours;
     }
@@ -177,5 +182,9 @@ public class Etat {
         // Alors le jeu est fini
         return clients_insatisfaits > 5;
         // Sinon non
+    }
+
+    public void updateCompteurClients(){
+        this.compteurCLients++;
     }
 }
