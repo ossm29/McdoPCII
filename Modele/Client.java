@@ -80,8 +80,8 @@ public class Client extends Thread{
     }
 
     /*Méthode updateTimer qui met à jour le temps restant avant le départ du client
-    * si temps est égal à 0, on incrémente le nb de clients insatisfaits
-    *  */
+     * si temps est égal à 0, on incrémente le nb de clients insatisfaits
+     *  */
     public void updateTimer(){
         this.timer = this.timer - 0.2;
         if(this.timer <= 0) {

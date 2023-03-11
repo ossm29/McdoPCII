@@ -22,8 +22,8 @@ public class Clients {
 
         /* On initialise l'affichage et la liste des clients vide */
         this.listeClients = new ArrayList<Client>();
-        this.addClient(new Client(0));
-        this.addClient(new Client (1));
+        /*this.addClient(new Client(0));
+        this.addClient(new Client (1));*/
 
         /* On lance les threads */
         /*for (Client client : listeClients){
@@ -65,64 +65,64 @@ public class Clients {
     }
 
     public void dessiner(Graphics g) throws IOException {
-            /* Si la file n'est pas vide */
-            if (!this.miniAffichageClient.getEtat().fileVide()) {
+        /* Si la file n'est pas vide */
+        if (!this.miniAffichageClient.getEtat().fileVide()) {
 
-                // On définit le client à afficher
-                Client client = this.miniAffichageClient.getEtat().getClients().getListeClients().get(this.miniAffichageClient.getEtat().getClient_en_cours());
-                // Si le timer < 0 on supprime le client
-                if (client.getTimer() < 0) {
-                    this.miniAffichageClient.getEtat().getClients().removeClient(client);
-                }
-
-                /* Affichage ecurueil */
-                if (client.getIdImage() == 0) {
-                    // On choisit l'image selon l'état du client
-                    String path_name = "ressources/client" + (client.getEtatclient() % 12 + 1) + ".png";
-                    File fileClient = new File(path_name);
-                    // On aura 12 images pour 12 états différents
-                    BufferedImage imageclient = null;
-                    // On récupère ces images
-                    try {
-                        imageclient = ImageIO.read(fileClient);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                    g.drawImage(imageclient, 0, 0, 300, 300, null);
-                }
-
-                // Affichage angrybird
-                else if (client.getIdImage() == 1) {
-                    // On choisit l'image selon l'état du client
-                    String path_name = "ressources/angrybirds" + (client.getEtatclient() % 12 + 1) + ".png";
-                    File fileClient = new File(path_name);
-                    // On aura 12 images pour 12 états différents
-                    BufferedImage imageclient = null;
-                    // On récupère ces images
-                    try {
-                        imageclient = ImageIO.read(fileClient);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                    g.drawImage(imageclient, 0, 0, 300, 300, null);
-                }
-
-                // Affichage humain
-                else if (client.getIdImage() == 2) {
-                    // On choisit l'image selon l'état du client
-                    String path_name = "ressources/humain" + (client.getEtatclient() % 14 + 1) + ".png";
-                    File fileClient = new File(path_name);
-                    // On aura 12 images pour 12 états différents
-                    BufferedImage imageclient = null;
-                    // On récupère ces images
-                    try {
-                        imageclient = ImageIO.read(fileClient);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                    g.drawImage(imageclient, 0, 0, 300, 300, null);
-                }
+            // On définit le client à afficher
+            Client client = this.miniAffichageClient.getEtat().getClients().getListeClients().get(this.miniAffichageClient.getEtat().getClient_en_cours());
+            // Si le timer < 0 on supprime le client
+            if (client.getTimer() < 0) {
+                this.miniAffichageClient.getEtat().getClients().removeClient(client);
             }
+
+            /* Affichage ecurueil */
+            if (client.getIdImage() == 0) {
+                // On choisit l'image selon l'état du client
+                String path_name = "ressources/client" + (client.getEtatclient() % 12 + 1) + ".png";
+                File fileClient = new File(path_name);
+                // On aura 12 images pour 12 états différents
+                BufferedImage imageclient = null;
+                // On récupère ces images
+                try {
+                    imageclient = ImageIO.read(fileClient);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                g.drawImage(imageclient, 0, 0, 300, 300, null);
+            }
+
+            // Affichage angrybird
+            else if (client.getIdImage() == 1) {
+                // On choisit l'image selon l'état du client
+                String path_name = "ressources/angrybirds" + (client.getEtatclient() % 12 + 1) + ".png";
+                File fileClient = new File(path_name);
+                // On aura 12 images pour 12 états différents
+                BufferedImage imageclient = null;
+                // On récupère ces images
+                try {
+                    imageclient = ImageIO.read(fileClient);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                g.drawImage(imageclient, 0, 0, 300, 300, null);
+            }
+
+            // Affichage humain
+            else if (client.getIdImage() == 2) {
+                // On choisit l'image selon l'état du client
+                String path_name = "ressources/humain" + (client.getEtatclient() % 14 + 1) + ".png";
+                File fileClient = new File(path_name);
+                // On aura 12 images pour 12 états différents
+                BufferedImage imageclient = null;
+                // On récupère ces images
+                try {
+                    imageclient = ImageIO.read(fileClient);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                g.drawImage(imageclient, 0, 0, 300, 300, null);
+            }
+        }
     }
 }
 

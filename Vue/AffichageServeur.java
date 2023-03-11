@@ -30,6 +30,7 @@ public class AffichageServeur extends JPanel {
         this.vueServeur = new VueServeur();
 
 
+
     }
 
     /** fonction de dessin du score et des clients insatisfaits
@@ -69,6 +70,6 @@ public class AffichageServeur extends JPanel {
         /* Score*/
         this.drawStats(g);
         /* Affichage Serveur */
-        //this.vueServeur.dessiner(g);
+        this.vueServeur.dessiner(g);
     }
 }

@@ -3,26 +3,26 @@ package Modele;
 public class Serveur extends Thread{
 
     /* Attributs */
-    private int etatServeur;
+    private int etat;
 
     /* Constructeur */
     public Serveur(){
-        this.setEtatServeur(0);
+        this.setEtat(0);
     }
 
     /* getter */
-    public int getEtatServeur() {
-        return etatServeur;
+    public int getEtat() {
+        return etat;
     }
 
     /* setter */
-    public void setEtatServeur(int etatServeur) {
-        this.etatServeur = etatServeur;
+    public void setEtat(int etatServeur) {
+        this.etat = etatServeur;
     }
 
     /* Méthode qui met a jour l'etat du serveur */
-    public void updateEtatServeur(){
-        this.etatServeur++;
+    public void updateEtat(){
+        this.etat++;
     }
 
     @Override
@@ -31,9 +31,9 @@ public class Serveur extends Thread{
         while(true) {
             try {
                 /* Attendre 150ms */
-                Thread.sleep(100);
+                Thread.sleep(200);
                 /* Mettre a jour l'état du serveur*/
-                this.updateEtatServeur();
+                this.updateEtat();
             }
             catch (Exception e) { e.printStackTrace(); }
         }

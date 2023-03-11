@@ -20,4 +20,7 @@ public class AffichageDroite extends JPanel {
         this.add(this.affichageCommandes, BorderLayout.SOUTH);
     }
 
+    public AffichageClient getAffichgeClient(){
+        return this.affichageClient;
+    }
 }

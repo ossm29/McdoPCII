@@ -18,6 +18,12 @@ public class AffichagePrincipal extends JPanel {
         this.add(this.affichageDroite, BorderLayout.WEST);
     }
 
+    public AffichageGauche getAffichageGauche(){
+        return this.affichageGauche;
+    }
+    public AffichageDroite getAffichageDroite(){
+        return this.affichageDroite;
+    }
 
     @Override
     public void paintComponent(Graphics g) {

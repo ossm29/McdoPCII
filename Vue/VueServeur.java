@@ -19,7 +19,7 @@ public class VueServeur {
 
     public void dessiner(Graphics g){
         // On choisit l'image selon l'etat du client
-        String path_name = "Vue/serveur"+ (serveur.getEtatServeur()%11 + 1) + ".png";
+        String path_name = "ressources/patron"+ (serveur.getEtat()%2) + ".png";
         File fileClient = new File(path_name);
         // On aura 12 images pour 12 états différents
         BufferedImage imageclient = null;
@@ -30,6 +30,6 @@ public class VueServeur {
             throw new RuntimeException(e);
         }
         // On affiche l'image
-        g.drawImage(imageclient, 1, 1, 998, 598,null);
+        g.drawImage(imageclient, 40, 480, 120, 120,null);
     }
 }

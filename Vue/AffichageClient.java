@@ -86,3 +86,4 @@ public class AffichageClient extends JPanel {
         this.setBackground(new Color(119, 181, 254));
     }
 }
+
