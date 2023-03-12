@@ -52,13 +52,6 @@ public class Etat {
         this.setQuantiteSushi();
         this.setQuantitePizza();
 
-        /* Threads */
-        //this.genereClient = new GenereClient(this);
-
-        /* Lancement des threads */
-        //this.genereClient.start();
-
-        // TODO ne marche pas IndexOutOfBoundsException : index n out of bounds for length n
 
     }
 

@@ -1,5 +1,6 @@
 package Vue;
 import java.awt.Dimension;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
 
@@ -9,6 +10,7 @@ import Vue.VueServeur;
 import java.awt.* ;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
@@ -52,7 +54,8 @@ public class AffichageServeur extends JPanel {
         g.drawString("SCORE : "+Integer.toString(this.etat.getScore()),710,73);
         g.setColor(Color.red);
         g.drawString(" | Clients insatisfaits : "+Integer.toString(this.etat.getClients_insatisfaits()),775,73);
-
+        g.setColor(Color.BLACK);
+        g.drawRect(700, 50, 238, 35);
     }
     
     /*Getter Etat*/
@@ -70,7 +73,7 @@ public class AffichageServeur extends JPanel {
     public void paint(Graphics g) {
 
         super.paint(g);
-
+        this.drawDecor(g);
         /* Arrière Plan et Bordures */
         setBackground((new Color(48, 78, 56)));
         Border blackline = BorderFactory.createLineBorder(Color.black,1);
@@ -94,6 +97,7 @@ public class AffichageServeur extends JPanel {
         this.vueServeur.dessiner(g);
         // Affichage Notification
         this.dessinerNotification(g);
+
     }
 
     public void afficherTexteTemporairement(String texte, int dureeEnMillisecondes) {
@@ -119,6 +123,23 @@ public class AffichageServeur extends JPanel {
             g.fillRect(50, 50, 220, 35);
             g.setColor(Color.BLACK);
             g.drawString(notification, 60, 75);
+            g.setColor(Color.BLACK);
+            g.drawRect(50, 50, 220, 35);
         }
+    }
+
+    public void drawDecor(Graphics g){
+        String path_name = "ressources/restaurant.png";
+        File fileClient = new File(path_name);
+        // On aura 12 images pour 12 états différents
+        BufferedImage image = null;
+        // On récupère ces images
+        try {
+            image = ImageIO.read(fileClient);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        // On affiche l'image
+        g.drawImage(image, 0, 0, 1000, 600,null);
     }
 }
