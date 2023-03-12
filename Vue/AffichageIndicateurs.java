@@ -60,5 +60,6 @@ public class AffichageIndicateurs extends JPanel{
                 this.affichageBarreDeProgression.setForeground(Color.RED);
             }
         }
+        else { this.affichageBarreDeProgression.setString("EN ATTENTE DE CLIENTS");}
     }
 }

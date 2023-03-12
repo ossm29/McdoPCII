@@ -1,4 +1,5 @@
 package Modele;
+import Controleur.GenereClient;
 import Vue.Clients;
 import Vue.miniAffichageClient;
 import java.util.Random;
@@ -52,10 +53,10 @@ public class Etat {
         this.setQuantitePizza();
 
         /* Threads */
-        this.genereClient = new GenereClient(this);
+        //this.genereClient = new GenereClient(this);
 
         /* Lancement des threads */
-        this.genereClient.start();
+        //this.genereClient.start();
 
         // TODO ne marche pas IndexOutOfBoundsException : index n out of bounds for length n
 

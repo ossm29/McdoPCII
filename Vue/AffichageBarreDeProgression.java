@@ -26,7 +26,7 @@ public class AffichageBarreDeProgression extends JProgressBar {
         this.setFont(angryFont);
         this.setStringPainted(true);
         //texte sur la barre
-        this.setString("PATIENCE");
+        this.setString("EN ATTENTE DE CLIENTS");
 
     }
 }

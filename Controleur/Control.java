@@ -12,21 +12,28 @@ public class Control implements MouseListener{
 
     /* Threads */
     private Repaint repaint;
+
+    private GenereClient genereClient;
     
     /* Constructeur */
     public Control(Etat etat, AffichagePrincipal affichagePrincipal) {
 
         this.setEtat(etat);
         this.affichagePrincipal = affichagePrincipal;
-
+        this.genereClient = new GenereClient(this);
         
         /* On initialise nos threads */
         //this.repaint = new Repaint(this.affichagePrincipal);
+        this.genereClient.start();
         
         /*On lance les threads */
         //this.repaint.start();
         
         this.affichagePrincipal.addMouseListener(this);
+    }
+
+    public AffichagePrincipal getAffichagePrincipal() {
+        return affichagePrincipal;
     }
 
     /* Ce qui se passe quand je presse et relache (entre autre clique) sur les boutons de ma souris  */
