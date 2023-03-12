@@ -1,5 +1,6 @@
 package Vue;
 
+import Modele.Commande;
 import Modele.Etat;
 
 import javax.imageio.ImageIO;
@@ -8,6 +9,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import javax.swing.BorderFactory;
 import javax.swing.border.Border;
 
@@ -176,4 +178,20 @@ public class AffichageCommande extends JPanel {
         // On affiche les images
         g.drawImage(image, 250, 250, 75, 75,this);
     }
+
+    /*méthode qui permet l'affichage de la commande :
+    * on affiche l'icône du produit et la qté commandée
+    * on affiche les produits par qté décroissante
+    * */
+/*    public void afficheCommande(Commande C, Graphics g) {
+        HashMap Order = new HashMap<String,Integer >();
+        Order.put("burger", C.calculBurger());
+        Order.put("pizza", C.calculPizza());
+        Order.put("plastic-cup",C.calculBoisson());
+        Order.put("piece-of-cake", C.calculDessert());
+        Order.put("sushi",C.calculSushi());
+        Order.put("french-fries",C.calculFrittes());
+
+        Order.;
+    }*/
 }
