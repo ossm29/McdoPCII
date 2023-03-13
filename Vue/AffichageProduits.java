@@ -12,7 +12,7 @@ import java.io.IOException;
 /** Classe qui gère l'affichage de la barre de produits en bas de l'écran */
 public class AffichageProduits extends JPanel {
     public static final int LARGEUR = (int) (0.7*Etat.WIDTH);                              	   /* Largeur Fenetre */
-    public static final int HAUTEUR = (int) (0.25*Etat.HEIGHT);                              	/* Hauteur Fenetre */
+    public static final int HAUTEUR = (int) (0.25*Etat.HEIGHT / 2);                              	/* Hauteur Fenetre */
 
     /* Variables */
     private Etat etat;                                                  	/* Variable Etat que notre classe retranscrira en affichage */
@@ -77,22 +77,22 @@ public class AffichageProduits extends JPanel {
         // Police d'ecriture
         g.setColor(Color.white);
         // On affiche les images des produits
-        g.drawImage(imageburger, 80, 25, 75, 75,this);
+        g.drawImage(imageburger, 80, 15, 75, 75,this);
         g.fillOval(85,110,60,60);
 
-        g.drawImage(imagefrites, 230, 25, 75, 75,this);
+        g.drawImage(imagefrites, 230, 15, 75, 75,this);
         g.fillOval(235,110,60,60);
 
-        g.drawImage(imagepizza, 380,25,75,75,this);
+        g.drawImage(imagepizza, 380,15,75,75,this);
         g.fillOval(385,110,60,60);
 
-        g.drawImage(imagesushi, 530,25,75,75,this);
+        g.drawImage(imagesushi, 530,15,75,75,this);
         g.fillOval(535,110,60,60);
 
-        g.drawImage(imageboisson, 680, 25, 75, 75,this);
+        g.drawImage(imageboisson, 680, 15, 75, 75,this);
         g.fillOval(685,110,60,60);
 
-        g.drawImage(imagedessert, 830,25,75,75,this);
+        g.drawImage(imagedessert, 830,15,75,75,this);
         g.fillOval(835,110,60,60);
 
         // On affiche les quantités des produits dans le stock

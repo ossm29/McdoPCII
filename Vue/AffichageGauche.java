@@ -14,12 +14,16 @@ public class AffichageGauche extends JPanel{
     private AffichageServeur affichageServeur;
     private AffichageProduits affichageProduits;
 
-    public AffichageGauche(AffichageServeur affichage, AffichageProduits affichageProduits){
+    private AffichageIngredients affichageIngredients;
+
+    public AffichageGauche(AffichageServeur affichage, AffichageProduits affichageProduits, AffichageIngredients affichageIngredients){
         this.affichageServeur = affichage;
         this.affichageProduits = affichageProduits;
+        this.affichageIngredients = affichageIngredients;
         this.setPreferredSize(new Dimension(1000,800));
         this.add(this.affichageServeur, BorderLayout.NORTH);
-        this.add(this.affichageProduits, BorderLayout.SOUTH);
+        this.add(this.affichageProduits, BorderLayout.CENTER);
+        this.add(this.affichageIngredients, BorderLayout.SOUTH);
     }
 
     /*Getter*/

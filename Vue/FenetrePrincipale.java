@@ -13,6 +13,7 @@ public class FenetrePrincipale extends JFrame{
 
 		AffichageServeur affichageServeur = new AffichageServeur(etat);
         AffichageClient affichageClient = new AffichageClient(etat);
+        AffichageIngredients affichageIngredients = new AffichageIngredients(etat);
         AffichageProduits affichageProduits = new AffichageProduits(etat);
         AffichageCommande affichageCommande = new AffichageCommande(etat);
 
@@ -23,7 +24,7 @@ public class FenetrePrincipale extends JFrame{
         /* Organisation des zones d'affichage */
 
         // partie gauche
-        AffichageGauche affichageGauche = new AffichageGauche(affichageServeur, affichageProduits);
+        AffichageGauche affichageGauche = new AffichageGauche(affichageServeur, affichageProduits,affichageIngredients);
 
         // partie droite
         AffichageDroite affichageDroite = new AffichageDroite(affichageClient, affichageCommande);

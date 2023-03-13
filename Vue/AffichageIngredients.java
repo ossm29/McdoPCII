@@ -9,10 +9,10 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-/** Classe qui gère l'affichage de la barre de produits en bas de l'écran */
+/** Classe qui gère l'affichage de la barre d'ingrédients en bas de l'écran */
 public class AffichageIngredients extends JPanel {
     public static final int LARGEUR = (int) (0.7*Etat.WIDTH);                              	   /* Largeur Fenetre */
-    public static final int HAUTEUR = (int) (0.25*Etat.HEIGHT);                              	/* Hauteur Fenetre */
+    public static final int HAUTEUR = (int) (0.25*Etat.HEIGHT)/2;                              	/* Hauteur Fenetre */
 
     /* Variables */
     private Etat etat;                                                  	/* Variable Etat que notre classe retranscrira en affichage */
@@ -33,5 +33,6 @@ public class AffichageIngredients extends JPanel {
     public void setEtat(Etat etat) {
         this.etat = etat;
     }
+
 
 }
