@@ -1,10 +1,13 @@
 package Controleur;
 import java.awt.event.*;
+
 import Modele.Etat;
 import Vue.*;
 
+import javax.swing.*;
+
 /* Ma classe Control qui fera le lien entre ma Classe Etat et ma Classe Affichage suite à toute interaction */
-public class Control implements MouseListener{
+public class Control implements MouseListener, ActionListener{
 
     /* Variables  utiles au modèle MVC */
     private Etat etat;                              
@@ -14,7 +17,7 @@ public class Control implements MouseListener{
     private Repaint repaint;
 
     private GenereClient genereClient;
-    
+    private Timer timer;
     /* Constructeur */
     public Control(Etat etat, AffichagePrincipal affichagePrincipal) {
 
@@ -30,6 +33,9 @@ public class Control implements MouseListener{
         //this.repaint.start();
         
         this.affichagePrincipal.addMouseListener(this);
+
+        // Timer
+
     }
 
     public AffichagePrincipal getAffichagePrincipal() {
@@ -72,4 +78,8 @@ public class Control implements MouseListener{
 	public void setEtat(Etat etat) {
 		this.etat = etat;
 	}
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+    }
 }

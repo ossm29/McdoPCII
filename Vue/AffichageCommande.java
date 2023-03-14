@@ -36,13 +36,6 @@ public class AffichageCommande extends JPanel {
         Border blackline = BorderFactory.createLineBorder(Color.black,1);
         this.setBorder(blackline);
         this.setBackground((new Color(31, 62, 89)));
-
-        this.paintBurger(g);
-        this.paintPizza(g);
-        this.paintFrites(g);
-        this.paintSushi(g);
-        this.paintBoisson(g);
-        this.paintDessert(g);
     }
 
     /*Getter Etat*/
