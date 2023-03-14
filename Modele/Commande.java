@@ -26,11 +26,13 @@ public class Commande {
         // Chaque client commande au plus 3 produits différents
         for ( int i = 0; i<3 && nbProduit>0; i++){
             // On tire le produit aléatoirement
-            int reference = random.nextInt(6);
+            int reference = random.nextInt(menu.size());
             String nomProduit = menu.get(reference);
+            //on ne peut pas ajouter un produit 2 fois à la liste donc on le retire du menu après l'avoir sélectionné
+            menu.remove(reference);
             // On tire une quantité au hasard entre 1 et notre nb de produit max restant
             int quantiteProduit = 1 + random.nextInt(nbProduit);
-            // On ajoute le produit a notre commande
+            // On ajoute le produit a notre commande , si il est déjà présent on augmente sa qté
             this.produits.add(new Produit(nomProduit,quantiteProduit));
             // On met a jour le nbProduit auquel on a droit pour le prochain tirage
             nbProduit = nbProduit - quantiteProduit;
@@ -103,5 +105,10 @@ public class Commande {
         }
         return total;
     }
+
+    public ArrayList<Produit> getProduits() {
+        return this.produits;
+    }
+
 
 }

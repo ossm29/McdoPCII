@@ -1,7 +1,9 @@
 package Vue;
 
+import Modele.Client;
 import Modele.Commande;
 import Modele.Etat;
+import Modele.Produit;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -9,6 +11,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.BorderFactory;
 import javax.swing.border.Border;
@@ -16,8 +19,8 @@ import javax.swing.border.Border;
 /** Classe qui gère l'affichage des commandes en bas à droite de l'écran*/
 
 public class AffichageCommande extends JPanel {
-    public static final int LARGEUR = (int) (0.3* Etat.WIDTH);       	/* Largeur Fenetre */
-    public static final int HAUTEUR = (int) (0.55*Etat.HEIGHT);       	/* Hauteur Fenetre */
+    public static final int LARGEUR = (int) (0.3* Etat.WIDTH);       	/* Largeur Fenetre 426 */
+    public static final int HAUTEUR = (int) (0.55*Etat.HEIGHT);       	/* Hauteur Fenetre 440*/
 
     /* Variables */
     private Etat etat;                                                  	/* Variable Etat que notre classe retranscrira en affichage */
@@ -35,14 +38,61 @@ public class AffichageCommande extends JPanel {
 
         Border blackline = BorderFactory.createLineBorder(Color.black,1);
         this.setBorder(blackline);
-        this.setBackground((new Color(31, 62, 89)));
+        this.setBackground(Color.white);
 
-        this.paintBurger(g);
-        this.paintPizza(g);
-        this.paintFrites(g);
-        this.paintSushi(g);
-        this.paintBoisson(g);
-        this.paintDessert(g);
+
+
+        //Police d'affichage ticket
+        Font receiptFont = null;
+        try {
+            //creation de la police d'affichage, taille 25
+            receiptFont = Font.createFont(Font.TRUETYPE_FONT, new File("ressources/fonts/receipt.ttf")).deriveFont(30f);
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            //register the font
+            ge.registerFont(receiptFont);
+        } catch (IOException | FontFormatException e) {
+            e.printStackTrace();
+        }
+        this.setFont(receiptFont);
+
+        //Si il y a des clients, on affiche leur commande sur un ticket
+        if(this.etat.getClients().getListeClients().size() != 0) {
+            this.drawDecor(g);
+            g.drawString("TICKET "+this.etat.getClients().getListeClients().get(this.etat.getClient_en_cours()).getIdentifiant(),170,80);
+            g.drawLine(87,90,350,90);
+            this.afficheCommande(this.etat.getClients().getListeClients().get(this.etat.getClient_en_cours()).getCommande(), g);
+            //this.etat.getClients().getListeClients().get(this.etat.getClient_en_cours()).getIdentifiant()
+        } //sinon on affiche un écran d'attente
+        else {
+            g.drawString("PAS DE COMMANDE...",125,200);
+        }
+    }
+
+    public void drawDecor(Graphics g) {
+        File backgroundimage = new File("ressources/ticket.png");
+        // On aura 1 image pour l'arriere-plan
+        BufferedImage image = null;
+        // On récupère l'image
+        try {
+            image = ImageIO.read(backgroundimage);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        // On affiche l'image
+        g.drawImage(image, 0, 0, 436, 436,null);
+    }
+
+    /** Méthode qui affiche la commande sur le ticket */
+    public void afficheCommande(Commande C,Graphics g) {
+        ArrayList<Produit> liste = C.getProduits();
+        //Boucle foreach pour chaque produit de la commande
+        for(int i = 0; i < liste.size(); i++) {
+            //On affiche sa quantité
+            g.drawString(String.valueOf(liste.get(i).getQuantite())+" X",110,150+35*i);
+            //On affiche son nom
+            g.drawString(liste.get(i).getNom(),170,150+35*i);
+
+        }
     }
 
     /*Getter Etat*/
@@ -55,143 +105,5 @@ public class AffichageCommande extends JPanel {
         this.etat = etat;
     }
 
-    // DessinBurger
-    public void paintBurger(Graphics g){
-        /* Affichage Image */
 
-        // On charge les fichiers
-        File fileBurger = new File("ressources/burger.png");
-
-        // On aura 1 images pour le produit
-        BufferedImage imageburger = null;
-
-        // On récupère ces images
-        try {
-            imageburger = ImageIO.read(fileBurger);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        // On affiche les images
-        g.drawImage(imageburger, 80, 50, 75, 75,this);
-    }
-
-    //Dessin Pizza
-    public void paintPizza(Graphics g){
-        /* Affichage Image */
-
-        // On charge les fichiers
-        File filePizza = new File("ressources/pizza.png");
-
-        // On aura 1 images pour le produit
-        BufferedImage imagepizza = null;
-
-        // On récupère ces images
-        try {
-            imagepizza = ImageIO.read(filePizza);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        // On affiche les images
-        g.drawImage(imagepizza, 250, 50, 75, 75,this);
-    }
-
-    // Paint Frittes
-
-    public void paintFrites(Graphics g){
-        /* Affichage Image */
-
-        // On charge les fichiers
-        File file = new File("ressources/french-fries.png");
-
-        // On aura 1 images pour le produit
-        BufferedImage image = null;
-
-        // On récupère ces images
-        try {
-            image = ImageIO.read(file);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        // On affiche les images
-        g.drawImage(image, 80, 150, 75, 75,this);
-    }
-
-    public void paintSushi(Graphics g){
-        /* Affichage Image */
-
-        // On charge les fichiers
-        File file = new File("ressources/sushi.png");
-
-        // On aura 1 images pour le produit
-        BufferedImage image = null;
-
-        // On récupère ces images
-        try {
-            image = ImageIO.read(file);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        // On affiche les images
-        g.drawImage(image, 250, 150, 75, 75,this);
-    }
-
-    public void paintBoisson(Graphics g){
-        /* Affichage Image */
-
-        // On charge les fichiers
-        File file = new File("ressources/plastic-cup.png");
-
-        // On aura 1 images pour le produit
-        BufferedImage image = null;
-
-        // On récupère ces images
-        try {
-            image = ImageIO.read(file);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        // On affiche les images
-        g.drawImage(image, 80, 250, 75, 75,this);
-    }
-
-    public void paintDessert(Graphics g){
-        /* Affichage Image */
-
-        // On charge les fichiers
-        File file = new File("ressources/piece-of-cake.png");
-
-        // On aura 1 images pour le produit
-        BufferedImage image = null;
-
-        // On récupère ces images
-        try {
-            image = ImageIO.read(file);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        // On affiche les images
-        g.drawImage(image, 250, 250, 75, 75,this);
-    }
-
-    /*méthode qui permet l'affichage de la commande :
-    * on affiche l'icône du produit et la qté commandée
-    * on affiche les produits par qté décroissante
-    * */
-/*    public void afficheCommande(Commande C, Graphics g) {
-        HashMap Order = new HashMap<String,Integer >();
-        Order.put("burger", C.calculBurger());
-        Order.put("pizza", C.calculPizza());
-        Order.put("plastic-cup",C.calculBoisson());
-        Order.put("piece-of-cake", C.calculDessert());
-        Order.put("sushi",C.calculSushi());
-        Order.put("french-fries",C.calculFrittes());
-
-        Order.;
-    }*/
 }

@@ -34,5 +34,52 @@ public class AffichageIngredients extends JPanel {
         this.etat = etat;
     }
 
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g);
+        //Bordure
+        Border blackline = BorderFactory.createLineBorder(Color.black,1);
+        this.setBorder(blackline);
+        // Arrière-plan
+        this.setBackground(new Color(215, 113, 113));
+
+        g.drawString("Ingrédients : ", 5,15);
+
+        /* Affichage Images */
+
+        // On charge les fichiers
+        File fileBread = new File("ressources/ingredients/bread.png");
+        File fileOil = new File("ressources/ingredients/oil.png");
+        File filePotato = new File("ressources/ingredients/potato.png");
+        File fileTomato = new File("ressources/ingredients/tomato.png");
+
+        // On a 4 images pour les ingrédients
+        BufferedImage imageBread;
+        BufferedImage imageOil;
+        BufferedImage imagePotato;
+        BufferedImage imageTomato;
+
+
+        // On récupère ces images
+        try {
+            imageBread = ImageIO.read(fileBread);
+            imageOil = ImageIO.read(fileOil);
+            imagePotato = ImageIO.read(filePotato);
+            imageTomato = ImageIO.read(fileTomato);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        // On affiche les images des ingrédients
+        g.drawImage(imageBread, 80, 15, 50, 50,this);
+
+        g.drawImage(imageOil, 230, 15, 50, 50,this);
+
+        g.drawImage(imagePotato, 380,15,50,50,this);
+
+        g.drawImage(imageTomato, 530,15,50,50,this);
+
+    }
+
 
 }

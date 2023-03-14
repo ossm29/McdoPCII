@@ -44,6 +44,7 @@ public class AffichageProduits extends JPanel {
         this.setBorder(blackline);
         setBackground((new Color(245, 240, 225)));
 
+
         /* Affichage Image */
 
         // On charge les fichiers
@@ -75,25 +76,25 @@ public class AffichageProduits extends JPanel {
         }
 
         // Police d'ecriture
-        g.setColor(Color.white);
+        g.setColor(Color.red);
         // On affiche les images des produits
         g.drawImage(imageburger, 80, 15, 75, 75,this);
-        g.fillOval(85,110,60,60);
+        g.fillOval(125,5,40,40);
 
         g.drawImage(imagefrites, 230, 15, 75, 75,this);
-        g.fillOval(235,110,60,60);
+        g.fillOval(265,5,40,40);
 
         g.drawImage(imagepizza, 380,15,75,75,this);
-        g.fillOval(385,110,60,60);
+        g.fillOval(410,5,40,40);
 
         g.drawImage(imagesushi, 530,15,75,75,this);
-        g.fillOval(535,110,60,60);
+        g.fillOval(560,5,40,40);
 
         g.drawImage(imageboisson, 680, 15, 75, 75,this);
-        g.fillOval(685,110,60,60);
+        g.fillOval(710,5,40,40);
 
         g.drawImage(imagedessert, 830,15,75,75,this);
-        g.fillOval(835,110,60,60);
+        g.fillOval(865,5,40,40);
 
         // On affiche les quantités des produits dans le stock
         g.setColor(Color.black);
@@ -109,23 +110,23 @@ public class AffichageProduits extends JPanel {
         int quantitedessert = this.etat.getQuantiteDessert();
 
 
-        if(quantiteburger>9){ g.drawString(quantiteburger+"", 100, 150); }
-        else { g.drawString(quantiteburger+"", 108, 150); }
+        if(quantiteburger>9){ g.drawString(quantiteburger+"", 128,32); }
+        else { g.drawString(quantiteburger+"", 135, 32); }
 
-        if (quantitepizza>9){ g.drawString(quantitepizza+"", 251, 150);}
-        else { g.drawString(quantitepizza+"", 257, 150);}
+        if (quantitepizza>9){ g.drawString(quantitepizza+"", 410, 32);}
+        else { g.drawString(quantitepizza+"", 417, 32);}
 
-        if (quantitefrites>9) {g.drawString(quantitefrites+"", 400, 150); }
-        else { g.drawString(quantitefrites+"", 408, 150); }
+        if (quantitefrites>9) {g.drawString(quantitefrites+"", 268, 32); }
+        else { g.drawString(quantitefrites+"", 275, 32); }
 
-        if (quantitesushi>9) {g.drawString(quantitesushi+"", 550, 150); }
-        else { g.drawString(quantitesushi+"", 559, 150); }
+        if (quantitesushi>9) {g.drawString(quantitesushi+"", 562, 32); }
+        else { g.drawString(quantitesushi+"", 568, 32); }
 
-        if (quantiteboisson>9) {g.drawString(quantiteboisson+"", 700, 150); }
-        else { g.drawString(quantiteboisson+"", 707, 150); }
+        if (quantiteboisson>9) {g.drawString(quantiteboisson+"", 713, 32); }
+        else { g.drawString(quantiteboisson+"", 720, 32); }
 
-        if (quantitedessert>9) {g.drawString(quantitedessert+"", 850, 150); }
-        else { g.drawString(quantitedessert+"", 858, 150); }
+        if (quantitedessert>9) {g.drawString(quantitedessert+"", 868, 32); }
+        else { g.drawString(quantitedessert+"", 875, 32); }
 
     }
 }
