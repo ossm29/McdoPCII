@@ -20,8 +20,9 @@ public class AffichageGauche extends JPanel{
         this.affichageServeur = affichage;
         this.affichageProduits = affichageProduits;
         this.affichageIngredients = affichageIngredients;
-        this.setPreferredSize(new Dimension(1000,800));
-        this.add(this.affichageServeur, BorderLayout.CENTER);
+        this.setPreferredSize(new Dimension(1000,850));
+        this.add(this.affichageServeur, BorderLayout.NORTH);
+        this.add(this.affichageIngredients, BorderLayout.SOUTH);
     }
 
     /*Getter*/

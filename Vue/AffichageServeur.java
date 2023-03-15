@@ -19,8 +19,8 @@ import java.io.IOException;
 public class AffichageServeur extends JPanel {
 
     /* Constantes Fenetre*/
-    public static final int LARGEUR = 1000;                            	/* Largeur Fenetre */
-    public static final int HAUTEUR = 800;                             	/* Hauteur Fenetre */
+    public static final int LARGEUR = 990;                            	/* Largeur Fenetre */
+    public static final int HAUTEUR = 680;                             	/* Hauteur Fenetre */
     
     /* Variables */
     private Etat etat;                                                  	/* Variable Etat que notre classe retranscrira en affichage */
@@ -53,6 +53,8 @@ public class AffichageServeur extends JPanel {
     private BufferedImage imagePoulet;
     private BufferedImage imageTortilla;
     private BufferedImage imageSalt;
+
+    private JButton validationSelection;
 
     /* Constructeurs */
     public AffichageServeur(Etat etat){
@@ -114,7 +116,6 @@ public class AffichageServeur extends JPanel {
         File filePoulet = new File("ressources/poulet-frit.png");
         File fileTortilla = new File("ressources/tortillas.png");
         File fileSel = new File("ressources/sel.png");
-
         // On récupère ces images
         try {
             imageBread = ImageIO.read(fileBread);
@@ -165,15 +166,15 @@ public class AffichageServeur extends JPanel {
     public void paint(Graphics g) {
 
         super.paint(g);
-        this.drawDecor(g);
         /* Arrière Plan et Bordures */
-        setBackground((new Color(48, 78, 56)));
+        setBackground(new Color(245, 240, 225));
         Border blackline = BorderFactory.createLineBorder(Color.black,1);
         this.setBorder(blackline);
 
         // On paramètre notre police d'écriture en attribut
         this.setFont(this.font);
-
+        // On affiche le decor
+        this.drawDecor(g);
         // On affiche le score et le nombre de clients insatisfaits
         this.drawStats(g);
         // On affiche le patron
@@ -228,14 +229,14 @@ public class AffichageServeur extends JPanel {
             throw new RuntimeException(e);
         }
         // On affiche l'image
-        g.drawImage(image, 0, 0, 1000, 600,null);
+        g.drawImage(image, 1, 1, 988, 600,null);
     }
 
     public void drawProducts(Graphics g){
 
         // Couleur de fond
-        g.setColor(new Color(245, 240, 225));
-        g.fillRect(0,600,1000,80);
+        //g.setColor(new Color(245, 240, 225));
+        //g.fillRect(0,600,1000,80);
 
         // On affiche les images
         g.drawImage(this.imageBurger, 80, 615, 55, 55,this);
@@ -306,21 +307,43 @@ public class AffichageServeur extends JPanel {
     }
 
     public void drawSelection(Graphics g){
+        g.setColor(Color.green);
         if (this.etat.getSelectionIngredients().contains("pain")){
-            g.setColor(Color.green);
             g.fillOval(125,695,13,13);
         }
         if (this.etat.getSelectionIngredients().contains("huile")){
-            g.setColor(Color.green);
-            g.fillOval(267,695,13,13);
+            g.fillOval(275,695,13,13);
         }
         if (this.etat.getSelectionIngredients().contains("patate")){
-            g.setColor(Color.green);
             g.fillOval(425,695,13,13);
         }
         if (this.etat.getSelectionIngredients().contains("tomate")){
-            g.setColor(Color.green);
             g.fillOval(575,695,13,13);
+        }
+        if (this.etat.getSelectionIngredients().contains("fromage")){
+            g.fillOval(720,690,13,13);
+        }
+        if (this.etat.getSelectionIngredients().contains("pate")){
+            g.fillOval(867,690,13,13);
+        }
+        if (this.etat.getSelectionIngredients().contains("viande")){
+            g.fillOval(125,735,13,13);
+        }
+        if (this.etat.getSelectionIngredients().contains("salade")){
+            g.fillOval(275,735,13,13);
+        }
+        if (this.etat.getSelectionIngredients().contains("sauce")){
+            g.fillOval(425,735,13,13);
+        }
+        if (this.etat.getSelectionIngredients().contains("poulet")){
+            g.fillOval(575,735,13,13);
+        }
+        if (this.etat.getSelectionIngredients().contains("tortilla")){
+            g.fillOval(720,735,13,13);
+        }
+
+        if (this.etat.getSelectionIngredients().contains("sel")){
+            g.fillOval(867,735,13,13);
         }
     }
 }
