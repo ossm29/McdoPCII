@@ -45,6 +45,15 @@ public class AffichageServeur extends JPanel {
     private BufferedImage imagePotato;
     private BufferedImage imageTomato;
 
+    private BufferedImage imageCheese;
+    private BufferedImage imageMeat;
+    private BufferedImage imagePate;
+    private BufferedImage imageSauce;
+    private BufferedImage imageSalade;
+    private BufferedImage imagePoulet;
+    private BufferedImage imageTortilla;
+    private BufferedImage imageSalt;
+
     /* Constructeurs */
     public AffichageServeur(Etat etat){
         /* On définit les dimensions de notre JPanel */
@@ -76,7 +85,7 @@ public class AffichageServeur extends JPanel {
         File fileBoisson = new File("ressources/plastic-cup.png");
         File filePizza = new File("ressources/pizza.png");
         File fileDessert = new File ("ressources/piece-of-cake.png");
-        File fileSushi = new File ("ressources/sushi.png");
+        File fileSushi = new File ("ressources/burrito.png");
 
         // On récupère ces images
         try {
@@ -97,6 +106,14 @@ public class AffichageServeur extends JPanel {
         File fileOil = new File("ressources/ingredients/oil.png");
         File filePotato = new File("ressources/ingredients/potato.png");
         File fileTomato = new File("ressources/ingredients/tomato.png");
+        File fileCheese = new File("ressources/mask.png");
+        File filePate = new File("ressources/rouleau-a-patisserie.png");
+        File fileSteak = new File("ressources/steak.png");
+        File fileSauce = new File("ressources/sauce.png");
+        File fileSalade = new File("ressources/cabbage.png");
+        File filePoulet = new File("ressources/poulet-frit.png");
+        File fileTortilla = new File("ressources/tortillas.png");
+        File fileSel = new File("ressources/sel.png");
 
         // On récupère ces images
         try {
@@ -104,6 +121,14 @@ public class AffichageServeur extends JPanel {
             imageOil = ImageIO.read(fileOil);
             imagePotato = ImageIO.read(filePotato);
             imageTomato = ImageIO.read(fileTomato);
+            imageCheese = ImageIO.read(fileCheese);
+            imagePate = ImageIO.read(filePate);
+            imageMeat = ImageIO.read(fileSteak);
+            imageSauce = ImageIO.read(fileSauce);
+            imageSalade = ImageIO.read(fileSalade);
+            imagePoulet = ImageIO.read(filePoulet);
+            imageTortilla = ImageIO.read(fileTortilla);
+            imageSalt = ImageIO.read(fileSel);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -225,7 +250,7 @@ public class AffichageServeur extends JPanel {
         g.fillOval(125,605,30,30);
         g.fillOval(265,605,30,30);
         g.fillOval(416,605,30,30);
-        g.fillOval(560,605,30,30);
+        g.fillOval(573,605,30,30);
         g.fillOval(710,605,30,30);
         g.fillOval(865,605,30,30);
 
@@ -250,8 +275,8 @@ public class AffichageServeur extends JPanel {
         if (quantitefrites>9) {g.drawString(quantitefrites+"", 273, 626); }
         else { g.drawString(quantitefrites+"", 275, 626); }
 
-        if (quantitesushi>9) {g.drawString(quantitesushi+"", 569, 626); }
-        else { g.drawString(quantitesushi+"", 571, 626); }
+        if (quantitesushi>9) {g.drawString(quantitesushi+"", 582, 626); }
+        else { g.drawString(quantitesushi+"", 585, 626); }
 
         if (quantiteboisson>9) {g.drawString(quantiteboisson+"", 719, 626); }
         else { g.drawString(quantiteboisson+"", 722, 626); }
@@ -265,19 +290,19 @@ public class AffichageServeur extends JPanel {
         // On affiche les images des ingrédients LIGNE 1
         g.drawImage(this.imageBread, 80, 690, 50, 50,this);
         g.drawImage(this.imageOil, 230, 690, 50, 50,this);
-        g.drawImage(this.imagePotato, 380,690,50,50,this);
-        g.drawImage(this.imageTomato, 530,690,50,50,this);
-        g.drawImage(this.imageTomato, 680,690,50,50,this);
-        g.drawImage(this.imageTomato, 820,690,50,50,this);
+        g.drawImage(this.imagePotato, 380,690,45,45,this);
+        g.drawImage(this.imageTomato, 527,690,50,50,this);
+        g.drawImage(this.imageCheese, 678,693,42,42,this);
+        g.drawImage(this.imagePate, 820,693,43,43,this);
 
         // On affiche les images des ingredients LIGNE 2
         // On affiche les images des ingrédients
-        g.drawImage(this.imageBread, 80, 740, 50, 50,this);
-        g.drawImage(this.imageOil, 230, 740, 50, 50,this);
-        g.drawImage(this.imagePotato, 380,740,50,50,this);
-        g.drawImage(this.imageTomato, 530,740,50,50,this);
-        g.drawImage(this.imageTomato, 680,740,50,50,this);
-        g.drawImage(this.imageTomato, 820,740,50,50,this);
+        g.drawImage(this.imageMeat, 83, 740, 45, 45,this);
+        g.drawImage(this.imageSalade, 234, 744, 40, 40,this);
+        g.drawImage(this.imageSauce, 380,743,40,40,this);
+        g.drawImage(this.imagePoulet, 528,740,45,45,this);
+        g.drawImage(this.imageTortilla, 680,743,38,38,this);
+        g.drawImage(this.imageSalt, 820,744,45,45,this);
     }
 
     public void drawSelection(Graphics g){
