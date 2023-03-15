@@ -251,8 +251,9 @@ public class AffichageServeur extends JPanel {
         g.fillOval(265,605,30,30);
         g.fillOval(416,605,30,30);
         g.fillOval(573,605,30,30);
-        g.fillOval(710,605,30,30);
-        g.fillOval(865,605,30,30);
+        /* Commenté car pas de quantité pour les desserts */
+        //g.fillOval(710,605,30,30);
+        //g.fillOval(865,605,30,30);
 
         // On affiche les quantités des produits dans le stock
         g.setColor(Color.black);
@@ -278,11 +279,12 @@ public class AffichageServeur extends JPanel {
         if (quantitewrap>9) {g.drawString(quantitewrap+"", 582, 626); }
         else { g.drawString(quantitewrap+"", 585, 626); }
 
-        if (quantiteboisson>9) {g.drawString(quantiteboisson+"", 719, 626); }
+        //Commenté car pas de quantité pour les desserts
+        /*if (quantiteboisson>9) {g.drawString(quantiteboisson+"", 719, 626); }
         else { g.drawString(quantiteboisson+"", 722, 626); }
 
         if (quantitedessert>9) {g.drawString(quantitedessert+"", 873, 626); }
-        else { g.drawString(quantitedessert+"", 876, 626); }
+        else { g.drawString(quantitedessert+"", 876, 626); }*/
     }
 
     public void drawIngredients(Graphics g){
