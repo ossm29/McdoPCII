@@ -4,7 +4,7 @@ import Modele.Etat;
 import Vue.*;
 
 /* Ma classe Control qui fera le lien entre ma Classe Etat et ma Classe Affichage suite à toute interaction */
-public class Control implements MouseListener{
+public class Control implements MouseListener, KeyListener{
 
     /* Variables  utiles au modèle MVC */
     private Etat etat;                              
@@ -44,10 +44,41 @@ public class Control implements MouseListener{
     /* Ce qui se passe quand je presse les boutons de ma souris  */
     @Override
     public void mousePressed(MouseEvent e) {
-    	/*if ( e.getButton() == MouseEvent.BUTTON1 ) {
-            this.etat.jump();                           
-            this.affichage.repaint();                  
-        }*/
+        int x = e.getX();
+        int y = e.getY();
+    	if ( e.getButton() == MouseEvent.BUTTON1 ) {
+            // On ajoute ou supprime l'ingredient selon la zone de clic
+            if (x>80 && x<130 && y>690 && y<740){
+                if (this.etat.getSelectionIngredients().contains("pain")){
+                    this.etat.removeIngredient("pain");
+                }
+                else { this.etat.addIngredient("pain");}
+                System.out.println(this.etat.getSelectionIngredients());
+            }
+            if (x>230 && x<280 && y>690 && y<740){
+                if (this.etat.getSelectionIngredients().contains("huile")){
+                    this.etat.removeIngredient("huile");
+                }
+                else { this.etat.addIngredient("huile"); }
+                System.out.println(this.etat.getSelectionIngredients());
+            }
+            if (x>380 && x<430 && y>690 && y<740){
+                if (this.etat.getSelectionIngredients().contains("patate")) {
+                    this.etat.removeIngredient("patate");
+                }
+                else { this.etat.addIngredient("patate"); }
+                System.out.println(this.etat.getSelectionIngredients());
+            }
+            if (x>530&& x<580 && y>690 && y<740){
+                if (this.etat.getSelectionIngredients().contains("tomate")){
+                    this.etat.removeIngredient("tomate");
+                }
+                else { this.etat.addIngredient("tomate"); }
+                System.out.println(this.etat.getSelectionIngredients());
+            }
+            this.etat.production();
+            this.affichagePrincipal.repaint();
+        }
     }
 
     @Override
@@ -72,4 +103,19 @@ public class Control implements MouseListener{
 	public void setEtat(Etat etat) {
 		this.etat = etat;
 	}
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
+    }
 }
