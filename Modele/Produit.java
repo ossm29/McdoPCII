@@ -1,5 +1,5 @@
 package Modele;
-/** IL FAUDRAIT FAIRE DU PRODUIT UN ENUM : FIXER LES VALEURS POSSIBLES **/
+/** TODO : AJOUTER ATTRIBUT PRIX **/
 public class Produit {
 
     /* Attribut */

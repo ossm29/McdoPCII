@@ -34,5 +34,16 @@ public class AffichageIngredients extends JPanel {
         this.etat = etat;
     }
 
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g);
+        //Bordure
+        Border blackline = BorderFactory.createLineBorder(Color.black,1);
+        this.setBorder(blackline);
+        // Arrière-plan
+        this.setBackground(new Color(215, 113, 113));
+
+    }
+
 
 }

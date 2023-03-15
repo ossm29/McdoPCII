@@ -2,6 +2,8 @@ package Modele;
 import Controleur.GenereClient;
 import Vue.Clients;
 import Vue.miniAffichageClient;
+
+import java.util.HashSet;
 import java.util.Random;
 
 /* Ensemble des données qui caractériseront l'état de mon interface */
@@ -16,6 +18,7 @@ public class Etat {
     private Clients clients;                    /* La liste de tous les clients dans le magasin */
     private int client_en_cours;                /* index ( et NON PAS ID )  du client
                                                 qui se fait traiter sa commande actuellement */
+    private HashSet<String>selectionIngredients; /* Liste de tous les ingrédients selectionnés par le joueur afin de préparer un produit */
 
     /* Attributs concernants les stocks */
     private int quantiteBurger;
@@ -52,6 +55,8 @@ public class Etat {
         this.setQuantiteSushi();
         this.setQuantitePizza();
 
+        /* On initiase notre liste d'ingrédients selectionnés vide*/
+        this.selectionIngredients = new HashSet<String>();
 
     }
 
@@ -75,6 +80,9 @@ public class Etat {
         return clients;
     }
 
+    public HashSet<String>getSelectionIngredients(){
+        return this.selectionIngredients;
+    }
     public int getQuantiteBurger() {
         return quantiteBurger;
     }
@@ -168,6 +176,24 @@ public class Etat {
     public boolean fileVide(){
         if (this.clients.getListeClients().size() == 0) { return true; }
         else { return false; }
+    }
+
+    // Méthode qui ajoute un ingredient en parametre a notre selection d'ingredients
+    public void addIngredient(String ingredient){
+        this.selectionIngredients.add(ingredient);
+    }
+
+    // Méthode qui supprime un ingrédient en parametre de notre selection d'ingredient
+    public void removeIngredient(String ingredient){
+        this.selectionIngredients.remove(ingredient);
+    }
+
+    // Methode qui d'apres la selection des ingredients, si celle-ci correspond a une recette pour un produit alors on augmente sa quantite de 1 et on clear la selection
+    public void production(){
+        if (this.getSelectionIngredients().contains("pain") && this.getSelectionIngredients().contains("huile") && this.getSelectionIngredients().contains("tomate") && this.getSelectionIngredients().contains("patate")){
+            this.quantiteBurger++;
+            this.selectionIngredients = new HashSet<>();
+        }
     }
 
     // Méthode qui renvoie true si le jeu est fini sinon false
