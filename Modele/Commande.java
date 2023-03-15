@@ -17,7 +17,7 @@ public class Commande {
         menu.add("pizza");
         menu.add("plastic-cup");
         menu.add("piece-of-cake");
-        menu.add("sushi");
+        menu.add("wrap");
         menu.add("french-fries");
 
         // Chaque client commande au plus 6 article - non produits - et au minimum 1 article
@@ -78,10 +78,10 @@ public class Commande {
         }
         return total;
     }
-    public int calculSushi () {
+    public int calculwrap () {
         int total = 0;
         for (Produit produit : this.produits){
-            if (produit.getNom() == "sushi"){
+            if (produit.getNom() == "wrap"){
                 total = total + produit.getQuantite();
             }
         }

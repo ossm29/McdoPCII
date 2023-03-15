@@ -3,6 +3,7 @@ import Controleur.GenereClient;
 import Vue.Clients;
 import Vue.miniAffichageClient;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Random;
 
@@ -24,8 +25,8 @@ public class Etat {
     private int quantiteBurger;
     private int quantitePizza;
     private int quantiteBoisson;
-    private int quantiteSushi;
-    private int quantiteFrittes;
+    private int quantiteWrap;
+    private int quantiteFrites;
     private int quantiteDessert;
 
     /* Les threads */
@@ -52,7 +53,7 @@ public class Etat {
         this.setQuantiteBurger();
         this.setQuantiteDessert();
         this.setQuantiteFrittes();
-        this.setQuantiteSushi();
+        this.setQuantitewrap();
         this.setQuantitePizza();
 
         /* On initiase notre liste d'ingrédients selectionnés vide*/
@@ -95,12 +96,12 @@ public class Etat {
         return quantiteBoisson;
     }
 
-    public int getQuantiteSushi() {
-        return quantiteSushi;
+    public int getQuantiteWrap() {
+        return quantiteWrap;
     }
 
-    public int getQuantiteFrittes() {
-        return quantiteFrittes;
+    public int getQuantiteFrites() {
+        return quantiteFrites;
     }
 
     public int getQuantiteDessert() {
@@ -123,10 +124,10 @@ public class Etat {
         this.quantitePizza = 8 + random.nextInt(8);
     }
 
-    public void setQuantiteSushi() {
+    public void setQuantitewrap() {
         /* Entre 8 et 15 */
         Random random = new Random();
-        this.quantiteSushi = 8 + random.nextInt(8);
+        this.quantiteWrap = 8 + random.nextInt(8);
     }
 
     public void setQuantiteBoisson() {
@@ -144,7 +145,7 @@ public class Etat {
     public void setQuantiteFrittes() {
         /* Entre 8 et 15 */
         Random random = new Random();
-        this.quantiteFrittes= 8 + random.nextInt(8);
+        this.quantiteFrites = 8 + random.nextInt(8);
     }
     /* Méthodes */
 
@@ -188,10 +189,33 @@ public class Etat {
         this.selectionIngredients.remove(ingredient);
     }
 
+    // Méthode qui vide la séléction d'ingrédients (pour annuler)
+    public void videIngredients() {
+        this.selectionIngredients.clear();
+    }
+
     // Methode qui d'apres la selection des ingredients, si celle-ci correspond a une recette pour un produit alors on augmente sa quantite de 1 et on clear la selection
     public void production(){
-        if (this.getSelectionIngredients().contains("pain") && this.getSelectionIngredients().contains("huile") && this.getSelectionIngredients().contains("tomate") && this.getSelectionIngredients().contains("patate")){
+        //Burger : Pain, tomate, viande, sauce
+        HashSet <String> recetteBurger = new HashSet<>(Arrays.asList("pain","tomate","viande","sauce"));
+        // Frites : patate, huile, sel
+        HashSet <String> recetteFrites = new HashSet<>(Arrays.asList("patate","huile","sel"));
+        //Pizza : pate, tomate, fromage, viande , sauce
+        HashSet <String> recettePizza = new HashSet<>(Arrays.asList("pate","tomate","fromage","viande","sauce"));
+        //Wrap : tortilla, poulet, salade, sauce, fromage
+        HashSet <String> recetteWrap = new HashSet<>(Arrays.asList("tortilla","poulet","salade","sauce","fromage"));
+
+        if(this.getSelectionIngredients().equals(recetteBurger)) {
             this.quantiteBurger++;
+            this.selectionIngredients = new HashSet<>();
+        } if(this.getSelectionIngredients().equals(recetteFrites)) {
+            this.quantiteFrites++;
+            this.selectionIngredients = new HashSet<>();
+        } if(this.getSelectionIngredients().equals(recettePizza)) {
+            this.quantitePizza++;
+            this.selectionIngredients = new HashSet<>();
+        } if(this.getSelectionIngredients().equals(recetteWrap)) {
+            this.quantiteWrap++;
             this.selectionIngredients = new HashSet<>();
         }
     }

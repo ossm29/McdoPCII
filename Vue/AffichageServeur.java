@@ -5,7 +5,6 @@ import javax.swing.*;
 import javax.swing.border.Border;
 
 import Modele.Etat;
-import Vue.VueServeur;
 
 import java.awt.* ;
 import java.awt.event.ActionEvent;
@@ -35,7 +34,7 @@ public class AffichageServeur extends JPanel {
     private BufferedImage imageBurger;
     private BufferedImage imagePizza;
     private BufferedImage imageCaKE;
-    private BufferedImage imageSushi;
+    private BufferedImage imagewrap;
     private BufferedImage imageFrittes;
     private BufferedImage imageBoisson;
 
@@ -87,7 +86,7 @@ public class AffichageServeur extends JPanel {
         File fileBoisson = new File("ressources/plastic-cup.png");
         File filePizza = new File("ressources/pizza.png");
         File fileDessert = new File ("ressources/piece-of-cake.png");
-        File fileSushi = new File ("ressources/burrito.png");
+        File filewrap = new File ("ressources/burrito.png");
 
         // On récupère ces images
         try {
@@ -95,7 +94,7 @@ public class AffichageServeur extends JPanel {
             this.imageBoisson= ImageIO.read(fileBoisson);
             this.imageFrittes = ImageIO.read(fileFrittes);
             this.imagePizza = ImageIO.read(filePizza);
-            this.imageSushi = ImageIO.read(fileSushi);
+            this.imagewrap = ImageIO.read(filewrap);
             this.imageCaKE = ImageIO.read(fileDessert);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -242,7 +241,7 @@ public class AffichageServeur extends JPanel {
         g.drawImage(this.imageBurger, 80, 615, 55, 55,this);
         g.drawImage(this.imageFrittes, 230, 615, 55, 55,this);
         g.drawImage(this.imagePizza, 380,615,55,55,this);
-        g.drawImage(this.imageSushi, 530,615,55,55,this);
+        g.drawImage(this.imagewrap, 530,615,55,55,this);
         g.drawImage(this.imageBoisson, 680, 620, 50, 50,this);
         g.drawImage(this.imageCaKE, 830,615,55,55,this);
 
@@ -261,8 +260,8 @@ public class AffichageServeur extends JPanel {
         // Quantite
         int quantiteburger = this.etat.getQuantiteBurger();
         int quantitepizza = this.etat.getQuantitePizza();
-        int quantitefrites = this.etat.getQuantiteFrittes();
-        int quantitesushi = this.etat.getQuantiteSushi();
+        int quantitefrites = this.etat.getQuantiteFrites();
+        int quantitewrap = this.etat.getQuantiteWrap();
         int quantiteboisson = this.etat.getQuantiteBoisson();
         int quantitedessert = this.etat.getQuantiteDessert();
 
@@ -276,8 +275,8 @@ public class AffichageServeur extends JPanel {
         if (quantitefrites>9) {g.drawString(quantitefrites+"", 273, 626); }
         else { g.drawString(quantitefrites+"", 275, 626); }
 
-        if (quantitesushi>9) {g.drawString(quantitesushi+"", 582, 626); }
-        else { g.drawString(quantitesushi+"", 585, 626); }
+        if (quantitewrap>9) {g.drawString(quantitewrap+"", 582, 626); }
+        else { g.drawString(quantitewrap+"", 585, 626); }
 
         if (quantiteboisson>9) {g.drawString(quantiteboisson+"", 719, 626); }
         else { g.drawString(quantiteboisson+"", 722, 626); }
@@ -306,44 +305,22 @@ public class AffichageServeur extends JPanel {
         g.drawImage(this.imageSalt, 820,744,45,45,this);
     }
 
+    /** Méthode qui affiche un cercle  pour signaler les ingrédients sélectionnés*/
     public void drawSelection(Graphics g){
+        //Couleur du cercle
         g.setColor(Color.green);
-        if (this.etat.getSelectionIngredients().contains("pain")){
-            g.fillOval(125,695,13,13);
-        }
-        if (this.etat.getSelectionIngredients().contains("huile")){
-            g.fillOval(275,695,13,13);
-        }
-        if (this.etat.getSelectionIngredients().contains("patate")){
-            g.fillOval(425,695,13,13);
-        }
-        if (this.etat.getSelectionIngredients().contains("tomate")){
-            g.fillOval(575,695,13,13);
-        }
-        if (this.etat.getSelectionIngredients().contains("fromage")){
-            g.fillOval(720,690,13,13);
-        }
-        if (this.etat.getSelectionIngredients().contains("pate")){
-            g.fillOval(867,690,13,13);
-        }
-        if (this.etat.getSelectionIngredients().contains("viande")){
-            g.fillOval(125,735,13,13);
-        }
-        if (this.etat.getSelectionIngredients().contains("salade")){
-            g.fillOval(275,735,13,13);
-        }
-        if (this.etat.getSelectionIngredients().contains("sauce")){
-            g.fillOval(425,735,13,13);
-        }
-        if (this.etat.getSelectionIngredients().contains("poulet")){
-            g.fillOval(575,735,13,13);
-        }
-        if (this.etat.getSelectionIngredients().contains("tortilla")){
-            g.fillOval(720,735,13,13);
-        }
-
-        if (this.etat.getSelectionIngredients().contains("sel")){
-            g.fillOval(867,735,13,13);
+        //On déclare la liste des ingrédients
+        String[] Ingredients = {"pain","huile","patate","tomate","fromage","pate","viande","salade","sauce","poulet","tortilla","sel"};
+        //Coordonnée X des cercles
+        int[] xPositions = {125,275,425,575,720,867};
+        //Coordonnée Y des cercles
+        int yPosition = 695;
+        for(int i = 0; i <Ingredients.length;i++) {
+            //Au delà du 5e ingrédient on affiche en 2e ligne
+            if(i > 5) { yPosition = 735; }
+            if (this.etat.getSelectionIngredients().contains(Ingredients[i])){
+                g.fillOval(xPositions[i%6],yPosition,13,13);
+            }
         }
     }
 }

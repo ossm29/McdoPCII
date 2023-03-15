@@ -1,5 +1,6 @@
 package Vue;
 
+import Controleur.ControlIngredientsCancel;
 import Modele.Etat;
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -69,6 +70,16 @@ public class AffichageIngredients extends JPanel {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        /* Bouton annuler */
+        JButton btn = new JButton("Annuler");
+        //Définir la position du bouton
+        this.setLayout(null);
+        btn.setLayout(null);
+        btn.setBounds(900,50,60,20);
+        btn.addActionListener(new ControlIngredientsCancel(this.etat,this));
+        //on l'ajoute au JPanel
+        this.add(btn);
     }
 
 
@@ -90,6 +101,7 @@ public class AffichageIngredients extends JPanel {
         this.setBorder(blackline);
         // Arrière-plan
         this.setBackground(new Color(215, 113, 113));
+
 
         this.drawIngredients(g);
         this.drawSelection(g);
@@ -116,43 +128,20 @@ public class AffichageIngredients extends JPanel {
     }
 
     public void drawSelection(Graphics g){
+        //Couleur du cercle
         g.setColor(Color.green);
-        if (this.etat.getSelectionIngredients().contains("pain")){
-            g.fillOval(125,15,13,13);
-        }
-        if (this.etat.getSelectionIngredients().contains("huile")){
-            g.fillOval(275,15,13,13);
-        }
-        if (this.etat.getSelectionIngredients().contains("patate")){
-            g.fillOval(425,15,13,13);
-        }
-        if (this.etat.getSelectionIngredients().contains("tomate")){
-            g.fillOval(575,15,13,13);
-        }
-        if (this.etat.getSelectionIngredients().contains("fromage")){
-            g.fillOval(720,15,13,13);
-        }
-        if (this.etat.getSelectionIngredients().contains("pate")){
-            g.fillOval(867,15,13,13);
-        }
-        if (this.etat.getSelectionIngredients().contains("viande")){
-            g.fillOval(125,55,13,13);
-        }
-        if (this.etat.getSelectionIngredients().contains("salade")){
-            g.fillOval(275,55,13,13);
-        }
-        if (this.etat.getSelectionIngredients().contains("sauce")){
-            g.fillOval(425,55,13,13);
-        }
-        if (this.etat.getSelectionIngredients().contains("poulet")){
-            g.fillOval(575,55,13,13);
-        }
-        if (this.etat.getSelectionIngredients().contains("tortilla")){
-            g.fillOval(720,55,13,13);
-        }
-
-        if (this.etat.getSelectionIngredients().contains("sel")){
-            g.fillOval(867,55,13,13);
+        //On déclare la liste des ingrédients
+        String[] Ingredients = {"pain","huile","patate","tomate","fromage","pate","viande","salade","sauce","poulet","tortilla","sel"};
+        //Coordonnée X des cercles
+        int[] xPositions = {125,275,425,575,720,867};
+        //Coordonnée Y des cercles
+        int yPosition = 5;
+        for(int i = 0; i <Ingredients.length;i++) {
+            //Au delà du 5e ingrédient on affiche en 2e ligne
+            if(i > 5) { yPosition = 50; }
+            if (this.etat.getSelectionIngredients().contains(Ingredients[i])){
+                g.fillOval(xPositions[i%6],yPosition,13,13);
+            }
         }
     }
 
