@@ -133,7 +133,7 @@ public class Control implements MouseListener, KeyListener{
                 System.out.println(this.etat.getSelectionIngredients());
             }
 
-            this.etat.production();
+            //this.etat.production();
             this.affichagePrincipal.repaint();
         }
     }

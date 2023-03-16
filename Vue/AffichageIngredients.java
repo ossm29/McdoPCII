@@ -1,6 +1,7 @@
 package Vue;
 
 import Controleur.ControlIngredientsCancel;
+import Controleur.ControlIngredientsValider;
 import Modele.Etat;
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -88,7 +89,7 @@ public class AffichageIngredients extends JPanel {
         //Définir la position du bouton
         boutonValider.setLayout(null);
         boutonValider.setBounds(900,25,80,30);
-        boutonValider.addActionListener(new ControlIngredientsCancel(this.etat,this));
+        boutonValider.addActionListener(new ControlIngredientsValider(this.etat,this));
         boutonValider.setBackground(Color.white);
         boutonValider.setFocusPainted(false);
         //on l'ajoute au JPanel
