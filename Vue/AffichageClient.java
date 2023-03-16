@@ -66,6 +66,9 @@ public class AffichageClient extends JPanel {
 
     }
 
+    public miniAffichageClient getMiniAffichageClient(){
+        return this.miniAffichageClient;
+    }
     /*Getter Etat*/
     public Etat getEtat() {
         return etat;

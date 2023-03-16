@@ -3,10 +3,12 @@ package Controleur;
 import Modele.Etat;
 import Vue.miniAffichageClient;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class ControlClientClicGauche implements MouseListener {
+public class ControlClientClicGauche implements MouseListener , KeyListener {
 
     /* Variables  utiles au modèle MVC */
     private Etat etat;
@@ -59,5 +61,18 @@ public class ControlClientClicGauche implements MouseListener {
     }
 
 
+    @Override
+    public void keyTyped(KeyEvent e) {
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
+    }
 }
 

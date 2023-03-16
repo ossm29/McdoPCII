@@ -4,10 +4,12 @@ import Modele.Etat;
 import Vue.Repaint;
 import Vue.miniAffichageClient;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class ControlClientClicDroit implements MouseListener {
+public class ControlClientClicDroit implements MouseListener, KeyListener {
 
     /* Variables  utiles au modèle MVC */
     private Etat etat;
@@ -59,6 +61,25 @@ public class ControlClientClicDroit implements MouseListener {
 
     public void setEtat(Etat etat) {
         this.etat = etat;
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        if ( e.getKeyCode() == KeyEvent.VK_RIGHT ) {
+            this.etat.clientprecedent();
+            System.out.println(this.etat.getClient_en_cours());
+            this.miniAffichageClient.repaint();
+        }
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
     }
 }
 

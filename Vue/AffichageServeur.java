@@ -238,19 +238,19 @@ public class AffichageServeur extends JPanel {
         //g.fillRect(0,600,1000,80);
 
         // On affiche les images
-        g.drawImage(this.imageBurger, 80, 615, 55, 55,this);
-        g.drawImage(this.imageFrittes, 230, 615, 55, 55,this);
-        g.drawImage(this.imagePizza, 380,615,55,55,this);
-        g.drawImage(this.imagewrap, 530,615,55,55,this);
-        g.drawImage(this.imageBoisson, 680, 620, 50, 50,this);
-        g.drawImage(this.imageCaKE, 830,615,55,55,this);
+        g.drawImage(this.imageBurger, 40, 615, 55, 55,this);
+        g.drawImage(this.imageFrittes, 190, 615, 55, 55,this);
+        g.drawImage(this.imagePizza, 340,615,55,55,this);
+        g.drawImage(this.imagewrap, 490,615,55,55,this);
+        g.drawImage(this.imageBoisson, 630, 620, 50, 50,this);
+        g.drawImage(this.imageCaKE, 770,615,55,55,this);
 
         // On affiche les cercles au dessus des produits
         g.setColor(Color.white);
-        g.fillOval(125,605,30,30);
-        g.fillOval(265,605,30,30);
-        g.fillOval(416,605,30,30);
-        g.fillOval(573,605,30,30);
+        g.fillOval(85,605,30,30);
+        g.fillOval(225,605,30,30);
+        g.fillOval(376,605,30,30);
+        g.fillOval(533,605,30,30);
         /* Commenté car pas de quantité pour les desserts */
         //g.fillOval(710,605,30,30);
         //g.fillOval(865,605,30,30);
@@ -267,17 +267,17 @@ public class AffichageServeur extends JPanel {
         int quantitedessert = this.etat.getQuantiteDessert();
 
 
-        if(quantiteburger>9){ g.drawString(quantiteburger+"", 133,626); }
-        else { g.drawString(quantiteburger+"", 137, 626); }
+        if(quantiteburger>9){ g.drawString(quantiteburger+"", 93,626); }
+        else { g.drawString(quantiteburger+"", 97, 626); }
 
-        if (quantitepizza>9){ g.drawString(quantitepizza+"", 425, 626);}
-        else { g.drawString(quantitepizza+"", 428, 626);}
+        if (quantitepizza>9){ g.drawString(quantitepizza+"", 385, 626);}
+        else { g.drawString(quantitepizza+"", 388, 626);}
 
-        if (quantitefrites>9) {g.drawString(quantitefrites+"", 273, 626); }
-        else { g.drawString(quantitefrites+"", 275, 626); }
+        if (quantitefrites>9) {g.drawString(quantitefrites+"", 233, 626); }
+        else { g.drawString(quantitefrites+"", 235, 626); }
 
-        if (quantitewrap>9) {g.drawString(quantitewrap+"", 582, 626); }
-        else { g.drawString(quantitewrap+"", 585, 626); }
+        if (quantitewrap>9) {g.drawString(quantitewrap+"", 542, 626); }
+        else { g.drawString(quantitewrap+"", 545, 626); }
 
         //Commenté car pas de quantité pour les desserts
         /*if (quantiteboisson>9) {g.drawString(quantiteboisson+"", 719, 626); }

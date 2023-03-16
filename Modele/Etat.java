@@ -1,8 +1,12 @@
 package Modele;
 import Controleur.GenereClient;
+import Vue.AffichageServeur;
 import Vue.Clients;
 import Vue.miniAffichageClient;
 
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Random;
@@ -14,7 +18,7 @@ public class Etat {
 
     /* Attributs concernant le Joueur et les clients */
     private int score;                          /* Score Joueur */
-    private int compteurCLients = 2;            /* Nb de clients générés */
+    private int compteurCLients = 1;            /* Nb de clients générés */
     private static int clients_insatisfaits;    /* Nb de client insatisfait */
     private Clients clients;                    /* La liste de tous les clients dans le magasin */
     private int client_en_cours;                /* index ( et NON PAS ID )  du client
@@ -29,8 +33,10 @@ public class Etat {
     private int quantiteFrites;
     private int quantiteDessert;
 
-    /* Les threads */
-    private GenereClient genereClient;
+    private boolean burger_en_cours_de_preparation;
+    private boolean pizza_en_cours_de_preparation;
+    private boolean frittes_en_cours_de_preparation;
+    private boolean wrap_en_cours_de_preparation;
 
     /*dimensions de la fenêtre ; les dimesnsions des autres affichages sont proportionnelles*/
     public static final int WIDTH = 1420;
@@ -59,6 +65,12 @@ public class Etat {
         /* On initiase notre liste d'ingrédients selectionnés vide*/
         this.selectionIngredients = new HashSet<String>();
 
+        /* On initialise nos varaibles en cours de preparation a false */
+        this.setBurger_en_cours_de_preparation(false);
+        this.setPizza_en_cours_de_preparation(false);
+        this.setFrittes_en_cours_de_preparation(false);
+        this.setWrap_en_cours_de_preparation(false);
+
     }
 
     /* Getters */
@@ -70,14 +82,23 @@ public class Etat {
         return this.client_en_cours;
     }
 
+    public boolean isBurger_en_cours_de_preparation(){
+        return this.burger_en_cours_de_preparation;
+    }
+
+    public boolean isPizza_en_cours_de_preparation(){
+        return this.pizza_en_cours_de_preparation;
+    }
+
+    public boolean isFrittes_en_cours_de_preparation(){
+        return this.frittes_en_cours_de_preparation;
+    }
+
+    public boolean isWrap_en_cours_de_preparation(){
+        return this.wrap_en_cours_de_preparation;
+    }
+
     public Clients getClients(){
-        // TODO SUPPrimer les clients avec un timer nul
-        /*Clients nosClients = new Clients(this.clients.getMiniAffichageClient());
-        for (Client client : clients.getListeClients()){
-            if (client.getTimer()<0){
-                clients.removeClient(client);
-            }
-        }*/
         return clients;
     }
 
@@ -147,6 +168,20 @@ public class Etat {
         Random random = new Random();
         this.quantiteFrites = 8 + random.nextInt(8);
     }
+
+    public void setBurger_en_cours_de_preparation(boolean bool){
+        this.burger_en_cours_de_preparation = bool;
+    }
+    public void setPizza_en_cours_de_preparation(boolean bool){
+        this.pizza_en_cours_de_preparation = bool;
+    }
+    public void setWrap_en_cours_de_preparation(boolean bool){
+        this.wrap_en_cours_de_preparation = bool;
+    }
+
+    public void setFrittes_en_cours_de_preparation(boolean bool){
+        this.frittes_en_cours_de_preparation = bool;
+    }
     /* Méthodes */
 
     // Méthode qui met a jour le score
@@ -194,6 +229,62 @@ public class Etat {
         this.selectionIngredients.clear();
     }
 
+    // Méthode qui enclenche la production d'un burger qui prendra un durée donnée en parametre
+    public void preparationBurger( int dureeEnMillisecondes) {
+        this.burger_en_cours_de_preparation = true;
+        Timer timer = new Timer(dureeEnMillisecondes, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Etat.this.burger_en_cours_de_preparation = false;
+                Etat.this.quantiteBurger++;
+            }
+        });
+        timer.setRepeats(false);
+        timer.start();
+    }
+
+    // Méthode qui enclenche la production d'une pizza qui prendra un durée donnée en paramtre
+    public void preparationPizza( int dureeEnMillisecondes) {
+        this.pizza_en_cours_de_preparation = true;
+        Timer timer = new Timer(dureeEnMillisecondes, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Etat.this.pizza_en_cours_de_preparation = false;
+                Etat.this.quantitePizza++;
+            }
+        });
+        timer.setRepeats(false);
+        timer.start();
+    }
+
+    // Méthode qui enclenche la production d'une barquette de frittes qui prendra un durée donnée en paramtre
+    public void preparationFrittes( int dureeEnMillisecondes) {
+        this.frittes_en_cours_de_preparation = true;
+        Timer timer = new Timer(dureeEnMillisecondes, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Etat.this.frittes_en_cours_de_preparation = false;
+                Etat.this.quantiteFrites++;
+            }
+        });
+        timer.setRepeats(false);
+        timer.start();
+    }
+
+    // Méthode qui enclenche la production d'un wrapqui prendra un durée donnée en paramtre
+    public void preparationWrap( int dureeEnMillisecondes) {
+        this.wrap_en_cours_de_preparation = true;
+        Timer timer = new Timer(dureeEnMillisecondes, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Etat.this.wrap_en_cours_de_preparation = false;
+                Etat.this.quantiteWrap++;
+            }
+        });
+        timer.setRepeats(false);
+        timer.start();
+    }
+
     // Methode qui d'apres la selection des ingredients, si celle-ci correspond a une recette pour un produit alors on augmente sa quantite de 1 et on clear la selection
     public void production(){
         //Burger : Pain, tomate, viande, sauce
@@ -206,17 +297,25 @@ public class Etat {
         HashSet <String> recetteWrap = new HashSet<>(Arrays.asList("tortilla","poulet","salade","sauce","fromage"));
 
         if(this.getSelectionIngredients().equals(recetteBurger)) {
-            this.quantiteBurger++;
-            this.selectionIngredients = new HashSet<>();
+            if (this.burger_en_cours_de_preparation == false) {
+                this.preparationBurger(3000);
+                this.selectionIngredients = new HashSet<>();
+            }
         } if(this.getSelectionIngredients().equals(recetteFrites)) {
-            this.quantiteFrites++;
-            this.selectionIngredients = new HashSet<>();
+            if (this.frittes_en_cours_de_preparation == false) {
+                this.preparationFrittes(3000);
+                this.selectionIngredients = new HashSet<>();
+            }
         } if(this.getSelectionIngredients().equals(recettePizza)) {
-            this.quantitePizza++;
-            this.selectionIngredients = new HashSet<>();
+            if (this.pizza_en_cours_de_preparation == false) {
+                this.preparationPizza(3000);
+                this.selectionIngredients = new HashSet<>();
+            }
         } if(this.getSelectionIngredients().equals(recetteWrap)) {
-            this.quantiteWrap++;
-            this.selectionIngredients = new HashSet<>();
+            if (this.wrap_en_cours_de_preparation == false) {
+                this.preparationWrap(3000);
+                this.selectionIngredients = new HashSet<>();
+            }
         }
     }
 

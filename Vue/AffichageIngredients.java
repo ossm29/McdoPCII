@@ -72,14 +72,27 @@ public class AffichageIngredients extends JPanel {
         }
 
         /* Bouton annuler */
-        JButton btn = new JButton("Annuler");
+        JButton boutonAnnuler = new JButton("Annuler");
         //Définir la position du bouton
         this.setLayout(null);
-        btn.setLayout(null);
-        btn.setBounds(900,50,60,20);
-        btn.addActionListener(new ControlIngredientsCancel(this.etat,this));
+        boutonAnnuler.setLayout(null);
+        boutonAnnuler.setBounds(900,65,80,30);
+        boutonAnnuler.addActionListener(new ControlIngredientsCancel(this.etat,this));
+        boutonAnnuler.setBackground(Color.white);
+        boutonAnnuler.setFocusPainted(false);
         //on l'ajoute au JPanel
-        this.add(btn);
+        this.add(boutonAnnuler);
+
+        /* Bouton valider selection */
+        JButton boutonValider = new JButton("Valider");
+        //Définir la position du bouton
+        boutonValider.setLayout(null);
+        boutonValider.setBounds(900,25,80,30);
+        boutonValider.addActionListener(new ControlIngredientsCancel(this.etat,this));
+        boutonValider.setBackground(Color.white);
+        boutonValider.setFocusPainted(false);
+        //on l'ajoute au JPanel
+        this.add(boutonValider);
     }
 
 
@@ -110,21 +123,21 @@ public class AffichageIngredients extends JPanel {
     public void drawIngredients(Graphics g){
 
         // On affiche les images des ingrédients LIGNE 1
-        g.drawImage(this.imageBread, 80, 10, 50, 50,this);
-        g.drawImage(this.imageOil, 230, 10, 50, 50,this);
-        g.drawImage(this.imagePotato, 380,10,45,45,this);
-        g.drawImage(this.imageTomato, 527,10,50,50,this);
-        g.drawImage(this.imageCheese, 678,13,42,42,this);
-        g.drawImage(this.imagePate, 820,13,43,43,this);
+        g.drawImage(this.imageBread, 40, 10, 50, 50,this);
+        g.drawImage(this.imageOil, 190, 10, 50, 50,this);
+        g.drawImage(this.imagePotato, 340,10,45,45,this);
+        g.drawImage(this.imageTomato, 483,10,50,50,this);
+        g.drawImage(this.imageCheese, 638,13,42,42,this);
+        g.drawImage(this.imagePate, 780,13,43,43,this);
 
         // On affiche les images des ingredients LIGNE 2
         // On affiche les images des ingrédients
-        g.drawImage(this.imageMeat, 83, 60, 45, 45,this);
-        g.drawImage(this.imageSalade, 234, 64, 40, 40,this);
-        g.drawImage(this.imageSauce, 380,63,40,40,this);
-        g.drawImage(this.imagePoulet, 528,60,45,45,this);
-        g.drawImage(this.imageTortilla, 680,63,38,38,this);
-        g.drawImage(this.imageSalt, 820,64,45,45,this);
+        g.drawImage(this.imageMeat, 43, 60, 45, 45,this);
+        g.drawImage(this.imageSalade, 194, 64, 40, 40,this);
+        g.drawImage(this.imageSauce, 340,63,40,40,this);
+        g.drawImage(this.imagePoulet, 488,60,45,45,this);
+        g.drawImage(this.imageTortilla, 640,63,38,38,this);
+        g.drawImage(this.imageSalt, 780,64,45,45,this);
     }
 
     public void drawSelection(Graphics g){
@@ -133,7 +146,7 @@ public class AffichageIngredients extends JPanel {
         //On déclare la liste des ingrédients
         String[] Ingredients = {"pain","huile","patate","tomate","fromage","pate","viande","salade","sauce","poulet","tortilla","sel"};
         //Coordonnée X des cercles
-        int[] xPositions = {125,275,425,575,720,867};
+        int[] xPositions = {85,235,385,535,680,827};
         //Coordonnée Y des cercles
         int yPosition = 5;
         for(int i = 0; i <Ingredients.length;i++) {
