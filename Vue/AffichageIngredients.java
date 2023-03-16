@@ -34,6 +34,8 @@ public class AffichageIngredients extends JPanel {
     private BufferedImage imageTortilla;
     private BufferedImage imageSalt;
 
+    private AnimationTimer burgerTimer;
+
     /* Constructeurs */
     public AffichageIngredients(Etat etat){
         this.setEtat(etat);
@@ -94,6 +96,7 @@ public class AffichageIngredients extends JPanel {
         boutonValider.setFocusPainted(false);
         //on l'ajoute au JPanel
         this.add(boutonValider);
+
     }
 
 
@@ -105,6 +108,11 @@ public class AffichageIngredients extends JPanel {
     /*Setter etat*/
     public void setEtat(Etat etat) {
         this.etat = etat;
+    }
+
+    public void lancerBurgerTimer() {
+        this.burgerTimer = new AnimationTimer(etat.getDureePreparation()/1000,40,50,50);
+        this.burgerTimer.start();
     }
 
     @Override
@@ -119,6 +127,9 @@ public class AffichageIngredients extends JPanel {
 
         this.drawIngredients(g);
         this.drawSelection(g);
+        if(this.etat.isBurger_en_cours_de_preparation() || this.etat.isFrittes_en_cours_de_preparation()) {
+            this.burgerTimer.dessineTimer(g);
+        }
     }
 
     public void drawIngredients(Graphics g){

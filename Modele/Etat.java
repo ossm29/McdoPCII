@@ -1,5 +1,6 @@
 package Modele;
 import Controleur.GenereClient;
+import Vue.AffichageIngredients;
 import Vue.AffichageServeur;
 import Vue.Clients;
 import Vue.miniAffichageClient;
@@ -33,6 +34,9 @@ public class Etat {
     private int quantiteFrites;
     private int quantiteDessert;
 
+    /* Attributs préparation */
+
+    private int dureePreparation = 5000; //durée de la préparation en ms
     private boolean burger_en_cours_de_preparation;
     private boolean pizza_en_cours_de_preparation;
     private boolean frittes_en_cours_de_preparation;
@@ -132,6 +136,9 @@ public class Etat {
     public int getScore() { return score; }
 
     public int getClients_insatisfaits() { return clients_insatisfaits; }
+
+    public int getDureePreparation() { return this.dureePreparation; }
+
     /* Setters */
 
     public void setQuantiteBurger() {
@@ -269,6 +276,7 @@ public class Etat {
         });
         timer.setRepeats(false);
         timer.start();
+
     }
 
     // Méthode qui enclenche la production d'un wrapqui prendra un durée donnée en paramtre
@@ -286,7 +294,8 @@ public class Etat {
     }
 
     // Methode qui d'apres la selection des ingredients, si celle-ci correspond a une recette pour un produit alors on augmente sa quantite de 1 et on clear la selection
-    public void production(){
+    // return le nom du produit créé, null sinon
+    public String production(){
         //Burger : Pain, tomate, viande, sauce
         HashSet <String> recetteBurger = new HashSet<>(Arrays.asList("pain","tomate","viande","sauce"));
         // Frites : patate, huile, sel
@@ -296,28 +305,38 @@ public class Etat {
         //Wrap : tortilla, poulet, salade, sauce, fromage
         HashSet <String> recetteWrap = new HashSet<>(Arrays.asList("tortilla","poulet","salade","sauce","fromage"));
 
+        //nom du produit généré
+        String produit = "vide";
+
         if(this.getSelectionIngredients().equals(recetteBurger)) {
-            if (this.burger_en_cours_de_preparation == false) {
-                this.preparationBurger(3000);
+            if (!this.burger_en_cours_de_preparation) {
+                this.preparationBurger(dureePreparation);
                 this.selectionIngredients = new HashSet<>();
+                produit = "burger";
             }
         } if(this.getSelectionIngredients().equals(recetteFrites)) {
-            if (this.frittes_en_cours_de_preparation == false) {
-                this.preparationFrittes(3000);
+            if (!this.frittes_en_cours_de_preparation) {
+                this.preparationFrittes(dureePreparation);
                 this.selectionIngredients = new HashSet<>();
+                produit = "frites";
             }
         } if(this.getSelectionIngredients().equals(recettePizza)) {
-            if (this.pizza_en_cours_de_preparation == false) {
-                this.preparationPizza(3000);
+            if (!this.pizza_en_cours_de_preparation) {
+                this.preparationPizza(dureePreparation);
                 this.selectionIngredients = new HashSet<>();
+                produit = "pizza";
             }
         } if(this.getSelectionIngredients().equals(recetteWrap)) {
-            if (this.wrap_en_cours_de_preparation == false) {
-                this.preparationWrap(3000);
+            if (!this.wrap_en_cours_de_preparation) {
+                this.preparationWrap(dureePreparation);
                 this.selectionIngredients = new HashSet<>();
+                produit = "wrap";
             }
         }
+        return produit;
     }
+
+
 
     // Méthode qui renvoie true si le jeu est fini sinon false
     public boolean gameOver(){
