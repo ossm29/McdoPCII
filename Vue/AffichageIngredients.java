@@ -151,6 +151,8 @@ public class AffichageIngredients extends JPanel {
 
         this.drawIngredients(g);
         this.drawSelection(g);
+
+        //Si un ingrédient est en production on affiche son timer
         if(this.etat.isBurger_en_cours_de_preparation()) {
             this.burgerTimer.dessineTimer(affichageServeur.getGraphics());
         } if(this.etat.isFrites_en_cours_de_preparation()) {
@@ -160,6 +162,7 @@ public class AffichageIngredients extends JPanel {
         } if(this.etat.isWrap_en_cours_de_preparation()) {
             this.wrapTimer.dessineTimer(affichageServeur.getGraphics());
         }
+
     }
 
     public void drawIngredients(Graphics g){
