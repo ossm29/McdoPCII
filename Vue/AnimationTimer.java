@@ -42,8 +42,10 @@ public class AnimationTimer extends Thread {
     public void dessineTimer(Graphics g) {
         int angle = (int) (360.0 * timerPosition / timerValue); // calcul de l'angle en degrés
         g.setColor(Color.WHITE);
-        g.fillOval(x, y, circleDiameter, circleDiameter);
-        g.setColor(Color.BLACK);
+        //affiche un cercle de fond pour le timer
+        //g.fillOval(x, y, circleDiameter, circleDiameter);
+        //g.setColor(Color.BLACK);
+        g.setColor(new Color(120,120,120,155));
         g.fillArc(x, y, circleDiameter, circleDiameter, 0, angle);
     }
 
