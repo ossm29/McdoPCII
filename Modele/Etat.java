@@ -33,7 +33,7 @@ public class Etat {
 
     /* Attributs préparation */
 
-    private int dureePreparation = 5000; //durée de la préparation en ms
+    private int dureePreparation = 3000; //durée de la préparation en ms
     private boolean burger_en_cours_de_preparation;
     private boolean pizza_en_cours_de_preparation;
     private boolean frittes_en_cours_de_preparation;

@@ -53,6 +53,14 @@ public class AffichageServeur extends JPanel {
     private BufferedImage imageTortilla;
     private BufferedImage imageSalt;
 
+
+    /** ANIMATIONS */
+    private AnimationTimer burgerTimer;
+    private AnimationTimer fritesTimer;
+    private AnimationTimer pizzaTimer;
+    private AnimationTimer wrapTimer;
+
+
     private JButton validationSelection;
 
     /* Constructeurs */
@@ -183,9 +191,20 @@ public class AffichageServeur extends JPanel {
         // On affiche les produits
         this.drawProducts(g);
         // On affiche les ingrédients
-        this.drawIngredients(g);
+        //this.drawIngredients(g);
         // On affiche la selection
-        this.drawSelection(g);
+        //this.drawSelection(g);
+
+        //Si un produit est en production on affiche son timer
+        if(this.etat.isBurger_en_cours_de_preparation()) {
+            this.burgerTimer.dessineTimer(g);
+        } if(this.etat.isFrites_en_cours_de_preparation()) {
+            this.fritesTimer.dessineTimer(g);
+        } if(this.etat.isPizza_en_cours_de_preparation()) {
+            this.pizzaTimer.dessineTimer(g);
+        } if(this.etat.isWrap_en_cours_de_preparation()) {
+            this.wrapTimer.dessineTimer(g);
+        }
     }
 
     public void afficherTexteTemporairement(String texte, int dureeEnMillisecondes) {
@@ -286,6 +305,28 @@ public class AffichageServeur extends JPanel {
         if (quantitedessert>9) {g.drawString(quantitedessert+"", 873, 626); }
         else { g.drawString(quantitedessert+"", 876, 626); }*/
     }
+
+    /** ANIMATIONS*/
+    public void lancerBurgerTimer() {
+        this.burgerTimer = new AnimationTimer(etat.getDureePreparation(),30,85,605);
+        this.burgerTimer.start();
+    }
+
+    public void lancerFritesTimer() {
+        this.fritesTimer = new AnimationTimer(etat.getDureePreparation(),30,225,605);
+        this.fritesTimer.start();
+    }
+
+    public void lancerPizzaTimer() {
+        this.pizzaTimer = new AnimationTimer(etat.getDureePreparation(),30,376,605);
+        this.pizzaTimer.start();
+    }
+
+    public void lancerWrapTimer() {
+        this.wrapTimer = new AnimationTimer(etat.getDureePreparation(),30,533,605);
+        this.wrapTimer.start();
+    }
+
 
     public void drawIngredients(Graphics g){
 

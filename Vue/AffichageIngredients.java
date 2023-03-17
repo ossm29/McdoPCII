@@ -36,12 +36,6 @@ public class AffichageIngredients extends JPanel {
     private BufferedImage imageTortilla;
     private BufferedImage imageSalt;
 
-    /** ANIMATIONS */
-    private AnimationTimer burgerTimer;
-    private AnimationTimer fritesTimer;
-    private AnimationTimer pizzaTimer;
-    private AnimationTimer wrapTimer;
-
 
 
     /* Constructeurs */
@@ -113,31 +107,16 @@ public class AffichageIngredients extends JPanel {
         return etat;
     }
 
+    //getAffichageServeur
+    public AffichageServeur getAffichageServeur() { return this.affichageServeur;}
+
+
     /*Setter etat*/
     public void setEtat(Etat etat) {
         this.etat = etat;
     }
 
-    /** ANIMATIONS*/
-    public void lancerBurgerTimer() {
-        this.burgerTimer = new AnimationTimer(etat.getDureePreparation(),30,85,605);
-        this.burgerTimer.start();
-    }
 
-    public void lancerFritesTimer() {
-        this.fritesTimer = new AnimationTimer(etat.getDureePreparation(),30,225,605);
-        this.fritesTimer.start();
-    }
-
-    public void lancerPizzaTimer() {
-        this.pizzaTimer = new AnimationTimer(etat.getDureePreparation(),30,376,605);
-        this.pizzaTimer.start();
-    }
-
-    public void lancerWrapTimer() {
-        this.wrapTimer = new AnimationTimer(etat.getDureePreparation(),30,533,605);
-        this.wrapTimer.start();
-    }
 
     @Override
     public void paint(Graphics g) {
@@ -152,16 +131,6 @@ public class AffichageIngredients extends JPanel {
         this.drawIngredients(g);
         this.drawSelection(g);
 
-        //Si un ingrédient est en production on affiche son timer
-        if(this.etat.isBurger_en_cours_de_preparation()) {
-            this.burgerTimer.dessineTimer(affichageServeur.getGraphics());
-        } if(this.etat.isFrites_en_cours_de_preparation()) {
-            this.fritesTimer.dessineTimer(affichageServeur.getGraphics());
-        } if(this.etat.isPizza_en_cours_de_preparation()) {
-            this.pizzaTimer.dessineTimer(affichageServeur.getGraphics());
-        } if(this.etat.isWrap_en_cours_de_preparation()) {
-            this.wrapTimer.dessineTimer(affichageServeur.getGraphics());
-        }
 
     }
 

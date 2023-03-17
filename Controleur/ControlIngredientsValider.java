@@ -36,18 +36,18 @@ public class ControlIngredientsValider implements ActionListener {
         String produit = this.etat.production();
         switch (produit) {
             case "burger":
-                this.affichageIngredients.lancerBurgerTimer();
+                this.affichageIngredients.getAffichageServeur().lancerBurgerTimer();
                 break;
             case "frites" :
-                this.affichageIngredients.lancerFritesTimer();
+                this.affichageIngredients.getAffichageServeur().lancerFritesTimer();
                 break;
             case "pizza" :
-                this.affichageIngredients.lancerPizzaTimer();
+                this.affichageIngredients.getAffichageServeur().lancerPizzaTimer();
                 break;
             case "wrap" :
-                this.affichageIngredients.lancerWrapTimer();
+                this.affichageIngredients.getAffichageServeur().lancerWrapTimer();
                 break;
         }
-        this.affichageIngredients.repaint();
+        //this.affichageIngredients.repaint();
     }
 }
