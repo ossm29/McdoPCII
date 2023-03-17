@@ -1,7 +1,4 @@
 package Modele;
-import Controleur.GenereClient;
-import Vue.AffichageIngredients;
-import Vue.AffichageServeur;
 import Vue.Clients;
 import Vue.miniAffichageClient;
 
@@ -94,7 +91,7 @@ public class Etat {
         return this.pizza_en_cours_de_preparation;
     }
 
-    public boolean isFrittes_en_cours_de_preparation(){
+    public boolean isFrites_en_cours_de_preparation(){
         return this.frittes_en_cours_de_preparation;
     }
 

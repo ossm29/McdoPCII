@@ -42,6 +42,5 @@ public class AffichageGauche extends JPanel{
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        g.drawString("TOTO",0,30);
     }
 }

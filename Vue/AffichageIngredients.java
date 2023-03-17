@@ -19,6 +19,8 @@ public class AffichageIngredients extends JPanel {
     /* Variables */
     private Etat etat;                                                  	/* Variable Etat que notre classe retranscrira en affichage */
 
+    private AffichageServeur affichageServeur; /*Permet d'afficher les animations dans l'affichage serveur*/
+
     /* Image des ingédients */
     private BufferedImage imageBread;
     private BufferedImage imageOil;
@@ -34,13 +36,19 @@ public class AffichageIngredients extends JPanel {
     private BufferedImage imageTortilla;
     private BufferedImage imageSalt;
 
+    /** ANIMATIONS */
     private AnimationTimer burgerTimer;
+    private AnimationTimer fritesTimer;
+    private AnimationTimer pizzaTimer;
+    private AnimationTimer wrapTimer;
+
+
 
     /* Constructeurs */
-    public AffichageIngredients(Etat etat){
+    public AffichageIngredients(Etat etat, AffichageServeur affichageServeur){
         this.setEtat(etat);
         setPreferredSize(new Dimension(LARGEUR,HAUTEUR));               	/* On définit les dimensions de notre JPanel */
-
+        this.affichageServeur = affichageServeur;
         /* Images des ingrédients */
 
         // On charge les fichiers
@@ -110,9 +118,25 @@ public class AffichageIngredients extends JPanel {
         this.etat = etat;
     }
 
+    /** ANIMATIONS*/
     public void lancerBurgerTimer() {
-        this.burgerTimer = new AnimationTimer(etat.getDureePreparation()/1000,40,50,50);
+        this.burgerTimer = new AnimationTimer(etat.getDureePreparation(),30,85,605);
         this.burgerTimer.start();
+    }
+
+    public void lancerFritesTimer() {
+        this.fritesTimer = new AnimationTimer(etat.getDureePreparation(),30,225,605);
+        this.fritesTimer.start();
+    }
+
+    public void lancerPizzaTimer() {
+        this.pizzaTimer = new AnimationTimer(etat.getDureePreparation(),30,376,605);
+        this.pizzaTimer.start();
+    }
+
+    public void lancerWrapTimer() {
+        this.wrapTimer = new AnimationTimer(etat.getDureePreparation(),30,533,605);
+        this.wrapTimer.start();
     }
 
     @Override
@@ -127,8 +151,14 @@ public class AffichageIngredients extends JPanel {
 
         this.drawIngredients(g);
         this.drawSelection(g);
-        if(this.etat.isBurger_en_cours_de_preparation() || this.etat.isFrittes_en_cours_de_preparation()) {
-            this.burgerTimer.dessineTimer(g);
+        if(this.etat.isBurger_en_cours_de_preparation()) {
+            this.burgerTimer.dessineTimer(affichageServeur.getGraphics());
+        } if(this.etat.isFrites_en_cours_de_preparation()) {
+            this.fritesTimer.dessineTimer(affichageServeur.getGraphics());
+        } if(this.etat.isPizza_en_cours_de_preparation()) {
+            this.pizzaTimer.dessineTimer(affichageServeur.getGraphics());
+        } if(this.etat.isWrap_en_cours_de_preparation()) {
+            this.wrapTimer.dessineTimer(affichageServeur.getGraphics());
         }
     }
 

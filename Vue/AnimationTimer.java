@@ -4,9 +4,11 @@ import java.awt.*;
 
 public class AnimationTimer extends Thread {
 
-    private int timerValue; // durée du timer en secondes
-    private int timerPosition; // position actuelle du timer en secondes
+    private int timerValue; // durée du timer en ms
+    private int timerPosition; // position actuelle du timer en ms
     private int circleDiameter; // diamètre du cercle
+
+    private int sleeptime = 50; //intervalle entre chaque rafraichissement
     private int x; // coordonnée x du cercle
     private int y; // coordonnée y du cercle
 
@@ -21,9 +23,9 @@ public class AnimationTimer extends Thread {
     @Override
     public void run() {
         while (timerPosition < timerValue) {
-            timerPosition++;
+            timerPosition = timerPosition+sleeptime;
             try {
-                Thread.sleep(1000); // attendre une seconde
+                Thread.sleep(sleeptime); // attendre une seconde
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

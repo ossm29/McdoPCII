@@ -13,7 +13,7 @@ public class FenetrePrincipale extends JFrame{
 
 		AffichageServeur affichageServeur = new AffichageServeur(etat);
         AffichageClient affichageClient = new AffichageClient(etat);
-        AffichageIngredients affichageIngredients = new AffichageIngredients(etat);
+        AffichageIngredients affichageIngredients = new AffichageIngredients(etat, affichageServeur);
         AffichageProduits affichageProduits = new AffichageProduits(etat);
         AffichageCommande affichageCommande = new AffichageCommande(etat);
 
