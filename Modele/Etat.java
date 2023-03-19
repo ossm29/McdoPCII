@@ -297,10 +297,10 @@ public class Etat {
         HashSet <String> recetteBurger = new HashSet<>(Arrays.asList("pain","tomate","viande","sauce"));
         // Frites : patate, huile, sel
         HashSet <String> recetteFrites = new HashSet<>(Arrays.asList("patate","huile","sel"));
-        //Pizza : pate, tomate, fromage, viande , sauce
-        HashSet <String> recettePizza = new HashSet<>(Arrays.asList("pate","tomate","fromage","viande","sauce"));
-        //Wrap : tortilla, poulet, salade, sauce, fromage
-        HashSet <String> recetteWrap = new HashSet<>(Arrays.asList("tortilla","poulet","salade","sauce","fromage"));
+        //Pizza : pate, tomate, fromage, sauce
+        HashSet <String> recettePizza = new HashSet<>(Arrays.asList("pate","tomate","fromage","sauce"));
+        //Wrap : tortilla, poulet, salade, fromage
+        HashSet <String> recetteWrap = new HashSet<>(Arrays.asList("tortilla","poulet","salade","fromage"));
 
         //nom du produit généré
         String produit = "vide";

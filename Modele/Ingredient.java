@@ -1,5 +1,5 @@
 package Modele;
-/**Ingrédients permettant de collecter des produits*/
+/**Ingrédients permettant de collecter des ressources.produits*/
 public class Ingredient {
     /* Attribut */
     private String nom;

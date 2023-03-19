@@ -50,14 +50,14 @@ public class AffichageIngredients extends JPanel {
         File fileOil = new File("ressources/ingredients/oil.png");
         File filePotato = new File("ressources/ingredients/potato.png");
         File fileTomato = new File("ressources/ingredients/tomato.png");
-        File fileCheese = new File("ressources/mask.png");
-        File filePate = new File("ressources/rouleau-a-patisserie.png");
-        File fileSteak = new File("ressources/steak.png");
-        File fileSauce = new File("ressources/sauce.png");
-        File fileSalade = new File("ressources/cabbage.png");
-        File filePoulet = new File("ressources/poulet-frit.png");
-        File fileTortilla = new File("ressources/tortillas.png");
-        File fileSel = new File("ressources/sel.png");
+        File fileCheese = new File("ressources/ingredients/mask.png");
+        File filePate = new File("ressources/ingredients/rouleau-a-patisserie.png");
+        File fileSteak = new File("ressources/ingredients/steak.png");
+        File fileSauce = new File("ressources/ingredients/sauce.png");
+        File fileSalade = new File("ressources/ingredients/cabbage.png");
+        File filePoulet = new File("ressources/ingredients/poulet-frit.png");
+        File fileTortilla = new File("ressources/ingredients/tortillas.png");
+        File fileSel = new File("ressources/ingredients/sel.png");
         // On récupère ces images
         try {
             imageBread = ImageIO.read(fileBread);

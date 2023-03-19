@@ -9,7 +9,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-/** Classe qui gère l'affichage de la barre de produits en bas de l'écran */
+/** Classe qui gère l'affichage de la barre de ressources.produits en bas de l'écran */
 public class AffichageProduits extends JPanel {
     public static final int LARGEUR = 994;                              	   /* Largeur Fenetre */
     public static final int HAUTEUR = 400;                              	/* Hauteur Fenetre */

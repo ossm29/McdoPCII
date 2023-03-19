@@ -4,6 +4,8 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
 
+import Controleur.ControlIngredientsCancel;
+import Controleur.ControlServeurAide;
 import Modele.Etat;
 
 import java.awt.* ;
@@ -26,11 +28,13 @@ public class AffichageServeur extends JPanel {
     private VueServeur vueServeur;
     private String notification;
     private Boolean affichageNotification;
+    //indique si on affiche l'aide
+    private Boolean displayHelp = false;
 
     /* Font de police */
     private Font font;
 
-    /* Images des produits */
+    /* Images des ressources.produits */
     private BufferedImage imageBurger;
     private BufferedImage imagePizza;
     private BufferedImage imageCaKE;
@@ -61,8 +65,6 @@ public class AffichageServeur extends JPanel {
     private AnimationTimer wrapTimer;
 
 
-    private JButton validationSelection;
-
     /* Constructeurs */
     public AffichageServeur(Etat etat){
         /* On définit les dimensions de notre JPanel */
@@ -86,15 +88,15 @@ public class AffichageServeur extends JPanel {
             e.printStackTrace();
         }
 
-        /* Image des produits */
+        /* Image des ressources.produits */
 
         // On charge les fichiers
-        File fileBurger = new File("ressources/burger.png");
-        File fileFrittes = new File("ressources/french-fries.png");
-        File fileBoisson = new File("ressources/plastic-cup.png");
-        File filePizza = new File("ressources/pizza.png");
-        File fileDessert = new File ("ressources/piece-of-cake.png");
-        File filewrap = new File ("ressources/burrito.png");
+        File fileBurger = new File("ressources/produits/burger.png");
+        File fileFrittes = new File("ressources/produits/french-fries.png");
+        File fileBoisson = new File("ressources/produits/plastic-cup.png");
+        File filePizza = new File("ressources/produits/pizza.png");
+        File fileDessert = new File ("ressources/produits/piece-of-cake.png");
+        File filewrap = new File ("ressources/produits/burrito.png");
 
         // On récupère ces images
         try {
@@ -115,14 +117,14 @@ public class AffichageServeur extends JPanel {
         File fileOil = new File("ressources/ingredients/oil.png");
         File filePotato = new File("ressources/ingredients/potato.png");
         File fileTomato = new File("ressources/ingredients/tomato.png");
-        File fileCheese = new File("ressources/mask.png");
-        File filePate = new File("ressources/rouleau-a-patisserie.png");
-        File fileSteak = new File("ressources/steak.png");
-        File fileSauce = new File("ressources/sauce.png");
-        File fileSalade = new File("ressources/cabbage.png");
-        File filePoulet = new File("ressources/poulet-frit.png");
-        File fileTortilla = new File("ressources/tortillas.png");
-        File fileSel = new File("ressources/sel.png");
+        File fileCheese = new File("ressources/ingredients/mask.png");
+        File filePate = new File("ressources/ingredients/rouleau-a-patisserie.png");
+        File fileSteak = new File("ressources/ingredients/steak.png");
+        File fileSauce = new File("ressources/ingredients/sauce.png");
+        File fileSalade = new File("ressources/ingredients/cabbage.png");
+        File filePoulet = new File("ressources/ingredients/poulet-frit.png");
+        File fileTortilla = new File("ressources/ingredients/tortillas.png");
+        File fileSel = new File("ressources/ingredients/sel.png");
         // On récupère ces images
         try {
             imageBread = ImageIO.read(fileBread);
@@ -140,6 +142,19 @@ public class AffichageServeur extends JPanel {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+
+        /* Bouton aide */
+        JButton boutonAide = new JButton("?");
+        boutonAide.addActionListener(new ControlServeurAide(this.etat,this));
+
+        //Définir la position du bouton
+        this.setLayout(null);
+        boutonAide.setLayout(null);
+        boutonAide.setBounds(900,625,80,30);
+        boutonAide.setBackground(Color.white);
+        //on l'ajoute au JPanel
+        this.add(boutonAide);
 
     }
 
@@ -188,7 +203,7 @@ public class AffichageServeur extends JPanel {
         this.vueServeur.dessiner(g);
         // On affiche les notifs - dans le cas ou y en a -
         this.dessinerNotification(g);
-        // On affiche les produits
+        // On affiche les ressources.produits
         this.drawProducts(g);
         // On affiche les ingrédients
         //this.drawIngredients(g);
@@ -205,6 +220,11 @@ public class AffichageServeur extends JPanel {
         } if(this.etat.isWrap_en_cours_de_preparation()) {
             this.wrapTimer.dessineTimer(g);
         }
+
+        if(this.displayHelp) {
+            this.drawHelp(g);
+        }
+
     }
 
     public void afficherTexteTemporairement(String texte, int dureeEnMillisecondes) {
@@ -250,6 +270,22 @@ public class AffichageServeur extends JPanel {
         g.drawImage(image, 1, 1, 988, 600,null);
     }
 
+    /** Méthode affichant l'aide*/
+    public void drawHelp(Graphics g) {
+        String path_name = "ressources/recettespcii.png";
+        File fileHelp = new File(path_name);
+        // image
+        BufferedImage image = null;
+        // On récupère l'image
+        try {
+            image = ImageIO.read(fileHelp);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        // On affiche l'image
+        g.drawImage(image, 200, 1, 500, 500,null);
+    }
+
     public void drawProducts(Graphics g){
 
         // Couleur de fond
@@ -264,7 +300,7 @@ public class AffichageServeur extends JPanel {
         g.drawImage(this.imageBoisson, 630, 620, 50, 50,this);
         g.drawImage(this.imageCaKE, 770,615,55,55,this);
 
-        // On affiche les cercles au dessus des produits
+        // On affiche les cercles au dessus des ressources.produits
         g.setColor(Color.white);
         g.fillOval(85,605,30,30);
         g.fillOval(225,605,30,30);
@@ -274,7 +310,7 @@ public class AffichageServeur extends JPanel {
         //g.fillOval(710,605,30,30);
         //g.fillOval(865,605,30,30);
 
-        // On affiche les quantités des produits dans le stock
+        // On affiche les quantités des ressources.produits dans le stock
         g.setColor(Color.black);
 
         // Quantite
@@ -365,5 +401,9 @@ public class AffichageServeur extends JPanel {
                 g.fillOval(xPositions[i%6],yPosition,13,13);
             }
         }
+    }
+    /** inverse la valeur de displayHelp */
+    public void revertDisplayHelp() {
+        this.displayHelp = !this.displayHelp;
     }
 }

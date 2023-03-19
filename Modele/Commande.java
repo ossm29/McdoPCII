@@ -20,10 +20,10 @@ public class Commande {
         menu.add("wrap");
         menu.add("french-fries");
 
-        // Chaque client commande au plus 6 article - non produits - et au minimum 1 article
+        // Chaque client commande au plus 6 article - non ressources.produits - et au minimum 1 article
         Random random = new Random();
         int nbProduit = 1+random.nextInt(6);
-        // Chaque client commande au plus 3 produits différents
+        // Chaque client commande au plus 3 ressources.produits différents
         for ( int i = 0; i<3 && nbProduit>0; i++){
             // On tire le produit aléatoirement
             int reference = random.nextInt(menu.size());
