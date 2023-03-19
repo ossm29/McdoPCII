@@ -96,7 +96,7 @@ public class AffichageServeur extends JPanel {
         File fileBoisson = new File("ressources/produits/plastic-cup.png");
         File filePizza = new File("ressources/produits/pizza.png");
         File fileDessert = new File ("ressources/produits/piece-of-cake.png");
-        File filewrap = new File ("ressources/produits/burrito.png");
+        File fileWrap = new File ("ressources/produits/burrito.png");
 
         // On récupère ces images
         try {
@@ -104,7 +104,7 @@ public class AffichageServeur extends JPanel {
             this.imageBoisson= ImageIO.read(fileBoisson);
             this.imageFrittes = ImageIO.read(fileFrittes);
             this.imagePizza = ImageIO.read(filePizza);
-            this.imagewrap = ImageIO.read(filewrap);
+            this.imagewrap = ImageIO.read(fileWrap);
             this.imageCaKE = ImageIO.read(fileDessert);
         } catch (IOException e) {
             throw new RuntimeException(e);
