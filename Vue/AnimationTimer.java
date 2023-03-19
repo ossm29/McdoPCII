@@ -8,7 +8,7 @@ public class AnimationTimer extends Thread {
     private int timerPosition; // position actuelle du timer en ms
     private int circleDiameter; // diamètre du cercle
 
-    private int sleeptime = 25; //intervalle entre chaque rafraichissement
+    private int sleeptime = 30; //intervalle entre chaque rafraichissement
     private int x; // coordonnée x du cercle
     private int y; // coordonnée y du cercle
 
