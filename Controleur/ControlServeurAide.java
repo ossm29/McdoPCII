@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 /** Classe qui gère le bouton d'annulation de la séléction d'ingrédients*/
 public class ControlServeurAide implements ActionListener {
 
-    /* Variables  utiles au modèle MVC */
+    /* Variables utiles au modèle MVC */
     private Etat etat;
 
     private AffichageServeur affichage;
