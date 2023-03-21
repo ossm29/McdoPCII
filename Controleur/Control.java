@@ -3,19 +3,36 @@ import java.awt.event.*;
 import Modele.Etat;
 import Vue.*;
 
-/* Ma classe Control qui fera le lien entre ma Classe Etat et ma Classe Affichage suite à toute interaction */
+/**
+ *  Class Control implémente 'MouseListener' et 'KeyListener'
+ *  et fait le lien entre la classe 'Etat' et 'Affichage'
+ *  suite à toute interaction
+ *
+ * @version 1.0
+ * */
 public class Control implements MouseListener, KeyListener{
 
-    /* Variables  utiles au modèle MVC */
+    /**
+     * Variables utiles au modèle MVC
+     * */
     private Etat etat;                              
     private AffichagePrincipal affichagePrincipal;
 
-    /* Threads */
+    /**
+     * Threads
+     * */
     private Repaint repaint;
 
     private GenereClient genereClient;
-    
-    /* Constructeur */
+
+    /**
+     * Constructeur
+     * Définit l'affichage et l'état choisis et lance les actions
+     * de GenereClient (et Repaint)
+     *
+     * @param affichagePrincipal  de type 'Affichage'
+     * @param etat  de type 'Etat'
+     * */
     public Control(Etat etat, AffichagePrincipal affichagePrincipal) {
 
         this.setEtat(etat);
@@ -32,16 +49,34 @@ public class Control implements MouseListener, KeyListener{
         this.affichagePrincipal.addMouseListener(this);
     }
 
+    /**
+     * Obtient et renvoie l'affichage principal de notre fenêtre
+     *
+     * @return affichagePrincipal  de type AffichagePrincipal
+     * */
     public AffichagePrincipal getAffichagePrincipal() {
         return affichagePrincipal;
     }
 
-    /* Ce qui se passe quand je presse et relache (entre autre clique) sur les boutons de ma souris  */
+    /**
+     * Implémentations de MouseListener
+     * */
+
+    /**
+     * Change l'affichage quand je presse et relache (entre autre clique)
+     * sur les boutons de ma souris
+     *
+     * @param e  de type MouseEvent
+     * */
     @Override
     public void mouseClicked(MouseEvent e) {
     }
-    
-    /* Ce qui se passe quand je presse les boutons de ma souris  */
+
+    /**
+     * Change l'affichage quand je presse les boutons de ma souris
+     *
+     * @param e  de type MouseEvent
+     * */
     @Override
     public void mousePressed(MouseEvent e) {
         int x = e.getX();
@@ -153,14 +188,33 @@ public class Control implements MouseListener, KeyListener{
         // TODO Auto-generated method stub
     }
 
+    /**
+     * Obtient et renvoie l'état dans notre classe Control
+     *
+     * @return etat  de type Etat
+     * */
 	public Etat getEtat() {
 		return etat;
 	}
 
+    /**
+     * Définit l'état de notre classe Control
+     *
+     * @param etat  de type Etat
+     * */
 	public void setEtat(Etat etat) {
 		this.etat = etat;
 	}
 
+    /**
+     * Implémentations de KeyListener
+     * */
+
+    /**
+     * ASK ... quand je tape une clé
+     *
+     * @param e  de type KeyEvent
+     * */
     @Override
     public void keyTyped(KeyEvent e) {
         if ( e.getKeyCode() == KeyEvent.VK_Q) {
@@ -175,6 +229,11 @@ public class Control implements MouseListener, KeyListener{
         }
     }
 
+    /**
+     * ASK ... quand j'appuie sur une clé
+     *
+     * @param e  de type KeyEvent
+     * */
     @Override
     public void keyPressed(KeyEvent e) {
         if ( e.getKeyCode() == KeyEvent.VK_Q) {
@@ -190,6 +249,10 @@ public class Control implements MouseListener, KeyListener{
 
     }
 
+    /**
+     *
+     * @param e  de type KeyEvent
+     * */
     @Override
     public void keyReleased(KeyEvent e) {
 
