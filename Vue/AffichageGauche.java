@@ -1,5 +1,6 @@
 package Vue;
 
+import Controleur.ControlProduits;
 import Vue.AffichageServeur;
 import Vue.AffichageProduits;
 

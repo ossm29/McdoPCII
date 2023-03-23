@@ -4,7 +4,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
 
-import Controleur.ControlIngredientsCancel;
+import Controleur.ControlProduits;
 import Controleur.ControlServeurAide;
 import Modele.Etat;
 
@@ -14,6 +14,8 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 
 /* Ma classe Affichage qui définira la vue, dans notre cas elle traduire les données de la Classe Etat en affichage pour l'utilisateur  */
@@ -37,9 +39,9 @@ public class AffichageServeur extends JPanel {
     /* Images des ressources.produits */
     private BufferedImage imageBurger;
     private BufferedImage imagePizza;
-    private BufferedImage imageCaKE;
-    private BufferedImage imagewrap;
-    private BufferedImage imageFrittes;
+    private BufferedImage imageGateau;
+    private BufferedImage imageWrap;
+    private BufferedImage imageFrites;
     private BufferedImage imageBoisson;
 
     /* Image des ingédients */
@@ -56,6 +58,10 @@ public class AffichageServeur extends JPanel {
     private BufferedImage imagePoulet;
     private BufferedImage imageTortilla;
     private BufferedImage imageSalt;
+
+    //Plateau
+    private int trayWidth = 300;
+    private int trayHeight = 200;
 
 
     /** ANIMATIONS */
@@ -76,6 +82,11 @@ public class AffichageServeur extends JPanel {
         this.affichageNotification = false;
         this.notification = "";
 
+        ControlProduits controlProduits = new ControlProduits(this);
+        this.addMouseListener(controlProduits);
+        this.addMouseMotionListener(controlProduits);
+
+
         /* Police d'écriture */
         this.font = null;
         try {
@@ -92,20 +103,20 @@ public class AffichageServeur extends JPanel {
 
         // On charge les fichiers
         File fileBurger = new File("ressources/produits/burger.png");
-        File fileFrittes = new File("ressources/produits/french-fries.png");
-        File fileBoisson = new File("ressources/produits/plastic-cup.png");
+        File fileFrites = new File("ressources/produits/frites.png");
+        File fileBoisson = new File("ressources/produits/boisson.png");
         File filePizza = new File("ressources/produits/pizza.png");
-        File fileDessert = new File ("ressources/produits/piece-of-cake.png");
-        File fileWrap = new File ("ressources/produits/burrito.png");
+        File fileGateau = new File ("ressources/produits/gateau.png");
+        File fileWrap = new File ("ressources/produits/wrap.png");
 
         // On récupère ces images
         try {
             this.imageBurger = ImageIO.read(fileBurger);
             this.imageBoisson= ImageIO.read(fileBoisson);
-            this.imageFrittes = ImageIO.read(fileFrittes);
+            this.imageFrites = ImageIO.read(fileFrites);
             this.imagePizza = ImageIO.read(filePizza);
-            this.imagewrap = ImageIO.read(fileWrap);
-            this.imageCaKE = ImageIO.read(fileDessert);
+            this.imageWrap = ImageIO.read(fileWrap);
+            this.imageGateau = ImageIO.read(fileGateau);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -196,7 +207,7 @@ public class AffichageServeur extends JPanel {
         // On paramètre notre police d'écriture en attribut
         this.setFont(this.font);
         // On affiche le decor
-        this.drawDecor(g);
+        //this.drawDecor(g);
         // On affiche le score et le nombre de clients insatisfaits
         this.drawStats(g);
         // On affiche le patron
@@ -242,6 +253,13 @@ public class AffichageServeur extends JPanel {
         timer.start();
 
         repaint();
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        this.drawDecor(g);
+        this.drawTray(g);
     }
 
     public void dessinerNotification(Graphics g) {
@@ -294,11 +312,11 @@ public class AffichageServeur extends JPanel {
 
         // On affiche les images
         g.drawImage(this.imageBurger, 40, 615, 55, 55,this);
-        g.drawImage(this.imageFrittes, 190, 615, 55, 55,this);
+        g.drawImage(this.imageFrites, 190, 615, 55, 55,this);
         g.drawImage(this.imagePizza, 340,615,55,55,this);
-        g.drawImage(this.imagewrap, 490,615,55,55,this);
+        g.drawImage(this.imageWrap, 490,615,55,55,this);
         g.drawImage(this.imageBoisson, 630, 620, 50, 50,this);
-        g.drawImage(this.imageCaKE, 770,615,55,55,this);
+        g.drawImage(this.imageGateau, 770,615,55,55,this);
 
         // On affiche les cercles au dessus des ressources.produits
         g.setColor(Color.white);
@@ -340,6 +358,22 @@ public class AffichageServeur extends JPanel {
 
         if (quantitedessert>9) {g.drawString(quantitedessert+"", 873, 626); }
         else { g.drawString(quantitedessert+"", 876, 626); }*/
+    }
+
+    /** Méthode affichant le plateau*/
+    public void drawTray(Graphics g) {
+        String path_name = "ressources/tray.png";
+        File filePlateau = new File(path_name);
+        // image
+        BufferedImage image = null;
+        // On récupère l'image
+        try {
+            image = ImageIO.read(filePlateau);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        // On affiche l'image
+        g.drawImage(image, 200, 400, trayWidth, trayHeight,null);
     }
 
     /** ANIMATIONS*/
@@ -405,5 +439,48 @@ public class AffichageServeur extends JPanel {
     /** inverse la valeur de displayHelp */
     public void revertDisplayHelp() {
         this.displayHelp = !this.displayHelp;
+    }
+
+    /**récupère le produit sous le point donné*/
+    public String findProductAtPoint(Point point) {
+        int xOffset = 40;
+        int productWidth = 55;
+        int productHeight = 55;
+        int productSpacing = 150;
+        ArrayList<String> Products = new ArrayList<>(Arrays.asList("burger", "frites", "pizza", "wrap", "boisson", "gateau"));
+        for (String product : Products) {
+            Rectangle productBounds = new Rectangle(xOffset, 615, productWidth, productHeight);
+            if (productBounds.contains(point)) {
+                return product;
+            }
+            xOffset += productSpacing;
+        }
+        return null;
+    }
+
+    /**Vérifie si un point est dans le plateau*/
+    public boolean isInTray(Point point) {
+        // Remplacez ces valeurs par les dimensions réelles de votre plateau.
+        Rectangle trayBounds = new Rectangle(200, 400, trayWidth, trayHeight);
+        return trayBounds.contains(point);
+    }
+
+    public BufferedImage getImage(String produit) {
+        switch (produit) {
+            case "burger":
+                return this.imageBurger;
+            case "pizza":
+                return this.imagePizza;
+            case "gateau":
+                return this.imageGateau;
+            case "wrap":
+                return this.imageWrap;
+            case "frites":
+                return this.imageFrites;
+            case "boisson":
+                return this.imageBoisson;
+            default:
+                throw new IllegalArgumentException("Produit invalide : " + produit);
+        }
     }
 }
