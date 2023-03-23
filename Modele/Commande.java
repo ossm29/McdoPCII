@@ -14,11 +14,12 @@ public class Commande {
         // Notre menu
         ArrayList<String> menu = new ArrayList<String>();
         menu.add("burger");
+        menu.add("frites");
         menu.add("pizza");
-        menu.add("plastic-cup");
-        menu.add("piece-of-cake");
         menu.add("wrap");
-        menu.add("french-fries");
+        menu.add("boisson");
+        menu.add("gateau");
+
 
         // Chaque client commande au plus 6 article - non ressources.produits - et au minimum 1 article
         Random random = new Random();
