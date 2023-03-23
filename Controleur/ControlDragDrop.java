@@ -7,14 +7,14 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class ControlProduits extends MouseAdapter {
+public class ControlDragDrop extends MouseAdapter {
     private AffichageServeur affichageServeur;
     private String draggedProduct;
     private Point startPoint;
     private JLabel draggedProductLabel;
 
     /** Constructeur */
-    public ControlProduits(AffichageServeur affichageServeur) {
+    public ControlDragDrop(AffichageServeur affichageServeur) {
         this.affichageServeur = affichageServeur;
     }
 

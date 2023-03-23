@@ -1,14 +1,7 @@
 package Vue;
 
-import Controleur.ControlProduits;
-import Vue.AffichageServeur;
-import Vue.AffichageProduits;
-
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
 
 public class AffichageGauche extends JPanel{
 

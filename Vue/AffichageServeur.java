@@ -4,7 +4,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
 
-import Controleur.ControlProduits;
+import Controleur.ControlDragDrop;
 import Controleur.ControlServeurAide;
 import Modele.Etat;
 
@@ -82,9 +82,9 @@ public class AffichageServeur extends JPanel {
         this.affichageNotification = false;
         this.notification = "";
 
-        ControlProduits controlProduits = new ControlProduits(this);
-        this.addMouseListener(controlProduits);
-        this.addMouseMotionListener(controlProduits);
+        ControlDragDrop controlDragDrop = new ControlDragDrop(this);
+        this.addMouseListener(controlDragDrop);
+        this.addMouseMotionListener(controlDragDrop);
 
 
         /* Police d'écriture */
