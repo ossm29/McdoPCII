@@ -1,7 +1,6 @@
 package Controleur;
 
 import Modele.Client;
-import Modele.Etat;
 
 public class GenereClient extends Thread{
 
@@ -16,8 +15,8 @@ public class GenereClient extends Thread{
         while(true){
             try {
                 Thread.sleep(10000);
-                this.control.getEtat().getClients().addClient(new Client(this.control.getEtat().getCompteurCLients()));
-                this.control.getAffichagePrincipal().getAffichageGauche().getAffichageServeur().afficherTexteTemporairement("Le client N° : "+this.control.getEtat().getCompteurCLients() +" vient d'arriver !",5000);
+                this.control.getEtat().getClients().addClient(new Client(this.control.getEtat().getCompteurClients()));
+                this.control.getAffichagePrincipal().getAffichageGauche().getAffichageServeur().afficherTexteTemporairement("Le client N° : "+this.control.getEtat().getCompteurClients() +" vient d'arriver !",5000);
                 this.control.getEtat().updateCompteurClients();
             } catch (Exception e) { e.printStackTrace(); }
         }

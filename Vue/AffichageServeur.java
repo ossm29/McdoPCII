@@ -16,6 +16,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Map;
 
 
 /* Ma classe Affichage qui définira la vue, dans notre cas elle traduire les données de la Classe Etat en affichage pour l'utilisateur  */
@@ -273,6 +274,7 @@ public class AffichageServeur extends JPanel {
         }
     }
 
+     /** Affiche l'arrière plan */
     public void drawDecor(Graphics g){
         String path_name = "ressources/restaurant.png";
         File fileClient = new File(path_name);
@@ -332,12 +334,12 @@ public class AffichageServeur extends JPanel {
         g.setColor(Color.black);
 
         // Quantite
-        int quantiteburger = this.etat.getQuantiteBurger();
-        int quantitepizza = this.etat.getQuantitePizza();
-        int quantitefrites = this.etat.getQuantiteFrites();
-        int quantitewrap = this.etat.getQuantiteWrap();
-        int quantiteboisson = this.etat.getQuantiteBoisson();
-        int quantitedessert = this.etat.getQuantiteDessert();
+        int quantiteburger = this.etat.getStockBurger();
+        int quantitepizza = this.etat.getStockPizza();
+        int quantitefrites = this.etat.getStockFrites();
+        int quantitewrap = this.etat.getStockWrap();
+        int quantiteboisson = this.etat.getStockBoisson();
+        int quantitedessert = this.etat.getStockGateau();
 
 
         if(quantiteburger>9){ g.drawString(quantiteburger+"", 93,626); }
@@ -374,6 +376,36 @@ public class AffichageServeur extends JPanel {
         }
         // On affiche l'image
         g.drawImage(image, 200, 400, trayWidth, trayHeight,null);
+
+        // On affiche les icônes et les quantités de produits
+        int col = 0;
+        int row = 0;
+        int iconSize = 40;
+        int xOffset = 25;
+        int yOffset = 50;
+        int xSpacing = 90;
+        int ySpacing = 50;
+        int maxIconsPerRow = 3;
+        Font font = new Font("Arial", Font.BOLD, 16);
+        g.setFont(font);
+
+        for (Map.Entry<String, Integer> entry : etat.getTrayContent().entrySet()) {
+            String product = entry.getKey();
+            int quantity = entry.getValue();
+            BufferedImage productImage = this.getImage(product);
+
+            int xPos = 200 + xOffset + col * xSpacing;
+            int yPos = 400 + yOffset + row * ySpacing;
+
+            g.drawImage(productImage, xPos, yPos, iconSize, iconSize, null);
+            g.drawString("x" + quantity, xPos + iconSize + 5, yPos + iconSize - 5);
+
+            col++;
+            if (col == maxIconsPerRow) {
+                col = 0;
+                row++;
+            }
+        }
     }
 
     /** ANIMATIONS*/
@@ -447,7 +479,7 @@ public class AffichageServeur extends JPanel {
         int productWidth = 55;
         int productHeight = 55;
         int productSpacing = 150;
-        ArrayList<String> Products = new ArrayList<>(Arrays.asList("burger", "frites", "pizza", "wrap", "boisson", "gateau"));
+        ArrayList<String> Products = new ArrayList<>(Arrays.asList("Burger", "Frites", "Pizza", "Wrap", "Boisson", "Gateau"));
         for (String product : Products) {
             Rectangle productBounds = new Rectangle(xOffset, 615, productWidth, productHeight);
             if (productBounds.contains(point)) {
@@ -467,17 +499,17 @@ public class AffichageServeur extends JPanel {
 
     public BufferedImage getImage(String produit) {
         switch (produit) {
-            case "burger":
+            case "Burger":
                 return this.imageBurger;
-            case "pizza":
+            case "Pizza":
                 return this.imagePizza;
-            case "gateau":
+            case "Gateau":
                 return this.imageGateau;
-            case "wrap":
+            case "Wrap":
                 return this.imageWrap;
-            case "frites":
+            case "Frites":
                 return this.imageFrites;
-            case "boisson":
+            case "Boisson":
                 return this.imageBoisson;
             default:
                 throw new IllegalArgumentException("Produit invalide : " + produit);

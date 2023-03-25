@@ -35,16 +35,16 @@ public class ControlIngredientsValider implements ActionListener {
         // Selon le produit généré on lance un timer
         String produit = this.etat.production();
         switch (produit) {
-            case "burger":
+            case "Burger":
                 this.affichageIngredients.getAffichageServeur().lancerBurgerTimer();
                 break;
-            case "frites" :
+            case "Frites" :
                 this.affichageIngredients.getAffichageServeur().lancerFritesTimer();
                 break;
-            case "pizza" :
+            case "Pizza" :
                 this.affichageIngredients.getAffichageServeur().lancerPizzaTimer();
                 break;
-            case "wrap" :
+            case "Wrap" :
                 this.affichageIngredients.getAffichageServeur().lancerWrapTimer();
                 break;
         }

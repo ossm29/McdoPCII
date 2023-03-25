@@ -2,13 +2,10 @@ package Modele;
 import Vue.Clients;
 import Vue.miniAffichageClient;
 
-import javax.swing.*;
+import javax.swing.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Random;
+import java.util.*;
 
 /* Ensemble des données qui caractériseront l'état de mon interface */
 public class Etat {
@@ -25,12 +22,8 @@ public class Etat {
     private HashSet<String>selectionIngredients; /* Liste de tous les ingrédients selectionnés par le joueur afin de préparer un produit */
 
     /* Attributs concernants les stocks */
-    private int quantiteBurger;
-    private int quantitePizza;
-    private int quantiteBoisson;
-    private int quantiteWrap;
-    private int quantiteFrites;
-    private int quantiteDessert;
+
+    private HashMap<String, Integer> stockProduits;
 
     /* Attributs préparation */
 
@@ -40,8 +33,8 @@ public class Etat {
     private boolean frittes_en_cours_de_preparation;
     private boolean wrap_en_cours_de_preparation;
 
-    /* Contenu du plateau */
-    private HashMap<String, Integer> trayContent;
+    /* Contenu du plateau, LinkedHashMap est une HashMap qui mémorise ordre d'insertion */
+    private LinkedHashMap<String, Integer> trayContent;
 
 
     /*dimensions de la fenêtre ; les dimesnsions des autres affichages sont proportionnelles*/
@@ -60,13 +53,14 @@ public class Etat {
         clients_insatisfaits = 0;
         this.clients = new Clients(new miniAffichageClient(this));
 
-        /* Attributs Stockage Pour Chaque Produits */
-        this.setQuantiteBoisson();
-        this.setQuantiteBurger();
-        this.setQuantiteDessert();
-        this.setQuantiteFrittes();
-        this.setQuantitewrap();
-        this.setQuantitePizza();
+        Random random = new Random();
+        stockProduits = new HashMap<>();
+        stockProduits.put("Burger", 8+random.nextInt(8));
+        stockProduits.put("Frites",  8+random.nextInt(8));
+        stockProduits.put("Pizza",  8+random.nextInt(8));
+        stockProduits.put("Wrap",  8+random.nextInt(8));
+        stockProduits.put("Boisson",  108+random.nextInt(8));
+        stockProduits.put("Dessert",  108+random.nextInt(8));
 
         /* On initiase notre liste d'ingrédients selectionnés vide*/
         this.selectionIngredients = new HashSet<String>();
@@ -78,7 +72,7 @@ public class Etat {
         this.setWrap_en_cours_de_preparation(false);
 
         /*On initialise le contenu du plateau */
-        trayContent = new HashMap<>();
+        trayContent = new LinkedHashMap<>();
 
 
     }
@@ -115,28 +109,28 @@ public class Etat {
     public HashSet<String>getSelectionIngredients(){
         return this.selectionIngredients;
     }
-    public int getQuantiteBurger() {
-        return quantiteBurger;
+    public int getStockBurger() {
+        return stockProduits.getOrDefault("Burger", 0);
     }
 
-    public int getQuantitePizza() {
-        return quantitePizza;
+    public int getStockPizza() {
+        return stockProduits.getOrDefault("Pizza", 0);
     }
 
-    public int getQuantiteBoisson() {
-        return quantiteBoisson;
+    public int getStockBoisson() {
+        return stockProduits.getOrDefault("Boisson", 0);
     }
 
-    public int getQuantiteWrap() {
-        return quantiteWrap;
+    public int getStockWrap() {
+        return stockProduits.getOrDefault("Wrap", 0);
     }
 
-    public int getQuantiteFrites() {
-        return quantiteFrites;
+    public int getStockFrites() {
+        return stockProduits.getOrDefault("Frites", 0);
     }
 
-    public int getQuantiteDessert() {
-        return quantiteDessert;
+    public int getStockGateau() {
+        return stockProduits.getOrDefault("Gateau", 0);
     }
 
     public int getScore() { return score; }
@@ -148,41 +142,6 @@ public class Etat {
     public HashMap<String, Integer> getTrayContent() { return this.trayContent; }
 
     /* Setters */
-
-    public void setQuantiteBurger() {
-        /* Entre 8 et 15 */
-        Random random = new Random();
-        this.quantiteBurger = 8 + random.nextInt(8);
-    }
-    public void setQuantitePizza() {
-        /* Entre 8 et 15 */
-        Random random = new Random();
-        this.quantitePizza = 8 + random.nextInt(8);
-    }
-
-    public void setQuantitewrap() {
-        /* Entre 8 et 15 */
-        Random random = new Random();
-        this.quantiteWrap = 8 + random.nextInt(8);
-    }
-
-    public void setQuantiteBoisson() {
-        /* Entre 8 et 15 */
-        Random random = new Random();
-        this.quantiteBoisson = 8 + random.nextInt(8);
-    }
-
-    public void setQuantiteDessert() {
-        /* Entre 8 et 15 */
-        Random random = new Random();
-        this.quantiteDessert = 8 + random.nextInt(8);
-    }
-
-    public void setQuantiteFrittes() {
-        /* Entre 8 et 15 */
-        Random random = new Random();
-        this.quantiteFrites = 8 + random.nextInt(8);
-    }
 
     public void setBurger_en_cours_de_preparation(boolean bool){
         this.burger_en_cours_de_preparation = bool;
@@ -251,7 +210,7 @@ public class Etat {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Etat.this.burger_en_cours_de_preparation = false;
-                Etat.this.quantiteBurger++;
+                stockProduits.put("Burger",stockProduits.get("Burger")+1);
             }
         });
         timer.setRepeats(false);
@@ -265,7 +224,7 @@ public class Etat {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Etat.this.pizza_en_cours_de_preparation = false;
-                Etat.this.quantitePizza++;
+                stockProduits.put("Pizza",stockProduits.get("Pizza")+1);
             }
         });
         timer.setRepeats(false);
@@ -273,13 +232,13 @@ public class Etat {
     }
 
     // Méthode qui enclenche la production d'une barquette de frittes qui prendra un durée donnée en parametre
-    public void preparationFrittes( int dureeEnMillisecondes) {
+    public void preparationFrites(int dureeEnMillisecondes) {
         this.frittes_en_cours_de_preparation = true;
         Timer timer = new Timer(dureeEnMillisecondes, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Etat.this.frittes_en_cours_de_preparation = false;
-                Etat.this.quantiteFrites++;
+                stockProduits.put("Frites",stockProduits.get("Frites")+1);
             }
         });
         timer.setRepeats(false);
@@ -294,7 +253,7 @@ public class Etat {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Etat.this.wrap_en_cours_de_preparation = false;
-                Etat.this.quantiteWrap++;
+                stockProduits.put("Wrap",stockProduits.get("Wrap")+1);
             }
         });
         timer.setRepeats(false);
@@ -322,25 +281,25 @@ public class Etat {
             if (!this.burger_en_cours_de_preparation) {
                 this.preparationBurger(dureePreparation);
                 this.selectionIngredients = new HashSet<>();
-                produit = "burger";
+                produit = "Burger";
             }
         } if(this.getSelectionIngredients().equals(recetteFrites)) {
             if (!this.frittes_en_cours_de_preparation) {
-                this.preparationFrittes(dureePreparation);
+                this.preparationFrites(dureePreparation);
                 this.selectionIngredients = new HashSet<>();
-                produit = "frites";
+                produit = "Frites";
             }
         } if(this.getSelectionIngredients().equals(recettePizza)) {
             if (!this.pizza_en_cours_de_preparation) {
                 this.preparationPizza(dureePreparation);
                 this.selectionIngredients = new HashSet<>();
-                produit = "pizza";
+                produit = "Pizza";
             }
         } if(this.getSelectionIngredients().equals(recetteWrap)) {
             if (!this.wrap_en_cours_de_preparation) {
                 this.preparationWrap(dureePreparation);
                 this.selectionIngredients = new HashSet<>();
-                produit = "wrap";
+                produit = "Wrap";
             }
         }
         return produit;
@@ -361,9 +320,15 @@ public class Etat {
         this.compteurClients++;
     }
 
-    /** Ajoute un produit passé en paramètre au contenu du plateau */
+    /** Ajoute un produit passé en paramètre au contenu du plateau si stock disponible
+     * Diminue le stock en conséquence
+     * */
     public void addToTray(String product) {
-        trayContent.put(product, trayContent.getOrDefault(product, 0) + 1);
+        //si le stock n'est pas nul
+        if(stockProduits.getOrDefault(product,0) != 0) {
+            trayContent.put(product, trayContent.getOrDefault(product, 0) + 1);
+            stockProduits.put(product,stockProduits.get(product)-1);
+        }
     }
 
 

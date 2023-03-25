@@ -52,7 +52,6 @@ public class ControlDragDrop extends MouseAdapter {
             if (affichageServeur.isInTray(endPoint)) {
                 // Ajouter la logique pour mettre à jour le modèle, si nécessaire.
                 this.etat.addToTray(draggedProduct);
-                System.out.println(this.etat.getTrayContent());
             }
             affichageServeur.remove(draggedProductLabel);
             affichageServeur.repaint();
