@@ -60,7 +60,7 @@ public class Etat {
         stockProduits.put("Pizza",  8+random.nextInt(8));
         stockProduits.put("Wrap",  8+random.nextInt(8));
         stockProduits.put("Boisson",  108+random.nextInt(8));
-        stockProduits.put("Dessert",  108+random.nextInt(8));
+        stockProduits.put("Gateau",  108+random.nextInt(8));
 
         /* On initiase notre liste d'ingrédients selectionnés vide*/
         this.selectionIngredients = new HashSet<String>();
