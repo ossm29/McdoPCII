@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Random;
 
@@ -16,7 +17,7 @@ public class Etat {
 
     /* Attributs concernant le Joueur et les clients */
     private int score;                          /* Score Joueur */
-    private int compteurCLients = 1;            /* Nb de clients générés */
+    private int compteurClients = 1;            /* Nb de clients générés */
     private static int clients_insatisfaits;    /* Nb de client insatisfait */
     private Clients clients;                    /* La liste de tous les clients dans le magasin */
     private int client_en_cours;                /* index ( et NON PAS ID )  du client
@@ -38,6 +39,10 @@ public class Etat {
     private boolean pizza_en_cours_de_preparation;
     private boolean frittes_en_cours_de_preparation;
     private boolean wrap_en_cours_de_preparation;
+
+    /* Contenu du plateau */
+    private HashMap<String, Integer> trayContent;
+
 
     /*dimensions de la fenêtre ; les dimesnsions des autres affichages sont proportionnelles*/
     public static final int WIDTH = 1420;
@@ -72,11 +77,15 @@ public class Etat {
         this.setFrittes_en_cours_de_preparation(false);
         this.setWrap_en_cours_de_preparation(false);
 
+        /*On initialise le contenu du plateau */
+        trayContent = new HashMap<>();
+
+
     }
 
     /* Getters */
-    public int getCompteurCLients(){
-        return this.compteurCLients;
+    public int getCompteurClients(){
+        return this.compteurClients;
     }
 
     public int getClient_en_cours(){
@@ -135,6 +144,8 @@ public class Etat {
     public int getClients_insatisfaits() { return clients_insatisfaits; }
 
     public int getDureePreparation() { return this.dureePreparation; }
+
+    public HashMap<String, Integer> getTrayContent() { return this.trayContent; }
 
     /* Setters */
 
@@ -261,7 +272,7 @@ public class Etat {
         timer.start();
     }
 
-    // Méthode qui enclenche la production d'une barquette de frittes qui prendra un durée donnée en paramtre
+    // Méthode qui enclenche la production d'une barquette de frittes qui prendra un durée donnée en parametre
     public void preparationFrittes( int dureeEnMillisecondes) {
         this.frittes_en_cours_de_preparation = true;
         Timer timer = new Timer(dureeEnMillisecondes, new ActionListener() {
@@ -276,7 +287,7 @@ public class Etat {
 
     }
 
-    // Méthode qui enclenche la production d'un wrapqui prendra un durée donnée en paramtre
+    /* Méthode qui enclenche la production d'un wrap qui prendra un durée donnée en parametre */
     public void preparationWrap( int dureeEnMillisecondes) {
         this.wrap_en_cours_de_preparation = true;
         Timer timer = new Timer(dureeEnMillisecondes, new ActionListener() {
@@ -290,8 +301,10 @@ public class Etat {
         timer.start();
     }
 
-    // Methode qui d'apres la selection des ingredients, si celle-ci correspond a une recette pour un produit alors on augmente sa quantite de 1 et on clear la selection
-    // return le nom du produit créé, null sinon
+    /** Methode qui d'apres la selection des ingredients, si celle-ci correspond a une
+     * recette pour un produit alors on augmente sa quantite de 1 et on clear la selection
+     return le nom du produit créé, null sinon
+     */
     public String production(){
         //Burger : Pain, tomate, viande, sauce
         HashSet <String> recetteBurger = new HashSet<>(Arrays.asList("pain","tomate","viande","sauce"));
@@ -335,7 +348,7 @@ public class Etat {
 
 
 
-    // Méthode qui renvoie true si le jeu est fini sinon false
+    /** Méthode qui renvoie true si le jeu est fini sinon false */
     public boolean gameOver(){
         // Si le nombre de client insastisfait dépasse 5
         // Alors le jeu est fini
@@ -343,7 +356,15 @@ public class Etat {
         // Sinon non
     }
 
+    /** incrémente la valeur du compteur de clients générés */
     public void updateCompteurClients(){
-        this.compteurCLients++;
+        this.compteurClients++;
     }
+
+    /** Ajoute un produit passé en paramètre au contenu du plateau */
+    public void addToTray(String product) {
+        trayContent.put(product, trayContent.getOrDefault(product, 0) + 1);
+    }
+
+
 }

@@ -82,7 +82,7 @@ public class AffichageServeur extends JPanel {
         this.affichageNotification = false;
         this.notification = "";
 
-        ControlDragDrop controlDragDrop = new ControlDragDrop(this);
+        ControlDragDrop controlDragDrop = new ControlDragDrop(this.etat,this);
         this.addMouseListener(controlDragDrop);
         this.addMouseMotionListener(controlDragDrop);
 

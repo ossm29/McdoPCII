@@ -1,5 +1,6 @@
 package Controleur;
 
+import Modele.Etat;
 import Vue.AffichageServeur;
 
 import javax.swing.*;
@@ -8,13 +9,19 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class ControlDragDrop extends MouseAdapter {
+
+    /* Variables  utiles au modèle MVC */
     private AffichageServeur affichageServeur;
+    private Etat etat;
+
+
     private String draggedProduct;
     private Point startPoint;
     private JLabel draggedProductLabel;
 
     /** Constructeur */
-    public ControlDragDrop(AffichageServeur affichageServeur) {
+    public ControlDragDrop(Etat etat, AffichageServeur affichageServeur) {
+        this.etat = etat;
         this.affichageServeur = affichageServeur;
     }
 
@@ -44,6 +51,8 @@ public class ControlDragDrop extends MouseAdapter {
             // Vérifier si le produit a été déposé dans le plateau et mettez à jour le modèle en conséquence.
             if (affichageServeur.isInTray(endPoint)) {
                 // Ajouter la logique pour mettre à jour le modèle, si nécessaire.
+                this.etat.addToTray(draggedProduct);
+                System.out.println(this.etat.getTrayContent());
             }
             affichageServeur.remove(draggedProductLabel);
             affichageServeur.repaint();
