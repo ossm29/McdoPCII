@@ -5,6 +5,7 @@ import javax.swing.*;
 import javax.swing.border.Border;
 
 import Controleur.ControlDragDrop;
+import Controleur.ControlPlateauCancel;
 import Controleur.ControlServeurAide;
 import Modele.Etat;
 
@@ -168,6 +169,12 @@ public class AffichageServeur extends JPanel {
         //on l'ajoute au JPanel
         this.add(boutonAide);
 
+        /* Bouton Annuler plateau */
+        JButton boutonVider = new JButton("X");
+        boutonVider.addActionListener(new ControlPlateauCancel(this.etat,this));
+        boutonVider.setLayout(null);
+        boutonVider.setBounds(165,475,30,30);
+        this.add(boutonVider);
     }
 
     /** fonction de dessin du score et des clients insatisfaits
