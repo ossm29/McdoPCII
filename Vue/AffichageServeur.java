@@ -171,9 +171,11 @@ public class AffichageServeur extends JPanel {
 
         /* Bouton Annuler plateau */
         JButton boutonVider = new JButton("X");
+
         boutonVider.addActionListener(new ControlPlateauCancel(this.etat,this));
         boutonVider.setLayout(null);
         boutonVider.setBounds(165,475,30,30);
+
         this.add(boutonVider);
     }
 

@@ -89,7 +89,7 @@ public class Commande {
         return total;
     }
 
-    public int calculFrittes () {
+    public int calculFrites() {
         int total = 0;
         for (Produit produit : this.produits){
             if (produit.getNom() == "french-fries"){

@@ -30,7 +30,7 @@ public class Etat {
     private int dureePreparation = 3000; //durée de la préparation en ms
     private boolean burger_en_cours_de_preparation;
     private boolean pizza_en_cours_de_preparation;
-    private boolean frittes_en_cours_de_preparation;
+    private boolean frites_en_cours_de_preparation;
     private boolean wrap_en_cours_de_preparation;
 
     /* Contenu du plateau, LinkedHashMap est une HashMap qui mémorise ordre d'insertion */
@@ -68,7 +68,7 @@ public class Etat {
         /* On initialise nos varaibles en cours de preparation a false */
         this.setBurger_en_cours_de_preparation(false);
         this.setPizza_en_cours_de_preparation(false);
-        this.setFrittes_en_cours_de_preparation(false);
+        this.setFrites_en_cours_de_preparation(false);
         this.setWrap_en_cours_de_preparation(false);
 
         /*On initialise le contenu du plateau */
@@ -95,7 +95,7 @@ public class Etat {
     }
 
     public boolean isFrites_en_cours_de_preparation(){
-        return this.frittes_en_cours_de_preparation;
+        return this.frites_en_cours_de_preparation;
     }
 
     public boolean isWrap_en_cours_de_preparation(){
@@ -153,8 +153,8 @@ public class Etat {
         this.wrap_en_cours_de_preparation = bool;
     }
 
-    public void setFrittes_en_cours_de_preparation(boolean bool){
-        this.frittes_en_cours_de_preparation = bool;
+    public void setFrites_en_cours_de_preparation(boolean bool){
+        this.frites_en_cours_de_preparation = bool;
     }
     /* Méthodes */
 
@@ -233,11 +233,11 @@ public class Etat {
 
     // Méthode qui enclenche la production d'une barquette de frittes qui prendra un durée donnée en parametre
     public void preparationFrites(int dureeEnMillisecondes) {
-        this.frittes_en_cours_de_preparation = true;
+        this.frites_en_cours_de_preparation = true;
         Timer timer = new Timer(dureeEnMillisecondes, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Etat.this.frittes_en_cours_de_preparation = false;
+                Etat.this.frites_en_cours_de_preparation = false;
                 stockProduits.put("Frites",stockProduits.get("Frites")+1);
             }
         });
@@ -284,7 +284,7 @@ public class Etat {
                 produit = "Burger";
             }
         } if(this.getSelectionIngredients().equals(recetteFrites)) {
-            if (!this.frittes_en_cours_de_preparation) {
+            if (!this.frites_en_cours_de_preparation) {
                 this.preparationFrites(dureePreparation);
                 this.selectionIngredients = new HashSet<>();
                 produit = "Frites";
@@ -329,6 +329,21 @@ public class Etat {
             trayContent.put(product, trayContent.getOrDefault(product, 0) + 1);
             stockProduits.put(product,stockProduits.get(product)-1);
         }
+    }
+
+    /** Vide le plateau après avoir
+     * ajouté son contenu au stock
+     * */
+    public void clearTray() {
+        for (Map.Entry<String, Integer> entry : trayContent.entrySet()) {
+            String product = entry.getKey();
+            int quantity = entry.getValue();
+
+            //On ajoute la qté au stock
+            stockProduits.put(product, stockProduits.get(product) + quantity);
+        }
+        // Vide le plateau
+        trayContent.clear();
     }
 
 
