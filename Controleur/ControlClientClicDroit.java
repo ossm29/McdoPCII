@@ -9,28 +9,57 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+/**
+ *  Class ControlClientClicDroit implémente 'MouseListener' et 'KeyListener'
+ *  et définit les fonctions pour pouvoir changer et voir le client suivant
+ *
+ * @version 1.0
+ * */
 public class ControlClientClicDroit implements MouseListener, KeyListener {
 
-    /* Variables  utiles au modèle MVC */
+    /**
+     * Variables utiles au modèle MVC
+     * */
     private Etat etat;
     private miniAffichageClient miniAffichageClient;
 
-    /* Threads */
+    /**
+     *  Threads
+     * */
     private Repaint repaint;
 
-    /* Constructeur */
+    /**
+     * Constructeur
+     * Gère le changement de clients vers le suivant
+     *
+     * @param miniAffichageClient  de type 'miniAffichageClient'
+     * @param etat  de type 'Etat'
+     * */
     public ControlClientClicDroit(Etat etat, miniAffichageClient miniAffichageClient) {
 
         this.setEtat(etat);
         this.miniAffichageClient = miniAffichageClient;
     }
 
-    /* Ce qui se passe quand je presse et relache (entre autre clique) sur les boutons de ma souris  */
+    /**
+     * Implémentations de MouseListener
+     * */
+
+    /**
+     * Change l'affichage quand je presse et relache (entre autre clique)
+     * sur les boutons de ma souris
+     *
+     * @param e  de type MouseEvent
+     * */
     @Override
     public void mouseClicked(MouseEvent e) {
     }
 
-    /* Ce qui se passe quand je presse les boutons de ma souris  */
+    /**
+     * Change au client suivant quand je presse ma souris
+     *
+     * @param e  de type MouseEvent
+     * */
     @Override
     public void mousePressed(MouseEvent e) {
     	if ( e.getButton() == MouseEvent.BUTTON1 ) {
@@ -55,14 +84,11 @@ public class ControlClientClicDroit implements MouseListener, KeyListener {
         // TODO Auto-generated method stub
     }
 
-    public Etat getEtat() {
-        return etat;
-    }
-
-    public void setEtat(Etat etat) {
-        this.etat = etat;
-    }
-
+    /**
+     * Change de client quand je tape la clé flèche "suivant"
+     *
+     * @param e  de type KeyEvent
+     * */
     @Override
     public void keyTyped(KeyEvent e) {
         if ( e.getKeyCode() == KeyEvent.VK_RIGHT ) {
@@ -80,6 +106,26 @@ public class ControlClientClicDroit implements MouseListener, KeyListener {
     @Override
     public void keyReleased(KeyEvent e) {
 
+    }
+
+    /**
+     * Getter
+     * Obtient et renvoie l'état dans notre classe ControlClientClicDroit
+     *
+     * @return etat  de type Etat
+     * */
+    public Etat getEtat() {
+        return etat;
+    }
+
+    /**
+     * Setter
+     * Définit l'état de notre classe ControlClientClicDroit
+     *
+     * @param etat  de type Etat
+     * */
+    public void setEtat(Etat etat) {
+        this.etat = etat;
     }
 }
 

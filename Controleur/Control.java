@@ -73,7 +73,8 @@ public class Control implements MouseListener, KeyListener{
     }
 
     /**
-     * Change l'affichage quand je presse les boutons de ma souris
+     * Sélectionne et désélectionne un ingrédient
+     * quand je presse ma souris
      *
      * @param e  de type MouseEvent
      * */
@@ -188,30 +189,14 @@ public class Control implements MouseListener, KeyListener{
         // TODO Auto-generated method stub
     }
 
-    /**
-     * Obtient et renvoie l'état dans notre classe Control
-     *
-     * @return etat  de type Etat
-     * */
-	public Etat getEtat() {
-		return etat;
-	}
 
-    /**
-     * Définit l'état de notre classe Control
-     *
-     * @param etat  de type Etat
-     * */
-	public void setEtat(Etat etat) {
-		this.etat = etat;
-	}
 
     /**
      * Implémentations de KeyListener
      * */
 
     /**
-     * ASK ... quand je tape une clé
+     * Change de client quand je tape la clé flèche "suivant" ou "précédent"
      *
      * @param e  de type KeyEvent
      * */
@@ -230,7 +215,7 @@ public class Control implements MouseListener, KeyListener{
     }
 
     /**
-     * ASK ... quand j'appuie sur une clé
+     * Change de client quand j'appuie sur une clé
      *
      * @param e  de type KeyEvent
      * */
@@ -256,5 +241,25 @@ public class Control implements MouseListener, KeyListener{
     @Override
     public void keyReleased(KeyEvent e) {
 
+    }
+
+    /**
+     * Getter
+     * Obtient et renvoie l'état dans notre classe Control
+     *
+     * @return etat  de type Etat
+     * */
+    public Etat getEtat() {
+        return etat;
+    }
+
+    /**
+     * Setter
+     * Définit l'état de notre classe Control
+     *
+     * @param etat  de type Etat
+     * */
+    public void setEtat(Etat etat) {
+        this.etat = etat;
     }
 }

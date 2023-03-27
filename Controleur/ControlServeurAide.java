@@ -7,8 +7,13 @@ import Vue.AffichageServeur;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
-/** Classe qui gère le bouton d'annulation de la séléction d'ingrédients*/
+/**
+ *  Class ControlServeurAide implémente 'ActionListener'
+ *  et gère ... ASK
+ *
+ * @version 1.0
+ * */
+/** Classe qui gère le bouton d'annulation de la séléction d'ingrédients ????*/
 public class ControlServeurAide implements ActionListener {
 
     /* Variables utiles au modèle MVC */
