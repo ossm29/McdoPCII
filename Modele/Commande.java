@@ -13,18 +13,18 @@ public class Commande {
 
         // Notre menu
         ArrayList<String> menu = new ArrayList<String>();
-        menu.add("burger");
-        menu.add("frites");
-        menu.add("pizza");
-        menu.add("wrap");
-        menu.add("boisson");
-        menu.add("gateau");
+        menu.add("Burger");
+        menu.add("Frites");
+        menu.add("Pizza");
+        menu.add("Wrap");
+        menu.add("Boisson");
+        menu.add("Gateau");
 
 
         // Chaque client commande au plus 6 article - non ressources.produits - et au minimum 1 article
         Random random = new Random();
         int nbProduit = 1+random.nextInt(6);
-        // Chaque client commande au plus 3 ressources.produits différents
+        // Chaque client commande au plus 4 ressources.produits différents
         for ( int i = 0; i<3 && nbProduit>0; i++){
             // On tire le produit aléatoirement
             int reference = random.nextInt(menu.size());

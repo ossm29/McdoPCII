@@ -61,7 +61,8 @@ public class AffichageCommande extends JPanel {
             g.drawString("TICKET "+this.etat.getClients().getListeClients().get(this.etat.getClient_en_cours()).getIdentifiant(),170,80);
             g.drawLine(87,90,350,90);
             this.afficheCommande(this.etat.getClients().getListeClients().get(this.etat.getClient_en_cours()).getCommande(), g);
-            //this.etat.getClients().getListeClients().get(this.etat.getClient_en_cours()).getIdentifiant()
+            g.drawLine(87,310,350,310);
+
         } //sinon on affiche un écran d'attente
         else {
             g.drawString("PAS DE COMMANDE...",125,200);
@@ -84,15 +85,26 @@ public class AffichageCommande extends JPanel {
 
     /** Méthode qui affiche la commande sur le ticket */
     public void afficheCommande(Commande C,Graphics g) {
+        //On récupère les produits de la commande
         ArrayList<Produit> liste = C.getProduits();
+        //On récupère les prix des produits
+        HashMap<String,Integer> listePrix = etat.getPrixProduits();
         //Boucle foreach pour chaque produit de la commande
+        Integer prix;
+        Integer total = 0;
         for(int i = 0; i < liste.size(); i++) {
             //On affiche sa quantité
             g.drawString(String.valueOf(liste.get(i).getQuantite())+" X",110,150+35*i);
             //On affiche son nom
             g.drawString(liste.get(i).getNom(),170,150+35*i);
+            //On affiche son prix
+            prix = listePrix.get(liste.get(i).getNom()) * liste.get(i).getQuantite();
+            total += prix;
+            g.drawString(String.valueOf(prix),300,150+35*i);
 
         }
+        //On affiche le total
+        g.drawString("TOTAL : "+ String.valueOf(total),170,350);
     }
 
     /*Getter Etat*/

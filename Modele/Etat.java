@@ -25,6 +25,8 @@ public class Etat {
 
     private HashMap<String, Integer> stockProduits;
 
+    private HashMap<String, Integer> prixProduits;
+
     /* Attributs préparation */
 
     private int dureePreparation = 3000; //durée de la préparation en ms
@@ -53,6 +55,7 @@ public class Etat {
         clients_insatisfaits = 0;
         this.clients = new Clients(new miniAffichageClient(this));
 
+        //On initialise les stocks produits
         Random random = new Random();
         stockProduits = new HashMap<>();
         stockProduits.put("Burger", 8+random.nextInt(8));
@@ -61,6 +64,15 @@ public class Etat {
         stockProduits.put("Wrap",  8+random.nextInt(8));
         stockProduits.put("Boisson",  108+random.nextInt(8));
         stockProduits.put("Gateau",  108+random.nextInt(8));
+
+        //On initialise les prix produits
+        prixProduits = new HashMap<>();
+        prixProduits.put("Burger", 8);
+        prixProduits.put("Frites", 4);
+        prixProduits.put("Pizza",  10);
+        prixProduits.put("Wrap", 6);
+        prixProduits.put("Boisson", 2);
+        prixProduits.put("Gateau", 3);
 
         /* On initiase notre liste d'ingrédients selectionnés vide*/
         this.selectionIngredients = new HashSet<String>();
@@ -138,6 +150,8 @@ public class Etat {
     public int getClients_insatisfaits() { return clients_insatisfaits; }
 
     public int getDureePreparation() { return this.dureePreparation; }
+
+    public HashMap<String, Integer> getPrixProduits() {return this.prixProduits; }
 
     public HashMap<String, Integer> getTrayContent() { return this.trayContent; }
 
