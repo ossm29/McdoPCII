@@ -175,8 +175,13 @@ public class AffichageServeur extends JPanel {
         boutonVider.addActionListener(new ControlPlateauCancel(this.etat,this));
         boutonVider.setLayout(null);
         boutonVider.setBounds(165,475,30,30);
-
         this.add(boutonVider);
+
+        /* Bouton Servir plateau */
+        JButton boutonServir = new JButton("OK");
+        boutonServir.setLayout(null);
+        boutonServir.setBounds(505,475,30,30);
+        this.add(boutonServir);
     }
 
     /** fonction de dessin du score et des clients insatisfaits
@@ -221,7 +226,7 @@ public class AffichageServeur extends JPanel {
         // On affiche le score et le nombre de clients insatisfaits
         this.drawStats(g);
         // On affiche le patron
-        this.vueServeur.dessiner(g);
+        //! this.vueServeur.dessiner(g);
         // On affiche les notifs - dans le cas ou y en a -
         this.dessinerNotification(g);
         // On affiche les ressources.produits
