@@ -6,6 +6,7 @@ import javax.swing.border.Border;
 
 import Controleur.ControlDragDrop;
 import Controleur.ControlPlateauCancel;
+import Controleur.ControlPlateauServir;
 import Controleur.ControlServeurAide;
 import Modele.Etat;
 
@@ -171,7 +172,6 @@ public class AffichageServeur extends JPanel {
 
         /* Bouton Annuler plateau */
         JButton boutonVider = new JButton("X");
-
         boutonVider.addActionListener(new ControlPlateauCancel(this.etat,this));
         boutonVider.setLayout(null);
         boutonVider.setBounds(165,475,30,30);
@@ -179,6 +179,7 @@ public class AffichageServeur extends JPanel {
 
         /* Bouton Servir plateau */
         JButton boutonServir = new JButton("OK");
+        boutonServir.addActionListener(new ControlPlateauServir(this.etat,this));
         boutonServir.setLayout(null);
         boutonServir.setBounds(505,475,30,30);
         this.add(boutonServir);
@@ -189,14 +190,16 @@ public class AffichageServeur extends JPanel {
      */
     public void drawStats(Graphics g) {
         /* on dessine un carré blanc à l'endroit où on écrira le score*/
-        g.clearRect(700,50,250,35);
+        g.clearRect(580,50,350,35);
         /* on affiche le score (converti en chaîne de caractères) */
 
         g.drawString("SCORE : "+Integer.toString(this.etat.getScore()),710,73);
         g.setColor(Color.red);
         g.drawString(" | Clients insatisfaits : "+Integer.toString(this.etat.getClients_insatisfaits()),775,73);
+        g.drawString("Clients servis : "+Integer.toString(this.etat.getClients_servis())+" | ",590,73);
         g.setColor(Color.BLACK);
-        g.drawRect(700, 50, 250, 35);
+
+        g.drawRect(580, 50, 350, 35);
     }
     
     /*Getter Etat*/

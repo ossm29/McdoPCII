@@ -1,5 +1,6 @@
 package Modele;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 
 public class Commande {
@@ -111,5 +112,16 @@ public class Commande {
         return this.produits;
     }
 
+    /** Retourne le prix total de la commande */
+    public int getPrix() {
+        int res = 0;
+        // On récupère les prix des produits
+        HashMap<String, Integer> listePrix = Etat.getPrixProduits();
+
+        for (Produit produit : this.getProduits()) {
+            res += produit.getQuantite()*listePrix.get(produit.getNom());
+        }
+        return res;
+    }
 
 }

@@ -15,7 +15,9 @@ public class Etat {
     /* Attributs concernant le Joueur et les clients */
     private int score;                          /* Score Joueur */
     private int compteurClients = 1;            /* Nb de clients générés */
-    private static int clients_insatisfaits;    /* Nb de client insatisfait */
+    private static int clients_insatisfaits;    /* Nb de clients insatisfaits */
+
+    private static int clients_servis = 0; /* Nb de clients servis */
     private Clients clients;                    /* La liste de tous les clients dans le magasin */
     private int client_en_cours;                /* index ( et NON PAS ID )  du client
                                                 qui se fait traiter sa commande actuellement */
@@ -24,8 +26,19 @@ public class Etat {
     /* Attributs concernants les stocks */
 
     private HashMap<String, Integer> stockProduits;
+    /* Prix des produits*/
+    private static final HashMap<String, Integer> prixProduits;
 
-    private HashMap<String, Integer> prixProduits;
+    static {
+        //On initialise les prix produits
+        prixProduits = new HashMap<>();
+        prixProduits.put("Burger", 8);
+        prixProduits.put("Frites", 4);
+        prixProduits.put("Pizza",  10);
+        prixProduits.put("Wrap", 6);
+        prixProduits.put("Boisson", 2);
+        prixProduits.put("Gateau", 3);
+    }
 
     /* Attributs préparation */
 
@@ -64,15 +77,6 @@ public class Etat {
         stockProduits.put("Wrap",  8+random.nextInt(8));
         stockProduits.put("Boisson",  108+random.nextInt(8));
         stockProduits.put("Gateau",  108+random.nextInt(8));
-
-        //On initialise les prix produits
-        prixProduits = new HashMap<>();
-        prixProduits.put("Burger", 8);
-        prixProduits.put("Frites", 4);
-        prixProduits.put("Pizza",  10);
-        prixProduits.put("Wrap", 6);
-        prixProduits.put("Boisson", 2);
-        prixProduits.put("Gateau", 3);
 
         /* On initiase notre liste d'ingrédients selectionnés vide*/
         this.selectionIngredients = new HashSet<String>();
@@ -149,9 +153,11 @@ public class Etat {
 
     public int getClients_insatisfaits() { return clients_insatisfaits; }
 
+    public int getClients_servis() { return clients_servis; }
+
     public int getDureePreparation() { return this.dureePreparation; }
 
-    public HashMap<String, Integer> getPrixProduits() {return this.prixProduits; }
+    public static HashMap<String, Integer> getPrixProduits() {return Etat.prixProduits; }
 
     public HashMap<String, Integer> getTrayContent() { return this.trayContent; }
 
@@ -365,7 +371,36 @@ public class Etat {
      * vide le plateau
      */
     public void serveTray() {
+        Client clientEnCours = this.getClients().getListeClients().get(client_en_cours);
+        // Si la file n'est pas vide et la commande du client en cours correspond au contenu du plateau
+        if( !this.fileVide() && CommandeEqualTray(clientEnCours.getCommande())) {
+            // On ajoute le prix de la commande au score
+            this.score += clientEnCours.getCommande().getPrix();
 
+            // On supprime le client de la liste des clients
+            this.clients.removeClient(clientEnCours);
+            // On incrémente le nb de clients servis
+            clients_servis += 1;
+
+            // On vide le plateau
+            trayContent.clear();
+        }
+
+    }
+
+    /** Retourne vrai si la commande passée en paramètre correspond au contenu du plateau */
+    public boolean CommandeEqualTray(Commande commande) {
+        // Crée un HashMap pour stocker les quantités de produits dans la commande
+        HashMap<String, Integer> commandeContent = new HashMap<>();
+
+        // Parcourt la liste des produits de la commande
+        for (Produit produit : commande.getProduits()) {
+            // Met à jour le HashMap commandeContent avec les quantités de produits
+            commandeContent.put(produit.getNom(), produit.getQuantite());
+        }
+
+        // Compare les deux HashMap (commandeContent et trayContent) pour vérifier s'ils sont égaux
+        return trayContent.equals(commandeContent);
     }
 
 

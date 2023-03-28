@@ -91,7 +91,6 @@ public class AffichageCommande extends JPanel {
         HashMap<String,Integer> listePrix = etat.getPrixProduits();
         //Boucle foreach pour chaque produit de la commande
         Integer prix;
-        Integer total = 0;
         for(int i = 0; i < liste.size(); i++) {
             //On affiche sa quantité
             g.drawString(String.valueOf(liste.get(i).getQuantite())+" X",110,150+35*i);
@@ -99,12 +98,11 @@ public class AffichageCommande extends JPanel {
             g.drawString(liste.get(i).getNom(),170,150+35*i);
             //On affiche son prix
             prix = listePrix.get(liste.get(i).getNom()) * liste.get(i).getQuantite();
-            total += prix;
             g.drawString(String.valueOf(prix),300,150+35*i);
 
         }
         //On affiche le total
-        g.drawString("TOTAL : "+ String.valueOf(total),170,350);
+        g.drawString("TOTAL : "+ String.valueOf(C.getPrix()),170,350);
     }
 
     /*Getter Etat*/
