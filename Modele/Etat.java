@@ -348,7 +348,7 @@ public class Etat {
     /** Vide le plateau après avoir
      * ajouté son contenu au stock
      * */
-    public void clearTray() {
+    public void cancelTray() {
         for (Map.Entry<String, Integer> entry : trayContent.entrySet()) {
             String product = entry.getKey();
             int quantity = entry.getValue();
@@ -358,6 +358,14 @@ public class Etat {
         }
         // Vide le plateau
         trayContent.clear();
+    }
+
+    /** sert le client si la commande du client en cours correspond au contenu du plateau
+     * supprime le client en cours
+     * vide le plateau
+     */
+    public void serveTray() {
+
     }
 
 

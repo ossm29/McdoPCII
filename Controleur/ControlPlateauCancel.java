@@ -40,7 +40,7 @@ public class ControlPlateauCancel implements ActionListener {
      * */
     @Override
     public void actionPerformed(ActionEvent e) {
-        this.etat.clearTray();
+        this.etat.cancelTray();
         this.affichage.repaint();
     }
 }
