@@ -10,8 +10,6 @@ import java.util.*;
 /* Ensemble des données qui caractériseront l'état de mon interface */
 public class Etat {
 
-    //
-
     /* Attributs concernant le Joueur et les clients */
     private int score;                          /* Score Joueur */
     private int compteurClients = 1;            /* Nb de clients générés */

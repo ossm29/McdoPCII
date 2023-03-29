@@ -89,84 +89,84 @@ public class Control implements MouseListener, KeyListener{
                     this.etat.removeIngredient("pain");
                 }
                 else { this.etat.addIngredient("pain");}
-                System.out.println(this.etat.getSelectionIngredients());
+                //System.out.println(this.etat.getSelectionIngredients());
             }
             if (x>190 && x<240 && y>690 && y<740){
                 if (this.etat.getSelectionIngredients().contains("huile")){
                     this.etat.removeIngredient("huile");
                 }
                 else { this.etat.addIngredient("huile"); }
-                System.out.println(this.etat.getSelectionIngredients());
+                //System.out.println(this.etat.getSelectionIngredients());
             }
             if (x>340 && x<390 && y>690 && y<740){
                 if (this.etat.getSelectionIngredients().contains("patate")) {
                     this.etat.removeIngredient("patate");
                 }
                 else { this.etat.addIngredient("patate"); }
-                System.out.println(this.etat.getSelectionIngredients());
+                //System.out.println(this.etat.getSelectionIngredients());
             }
             if (x>490&& x<540 && y>690 && y<740){
                 if (this.etat.getSelectionIngredients().contains("tomate")){
                     this.etat.removeIngredient("tomate");
                 }
                 else { this.etat.addIngredient("tomate"); }
-                System.out.println(this.etat.getSelectionIngredients());
+                //System.out.println(this.etat.getSelectionIngredients());
             }
             if (x>640&& x<690 && y>690 && y<740){
                 if (this.etat.getSelectionIngredients().contains("fromage")){
                     this.etat.removeIngredient("fromage");
                 }
                 else { this.etat.addIngredient("fromage"); }
-                System.out.println(this.etat.getSelectionIngredients());
+                //System.out.println(this.etat.getSelectionIngredients());
             }
             if (x>790&& x<830 && y>690 && y<740){
                 if (this.etat.getSelectionIngredients().contains("pate")){
                     this.etat.removeIngredient("pate");
                 }
                 else { this.etat.addIngredient("pate"); }
-                System.out.println(this.etat.getSelectionIngredients());
+                //System.out.println(this.etat.getSelectionIngredients());
             }
             if (x>40 && x<90 && y>740 && y<790){
                 if (this.etat.getSelectionIngredients().contains("viande")){
                     this.etat.removeIngredient("viande");
                 }
                 else { this.etat.addIngredient("viande");}
-                System.out.println(this.etat.getSelectionIngredients());
+                //System.out.println(this.etat.getSelectionIngredients());
             }
             if (x>190 && x<240 && y>740 && y<790){
                 if (this.etat.getSelectionIngredients().contains("salade")){
                     this.etat.removeIngredient("salade");
                 }
                 else { this.etat.addIngredient("salade");}
-                System.out.println(this.etat.getSelectionIngredients());
+                //System.out.println(this.etat.getSelectionIngredients());
             }
             if (x>340&& x<390 && y>740 && y<790){
                 if (this.etat.getSelectionIngredients().contains("sauce")){
                     this.etat.removeIngredient("sauce");
                 }
                 else { this.etat.addIngredient("sauce");}
-                System.out.println(this.etat.getSelectionIngredients());
+                //System.out.println(this.etat.getSelectionIngredients());
             }
             if (x>490 && x<540&& y>740 && y<790){
                 if (this.etat.getSelectionIngredients().contains("poulet")){
                     this.etat.removeIngredient("poulet");
                 }
                 else { this.etat.addIngredient("poulet");}
-                System.out.println(this.etat.getSelectionIngredients());
+                //System.out.println(this.etat.getSelectionIngredients());
             }
             if (x>640 && x<690 && y>740 && y<790){
                 if (this.etat.getSelectionIngredients().contains("tortilla")){
                     this.etat.removeIngredient("tortilla");
                 }
                 else { this.etat.addIngredient("tortilla");}
-                System.out.println(this.etat.getSelectionIngredients());
+                //System.out.println(this.etat.getSelectionIngredients());
             }
             if (x>790 && x<840&& y>740 && y<790){
                 if (this.etat.getSelectionIngredients().contains("sel")){
                     this.etat.removeIngredient("sel");
                 }
                 else { this.etat.addIngredient("sel");}
-                System.out.println(this.etat.getSelectionIngredients());
+                //System.out.println(this.etat.getSelectionIngredients());
             }
 
             //this.etat.production();
