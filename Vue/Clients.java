@@ -46,6 +46,7 @@ public class Clients {
     /* Méthode genereClients qui génère des clients */
     public void removeClient(Client client){
         this.listeClients.remove(client);
+        client.interrupt();
     }
 
     public void removeClientById(int id) {

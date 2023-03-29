@@ -193,7 +193,7 @@ public class AffichageServeur extends JPanel {
         g.clearRect(580,50,350,35);
         /* on affiche le score (converti en chaîne de caractères) */
 
-        g.drawString("SCORE : "+Integer.toString(this.etat.getScore()),710,73);
+        g.drawString("SCORE : "+Integer.toString(this.etat.getScore()),705,73);
         g.setColor(Color.red);
         g.drawString(" | Clients insatisfaits : "+Integer.toString(this.etat.getClients_insatisfaits()),775,73);
         g.drawString("Clients servis : "+Integer.toString(this.etat.getClients_servis())+" | ",590,73);

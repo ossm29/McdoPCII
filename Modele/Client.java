@@ -4,6 +4,7 @@ import java.util.Random;
 
 public class Client extends Thread{
 
+    private boolean running; //booleen indique si le thread doit fonctionner
     /* Attributs */
     private int identifiant;        /* identifiant unique du client (clef) */
     private int idImage;            /* Identifiant de l'image du client */
@@ -18,6 +19,7 @@ public class Client extends Thread{
 
     /* Constructeur */
     public Client( int id){
+        this.running = true;
         this.setIdentifiant(id);
         this.setTraitementcommande();
         this.setAnger();
@@ -96,7 +98,7 @@ public class Client extends Thread{
     @Override
     public void run() {
         /*Tant que timer du client n'est pas fini */
-        while(this.timer>0) {
+        while(this.timer>0 && running) {
             try {
                 /* Attendre 200ms */
                 Thread.sleep(400/(this.anger+1));
@@ -105,7 +107,10 @@ public class Client extends Thread{
                 this.updateEtat();
 
             }
-            catch (Exception e) { e.printStackTrace(); }
+            catch (InterruptedException e) {
+                System.out.println("client "+this.getIdentifiant()+" interrompu ");
+                running = false;
+            }
         }
     }
 }
