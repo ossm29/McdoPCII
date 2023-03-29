@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-
+/** TODO : interrompre le thread client lorsqu'on le remove et pas seulement le supprimer de la liste */
 public class Clients {
 
     /** Attributs **/
