@@ -372,7 +372,7 @@ public class Etat {
         if(!fileVide()) {
             Client clientEnCours = this.getClients().getListeClients().get(client_en_cours);
             // Si la file n'est pas vide et la commande du client en cours correspond au contenu du plateau
-            if (!this.fileVide() && CommandeEqualTray(clientEnCours.getCommande())) {
+            if (CommandeEqualTray(clientEnCours.getCommande())) {
                 // On ajoute le prix de la commande au score
                 this.score += clientEnCours.getCommande().getPrix();
 
