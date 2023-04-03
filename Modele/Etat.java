@@ -369,21 +369,22 @@ public class Etat {
      * vide le plateau
      */
     public void serveTray() {
-        Client clientEnCours = this.getClients().getListeClients().get(client_en_cours);
-        // Si la file n'est pas vide et la commande du client en cours correspond au contenu du plateau
-        if( !this.fileVide() && CommandeEqualTray(clientEnCours.getCommande())) {
-            // On ajoute le prix de la commande au score
-            this.score += clientEnCours.getCommande().getPrix();
+        if(!fileVide()) {
+            Client clientEnCours = this.getClients().getListeClients().get(client_en_cours);
+            // Si la file n'est pas vide et la commande du client en cours correspond au contenu du plateau
+            if (!this.fileVide() && CommandeEqualTray(clientEnCours.getCommande())) {
+                // On ajoute le prix de la commande au score
+                this.score += clientEnCours.getCommande().getPrix();
 
-            // On supprime le client de la liste des clients
-            this.clients.removeClient(clientEnCours);
-            // On incrémente le nb de clients servis
-            clients_servis += 1;
+                // On supprime le client de la liste des clients
+                this.clients.removeClient(clientEnCours);
+                // On incrémente le nb de clients servis
+                clients_servis += 1;
 
-            // On vide le plateau
-            trayContent.clear();
+                // On vide le plateau
+                trayContent.clear();
+            }
         }
-
     }
 
     /** Retourne vrai si la commande passée en paramètre correspond au contenu du plateau */
