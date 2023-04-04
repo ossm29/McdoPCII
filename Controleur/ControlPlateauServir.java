@@ -21,13 +21,24 @@ public class ControlPlateauServir implements ActionListener {
     private AffichageServeur affichage;
 
 
-    /** Constructeur */
+    /**
+     * Constructeur
+     * Gère le bouton de service du plateau
+     *
+     * @param affichage  de type 'AffichageServeur'
+     * @param etat  de type 'Etat'
+     * */
     public ControlPlateauServir(Etat etat, AffichageServeur affichage) {
         this.etat = etat;
         this.affichage = affichage;
     }
 
-
+    /**
+     * Méthode qui permet de servir le plateau et
+     * update l'affichage
+     *
+     * @param e  de type 'ActionEvent'
+     * */
     @Override
     public void actionPerformed(ActionEvent e) {
         this.etat.serveTray();

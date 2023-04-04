@@ -11,7 +11,7 @@ import java.awt.event.MouseEvent;
 /**
  *  Class ControlDragDrop hérite de la classe 'MouseAdapter'
  *  et change l'affichage de l'interface
- *  quand chaque produit est glissé est déposé par l'utilisateur
+ *  quand chaque produit est glissé et déposé par l'utilisateur
  *
  * @version 1.0
  * */
