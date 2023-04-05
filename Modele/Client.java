@@ -3,58 +3,43 @@ package Modele;
 import java.util.Random;
 
 /**
- *  Class Client hérite de la classe 'Thread'
- *  et initialise les données des clients
+ *  Class Client hérite de la classe 'Thread' et permet de représenter
+ *  un client dans notre système de restaurant.
+ *
+ *  Elle initialise les données du client telles que l'identifiant, l'image,
+ *  le temps d'attente, la colère, la commande, le statut de la commande
+ *  et l'état du client.
  *
  * @version 1.0
  * */
 public class Client extends Thread{
 
-    /**
-     * Boolean qui indique si le thread associé au timer du client peut commencer
-     * (utile quand y a une erreur d'interruption)
-     * */
+
+    // Boolean qui indique si le thread associé au timer du client peut commencer
+    // (utile en cas d'interruption)
     private boolean running;
 
-    /**
-     *  Attributs
-     * */
+    /** Attributs */
 
-    /** Nombre entier qui représente l'identifiant unique du client */
+    /* Identifiant unique du client */
     private int identifiant;
 
-    /**
-     * Nombre entier qui représente l'identifiant de l'image du client
-     * */
+    /* Identifiant de l'image du client */
     private int idImage;
 
-    /**
-     * Nombre à virgule qui représente le temps maximum que le client
-     * va attendre pour sa commande
-     * */
+    /* Temps d'attente maximum du client */
     private double timer;
 
-    /**
-     * Nombre entier qui représente la colère d'un client
-     * sur une échelle de 0 à 5 (inclus)
-     * */
+    /* Colère du client sur une échelle de 0 à 5 */
     private int anger;
 
-    /**
-     * Boolean qui indique si la commande du client a été traitée ou pas
-     * */
+    /* Statut de la commande */
     private boolean traitementcommande;
 
-    /**
-     * Nombre entier qui représente l'état du client
-     * (utile pour leur affichage)
-     * */
+    /* État du client (utile pour leur affichage) */
     private int etatclient;
 
-    /**
-     * Variable de type 'Commande' qui représente la commande
-     * du client
-     * */
+    /* Commande passée par le client */
     private Commande commande;
 
     //private Etat modele;            /*permet de mettre à jour les variables score et client insatisfaits*/
@@ -62,10 +47,9 @@ public class Client extends Thread{
 
     /**
      * Constructeur
-     * Définit les données attribuées au client et permet
-     * au Thread de s'exécuter
+     * Initialise les attributs du client et lance le thread.
      *
-     * @param id  de type 'int'
+     * @param id  Identifiant unique du client de type 'int'
      * */
     public Client( int id){
         this.running = true;
@@ -85,25 +69,25 @@ public class Client extends Thread{
     /**
      * Obtient et renvoie l'identifiant de l'image du client
      *
-     * @return idImage  de type 'int'
+     * @return idImage  l'identifiant de l'image du client de type 'int'
      * */
     public int getIdImage(){
         return this.idImage;
     }
 
     /**
-     * Obtient et renvoie le temps d'attente du client
+     * Obtient et renvoie le temps d'attente maximum du client
      *
-     * @return timer  de type 'double'
+     * @return timer  le temps d'attente de type 'double'
      * */
     public double getTimer(){
         return this.timer;
     }
 
     /**
-     * Obtient et renvoie le degré de colère du client
+     * Obtient et renvoie la colère du client
      *
-     * @return anger  de type 'int'
+     * @return anger  le degré de colère de type 'int'
      * */
     public int getAnger(){
         return this.anger;
@@ -112,7 +96,8 @@ public class Client extends Thread{
     /**
      * Obtient et renvoie la commande du client
      *
-     * @return commande  de type 'Commande'
+     * @return commande  la commande passée par le client
+     *                   de type 'Commande'
      * */
     public Commande getCommande(){
         return this.commande;
@@ -121,7 +106,8 @@ public class Client extends Thread{
     /**
      * Obtient et renvoie le statut de la commande du client
      *
-     * @return traitementcommande  de type 'boolean'
+     * @return traitementcommande  le statut de la commande
+     *                             de type 'boolean'
      * */
     public boolean getTraitementCommande(){
         return this.traitementcommande;
@@ -130,7 +116,7 @@ public class Client extends Thread{
     /**
      * Obtient et renvoie l'état du client
      *
-     * @return etatclient  de type 'int'
+     * @return etatclient  l'état du client de type 'int'
      * */
     public int getEtatclient(){
         return this.etatclient;
@@ -139,7 +125,7 @@ public class Client extends Thread{
     /**
      * Obtient et renvoie l'identifiant du client
      *
-     * @return identifiant  de type 'int'
+     * @return identifiant  l'identifiant du client de type 'int'
      * */
     public int getIdentifiant(){ return this.identifiant; }
 
@@ -150,7 +136,7 @@ public class Client extends Thread{
     /**
      * Définit l'identifiant du client
      *
-     * @param id  de type 'int'
+     * @param id  L'identifiant unique du client de type 'int'
      * */
     public void setIdentifiant(int id ){
         this.identifiant = id;
@@ -161,6 +147,7 @@ public class Client extends Thread{
      *
      * */
     public void setAnger(){
+        // la colère sera comprise entre 0 et 5 (inclus)
         Random random = new Random();
         this.anger = random.nextInt(6);
     }
@@ -210,7 +197,7 @@ public class Client extends Thread{
      * */
     public void updateTimer(){
         this.timer = this.timer - 0.2;
-        // si temps est égal à 0, on incrémente le nb de clients insatisfaits
+        // Si temps est égal à 0, on incrémente le nb de clients insatisfaits
         if(this.timer <= 0) {
             Etat.updateClientInsatisfait();
         }
@@ -230,17 +217,18 @@ public class Client extends Thread{
      * */
     @Override
     public void run() {
-        /*Tant que timer du client n'est pas fini */
+        // Tant que timer du client n'est pas fini
         while(this.timer>0 && running) {
             try {
-                /* Attendre 200ms */
+                // Attendre 200ms
                 Thread.sleep(400/(this.anger+1));
-                /* Mettre a jour la colère et le timer */
+                // Mettre a jour la colère et le timer du client
                 this.updateTimer();
                 this.updateEtat();
 
             }
             catch (InterruptedException e) {
+                // Exception levée si l'interruption du thread se produit
                 System.out.println("client "+this.getIdentifiant()+" interrompu ");
                 running = false;
             }
