@@ -4,34 +4,37 @@ import Modele.Etat;
 import Vue.*;
 
 /**
- *  Class Control implémente 'MouseListener' et 'KeyListener'
- *  et fait le lien entre la classe 'Etat' et 'Affichage'
- *  suite à toute interaction
+ *  Class Control implémente les interfaces 'MouseListener' et 'KeyListener',
+ *  est responsable de la gestion des événements de souris et de clavier
+ *  suite à toute interaction et de la communication entre les classes
+ *  'Etat' et 'AffichagePrincipal'.
+ *
  *
  * @version 1.0
  * */
 public class Control implements MouseListener, KeyListener{
 
-    /**
-     * Variables utiles au modèle MVC
-     * */
-    private Etat etat;                              
+    /** Variables utiles au modèle MVC */
+
+    // L'état courant de l'application
+    private Etat etat;
+    // La fenêtre principale de l'application
     private AffichagePrincipal affichagePrincipal;
 
-    /**
-     * Threads
-     * */
-    private Repaint repaint;
+    /** Threads */
 
+    // Thread de rafraîchissement de l'interface graphique
+    private Repaint repaint;
+    // Thread de génération de clients pour la simulation
     private GenereClient genereClient;
 
     /**
      * Constructeur
      * Définit l'affichage et l'état choisis et lance les actions
-     * de GenereClient (et Repaint)
+     * de GenereClient (et Repaint) pour la mise à jour de l'affichage
      *
-     * @param affichagePrincipal  de type 'Affichage'
-     * @param etat  de type 'Etat'
+     * @param etat  l'état courant de l'application de type 'Etat'
+     * @param affichagePrincipal  l'affichage principal de l'application de type 'AffichagePrincipal'
      * */
     public Control(Etat etat, AffichagePrincipal affichagePrincipal) {
 
@@ -52,38 +55,32 @@ public class Control implements MouseListener, KeyListener{
     /**
      * Obtient et renvoie l'affichage principal de notre fenêtre
      *
-     * @return affichagePrincipal  de type AffichagePrincipal
+     * @return affichagePrincipal  l'affichage principal de l'application de type 'AffichagePrincipal'
      * */
     public AffichagePrincipal getAffichagePrincipal() {
         return affichagePrincipal;
     }
 
-    /**
-     * Implémentations de MouseListener
-     * */
 
-    /**
-     * Change l'affichage quand je presse et relache (entre autre clique)
-     * sur les boutons de ma souris
-     *
-     * @param e  de type MouseEvent
-     * */
+    /** Implémentations des méthodes de l'interface MouseListener */
+
     @Override
-    public void mouseClicked(MouseEvent e) {
-    }
+    public void mouseClicked(MouseEvent e) {}
 
     /**
-     * Sélectionne et désélectionne un ingrédient
-     * quand je presse ma souris
+     * Permet de sélectionner et désélectionner un ingrédient
+     * lorsque l'utilisateur clique sur la souris
      *
-     * @param e  de type MouseEvent
+     * @param e  l'évènement de la souris de type 'MouseEvent'
      * */
     @Override
     public void mousePressed(MouseEvent e) {
         int x = e.getX();
         int y = e.getY();
-    	if ( e.getButton() == MouseEvent.BUTTON1 ) {
-            // On ajoute ou supprime l'ingredient selon la zone de clic
+
+        // Vérifie si le bouton gauche de la souris a été cliqué
+        if ( e.getButton() == MouseEvent.BUTTON1 ) {
+            // Vérifie quelle zone a été cliquée et ajoute ou supprime l'ingrédient correspondant
             if (x>40 && x<90 && y>690 && y<740){
                 if (this.etat.getSelectionIngredients().contains("pain")){
                     this.etat.removeIngredient("pain");
@@ -175,79 +172,72 @@ public class Control implements MouseListener, KeyListener{
     }
 
     @Override
-    public void mouseReleased(MouseEvent e) {
-        // TODO Auto-generated method stub
-    }
+    public void mouseReleased(MouseEvent e) {}
 
     @Override
-    public void mouseEntered(MouseEvent e) {
-        // TODO Auto-generated method stub
-    }
+    public void mouseEntered(MouseEvent e) {}
 
     @Override
-    public void mouseExited(MouseEvent e) {
-        // TODO Auto-generated method stub
-    }
+    public void mouseExited(MouseEvent e) {}
 
 
 
-    /**
-     * Implémentations de KeyListener
-     * */
+    /** Implémentations des méthodes de l'interface KeyListener */
 
     /**
-     * Change de client quand je tape la clé flèche "suivant" ou "précédent"
+     * Cette méthode est appelée lorsque l'utilisateur tape une touche.
+     * Si la touche est "précédent" ou "suivant", la méthode
+     * change le client courant et met à jour l'affichage.
      *
-     * @param e  de type KeyEvent
+     * @param e  l'évènement de la touche tapée de type 'KeyEvent'
      * */
     @Override
     public void keyTyped(KeyEvent e) {
-        if ( e.getKeyCode() == KeyEvent.VK_Q) {
-            this.etat.clientprecedent();
+        if ( e.getKeyCode() == KeyEvent.VK_Q) { // Si la touche "précédent" est tapée
+            this.etat.clientprecedent(); // On change le client courant
             System.out.println(this.etat.getClient_en_cours());
+            // On met à jour l'affichage
             this.affichagePrincipal.getAffichageDroite().getAffichgeClient().getMiniAffichageClient().repaint();
         }
-        if ( e.getKeyCode() == KeyEvent.VK_D ) {
-            this.etat.clientsuivant();
+        if ( e.getKeyCode() == KeyEvent.VK_D ) { // Si la touche "suivant" est tapée
+            this.etat.clientsuivant(); // On change le client courant
             System.out.println(this.etat.getClient_en_cours());
+            // On met à jour l'affichage
             this.affichagePrincipal.getAffichageDroite().getAffichgeClient().getMiniAffichageClient().repaint();
         }
     }
 
     /**
-     * Change de client quand j'appuie sur une clé
+     * Cette méthode est appelée lorsque l'utilisateur appuie sur une touche.
+     * Si la touche est "précédent" ou "suivant", la méthode change
+     * le client courant et met à jour l'affichage.
      *
-     * @param e  de type KeyEvent
+     * @param e  l'évènement de la touche appuyée de type 'KeyEvent'
      * */
     @Override
     public void keyPressed(KeyEvent e) {
-        if ( e.getKeyCode() == KeyEvent.VK_Q) {
-            this.etat.clientprecedent();
+        if ( e.getKeyCode() == KeyEvent.VK_Q) { // Si la touche "précédent" est appuyée
+            this.etat.clientprecedent(); // On change le client courant
             System.out.println(this.etat.getClient_en_cours());
+            // On met à jour l'affichage
             this.affichagePrincipal.getAffichageDroite().getAffichgeClient().getMiniAffichageClient().repaint();
         }
-        if ( e.getKeyCode() == KeyEvent.VK_D ) {
-            this.etat.clientsuivant();
+        if ( e.getKeyCode() == KeyEvent.VK_D ) { // Si la touche "suivant" est appuyée
+            this.etat.clientsuivant(); // On change le client courant
             System.out.println(this.etat.getClient_en_cours());
+            // On met à jour l'affichage
             this.affichagePrincipal.getAffichageDroite().getAffichgeClient().getMiniAffichageClient().repaint();
         }
-
     }
 
-    /**
-     *
-     * @param e  de type KeyEvent
-     * */
     @Override
-    public void keyReleased(KeyEvent e) {
-
-    }
+    public void keyReleased(KeyEvent e) {}
 
     /**
      * Getter
      * Obtient et renvoie l'état dans notre classe Control
      *
-     * @return etat  de type Etat
+     * @return etat  l'état courant de l'application de type 'Etat'
      * */
     public Etat getEtat() {
         return etat;
@@ -257,7 +247,7 @@ public class Control implements MouseListener, KeyListener{
      * Setter
      * Définit l'état de notre classe Control
      *
-     * @param etat  de type Etat
+     * @param etat  l'état courant de l'application de type 'Etat'
      * */
     public void setEtat(Etat etat) {
         this.etat = etat;

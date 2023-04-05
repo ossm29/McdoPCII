@@ -4,23 +4,28 @@ import Modele.Client;
 
 /**
  *  Class GenereClient hérite la classe 'Thread'
- *  et gère l'apparition de clients sur l'écran
+ *  et gère l'apparition de clients sur l'écran.
+ *
+ *  Elle est responsable de la génération de nouveaux clients
+ *  et de l'affichage d'un avertissement lors de leur arrivée.
  *
  * @version 1.0
  * */
 public class GenereClient extends Thread{
 
-    /**
-     * Variable de type 'Control'
-     * */
+    /** Attributs */
+
+    // Variable de type 'Control'
+    // Utilisée pour définir l'affichage et l'état de l'interface utilisateur
     Control control;
 
     /**
      * Constructeur
+     * Initialise la variable d'instance nécessaire à la classe.
      * Définit l'affichage et l'état de l'interface
      * avec une variable de type 'Control'
      *
-     * @param control  de type 'Control'
+     * @param control  objet qui gère l'interface de l'utilisateur de type 'Control'
      * */
     public GenereClient(Control control){
         this.control = control;
@@ -28,8 +33,9 @@ public class GenereClient extends Thread{
 
 
     /**
-     * Méthode qui permet de générer des clients sur l'écran
-     * de l'utilisateur ainsi que l'avertissement de leurs arrivées
+     * La méthode 'run' est appelée lorsqu'un nouveau Thread est démarré.
+     * Permet de générer des clients sur l'écran de l'utilisateur
+     * et de l'affichage d'un message lors de leur arrivée.
      *
      * */
     @Override

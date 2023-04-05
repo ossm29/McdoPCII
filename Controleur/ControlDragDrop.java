@@ -10,40 +10,36 @@ import java.awt.event.MouseEvent;
 
 /**
  *  Class ControlDragDrop hérite de la classe 'MouseAdapter'
- *  et change l'affichage de l'interface
- *  quand chaque produit est glissé et déposé par l'utilisateur
+ * pour gérer le mouvement des produits de leur liste vers le plateau.
  *
  * @version 1.0
  * */
 public class ControlDragDrop extends MouseAdapter {
 
-    /**
-     *  Variables utiles au modèle MVC
-     * */
+    /** Variables utiles au modèle MVC */
+
+    // L'affichage dans l'application
     private AffichageServeur affichageServeur;
+    // L'état courant de l'application
     private Etat etat;
 
-    /**
-     *  Variable de type "String"
-     * */
+    /** Attributs */
+
+    // Variable de type 'String' pour le produit glissé
     private String draggedProduct;
 
-    /**
-     *  Variable de type "Point"
-     * */
+    // Variable de type 'Point' pour le point de départ du glissement
     private Point startPoint;
 
-    /**
-     *  Variable de type "JLabel"
-     * */
+    // Variable de type 'JLabel' pour le label du produit glissé
     private JLabel draggedProductLabel;
 
     /**
      * Constructeur
      * Gère le mouvement des produits de leur liste vers le plateau
      *
-     * @param affichageServeur  de type 'AffichageServeur'
-     * @param etat  de type 'Etat'
+     * @param etat              l'état actuel du modèle de type 'Etat'
+     * @param affichageServeur  l'affichage de la vue de type 'AffichageServeur'
      * */
     public ControlDragDrop(Etat etat, AffichageServeur affichageServeur) {
         this.etat = etat;
@@ -51,15 +47,12 @@ public class ControlDragDrop extends MouseAdapter {
     }
 
 
-    /**
-     * Implémentations de 'MouseAdapter'
-     * */
-
+    /** Implémentations des méthodes de l'interface MouseAdapter */
 
     /**
-     * Sélectionne un produit quand je presse ma souris
+     * Sélectionne un produit quand l'utilisateur presse la souris.
      *
-     * @param e  de type MouseEvent
+     * @param e  l'évènement de la souris de type 'MouseEvent'
      * */
     @Override
     public void mousePressed(MouseEvent e) {
@@ -74,10 +67,9 @@ public class ControlDragDrop extends MouseAdapter {
     }
 
     /**
-     * Bouge le produit d'un endroit vers l'autre
-     * quand je glisse ma souris
+     * Déplace le produit lorsque qu'il est glissé avec la souris
      *
-     * @param e  de type MouseEvent
+     * @param e  l'évènement de la souris de type 'MouseEvent'
      * */
     @Override
     public void mouseDragged(MouseEvent e) {
@@ -87,18 +79,18 @@ public class ControlDragDrop extends MouseAdapter {
     }
 
     /**
-     * Dépose un le produit sélectionné et glissé
-     * sur le plateau quand je relâche ma souris
+     * Dépose un le produit sélectionné et glissé sur le plateau
+     * lorsque l'utilisateur relâche sa souris
      *
-     * @param e  de type MouseEvent
+     * @param e  l'évènement de la souris de type 'MouseEvent'
      * */
     @Override
     public void mouseReleased(MouseEvent e) {
         if (draggedProductLabel != null) {
             Point endPoint = e.getPoint();
-            // Vérifier si le produit a été déposé dans le plateau et mettez à jour le modèle en conséquence.
+            // Vérifie si le produit a été déposé dans le plateau et met à jour le modèle en conséquence.
             if (affichageServeur.isInTray(endPoint)) {
-                // Ajouter la logique pour mettre à jour le modèle, si nécessaire.
+                // Ajoute la logique pour mettre à jour le modèle, si nécessaire.
                 this.etat.addToTray(draggedProduct);
             }
             affichageServeur.remove(draggedProductLabel);
@@ -109,26 +101,33 @@ public class ControlDragDrop extends MouseAdapter {
     }
 
     /**
-     * Crée le label du produit qui est "drag et dropped"
+     * Crée un label pour afficher l'image du produit qui a été glissé et déposé
      *
-     * @param image  de type "Image"
-     * @return label  de type JLabel
+     * @param image  l'image à afficher sur le label de type 'Image'
+     * @return label  le label du produit de type 'JLabel'
      * */
     private JLabel createDraggedProductLabel(Image image) {
+        // Création d'une instance de ImageIcon avec l'image fournie,
+        // redimensionnée à une taille de 30x30 pixels
         ImageIcon icon = new ImageIcon(image.getScaledInstance(30, 30, Image.SCALE_SMOOTH));
         JLabel label = new JLabel(icon);
+        // Définition de la taille du label sur la taille de l'icône
         label.setSize(icon.getIconWidth(), icon.getIconHeight());
         return label;
     }
 
     /**
-     * Mets à jour la position du label du produit sur l'écran
+     * Mets à jour la position du label représentant du produit glissé et déposé
      *
-     * @param point  de type "Point"
+     * @param point  la nouvelle position du label de type 'Point'
      * */
     private void updateDraggedProductLabelPosition(Point point) {
+        // Calcul des décalages de position entre le point de départ
+        // et la nouvelle position du point
         int xOffset = point.x - startPoint.x;
         int yOffset = point.y - startPoint.y;
+        // Définition de la nouvelle position du JLabel en fonction
+        // des décalages de position calculés
         draggedProductLabel.setLocation(startPoint.x + xOffset, startPoint.y + yOffset);
     }
 }

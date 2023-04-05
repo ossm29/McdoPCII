@@ -20,9 +20,7 @@ public class Client extends Thread{
      *  Attributs
      * */
 
-    /**
-     * Nombre entier qui représente l'identifiant unique du client
-     * */
+    /** Nombre entier qui représente l'identifiant unique du client */
     private int identifiant;
 
     /**
@@ -228,7 +226,7 @@ public class Client extends Thread{
     /**
      * Methode qui met à jour l'état du client (sa colère) et
      * son temps d'attente
-     * 
+     *
      * */
     @Override
     public void run() {

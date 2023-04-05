@@ -9,17 +9,18 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 /**
- *  Class ControlClientClicGauche implémente 'MouseListener' et 'KeyListener'
- *  et définit les fonctions pour pouvoir changer et voir le client précédent
+ *  Class ControlClientClicGauche implémente les interfaces 'MouseListener' et 'KeyListener'
+ *  pour gérer le changement et la visualisation du client précédent.
  *
  * @version 1.0
  * */
 public class ControlClientClicGauche implements MouseListener , KeyListener {
 
-    /**
-     * Variables utiles au modèle MVC
-     * */
+    /** Variables utiles au modèle MVC */
+
+    // L'état courant de l'application
     private Etat etat;
+    // La fenêtre du client dans l'application
     private miniAffichageClient miniAffichageClient;
 
 
@@ -27,8 +28,8 @@ public class ControlClientClicGauche implements MouseListener , KeyListener {
      * Constructeur
      * Gère le changement de clients vers celui qui précède
      *
-     * @param miniAffichageClient  de type 'miniAffichageClient'
-     * @param etat  de type 'Etat'
+     * @param etat                 L'état actuel du système de gestion de clients de type 'Etat'
+     * @param miniAffichageClient  Le widget d'affichage du client actuel de type 'miniAffichageClient'
      * */
     public ControlClientClicGauche(Etat etat, miniAffichageClient miniAffichageClient) {
         this.setEtat(etat);
@@ -36,21 +37,16 @@ public class ControlClientClicGauche implements MouseListener , KeyListener {
     }
 
 
+    /** Implémentations des méthodes de l'interface MouseListener */
 
-    /**
-     * Change l'affichage quand je presse et relache (entre autre clique)
-     * sur les boutons de ma souris
-     *
-     * @param e  de type MouseEvent
-     * */
     @Override
-    public void mouseClicked(MouseEvent e) {
-    }
+    public void mouseClicked(MouseEvent e) {}
 
     /**
-     * Change au client précédent quand je presse ma souris
+     * La méthode mousePressed est appelée lorsqu'un bouton de la souris est appuyé.
+     * Elle permet de changer au client suivant.
      *
-     * @param e  de type MouseEvent
+     * @param e  l'évènement de la souris de type 'MouseEvent'
      * */
     @Override
     public void mousePressed(MouseEvent e) {
@@ -62,40 +58,32 @@ public class ControlClientClicGauche implements MouseListener , KeyListener {
     }
 
     @Override
-    public void mouseReleased(MouseEvent e) {
-        // TODO Auto-generated method stub
-    }
+    public void mouseReleased(MouseEvent e) {}
 
     @Override
-    public void mouseEntered(MouseEvent e) {
-        // TODO Auto-generated method stub
-    }
+    public void mouseEntered(MouseEvent e) {}
 
     @Override
-    public void mouseExited(MouseEvent e) {
-        // TODO Auto-generated method stub
-    }
+    public void mouseExited(MouseEvent e) {}
 
 
-    @Override
-    public void keyTyped(KeyEvent e) {
-    }
+    /** Implémentations des méthodes de l'interface KeyListener */
 
     @Override
-    public void keyPressed(KeyEvent e) {
-
-    }
+    public void keyTyped(KeyEvent e) {}
 
     @Override
-    public void keyReleased(KeyEvent e) {
+    public void keyPressed(KeyEvent e) {}
 
-    }
+    @Override
+    public void keyReleased(KeyEvent e) {}
+
 
     /**
      * Getter
      * Obtient et renvoie l'état dans notre classe ControlClientClicGauche
      *
-     * @return etat  de type Etat
+     * @return etat  l'état courant de l'application de type 'Etat'
      * */
     public Etat getEtat() {
         return etat;
@@ -105,7 +93,7 @@ public class ControlClientClicGauche implements MouseListener , KeyListener {
      * Setter
      * Définit l'état de notre classe ControlClientClicGauche
      *
-     * @param etat  de type Etat
+     * @param etat  l'état courant de l'application de type 'Etat'
      * */
     public void setEtat(Etat etat) {
         this.etat = etat;
