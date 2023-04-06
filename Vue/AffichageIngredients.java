@@ -11,17 +11,30 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-/** Classe qui gère l'affichage de la barre d'ingrédients en bas de l'écran */
+/**
+ * Classe AffichageIngredients hérite de la classe 'JPanel' de Swing.
+ * Gère l'affichage de la barre d'ingrédients en bas de l'écran de
+ * l'utilisateur.
+ *
+ * @version 1.0
+ * */
 public class AffichageIngredients extends JPanel {
-    public static final int LARGEUR = 990;                              	   /* Largeur Fenetre */
-    public static final int HAUTEUR = 110;                              	/* Hauteur Fenetre */
 
-    /* Variables */
-    private Etat etat;                                                  	/* Variable Etat que notre classe retranscrira en affichage */
+    /** Constantes fenêtre */
 
-    private AffichageServeur affichageServeur; /*Permet d'afficher les animations dans l'affichage serveur*/
+    /* Largeur fenêtre 990 */
+    public static final int LARGEUR = 990;
+    /* Hauteur fenêtre 110 */
+    public static final int HAUTEUR = 110;
 
-    /* Image des ingédients */
+    /** Variables */
+
+    /* Variable Etat que notre classe retranscrira en affichage */
+    private Etat etat;
+    /* Permet l'affichage des animations dans l'affichage serveur */
+    private AffichageServeur affichageServeur;
+
+    /* Images des ingrédients */
     private BufferedImage imageBread;
     private BufferedImage imageOil;
     private BufferedImage imagePotato;
@@ -38,14 +51,25 @@ public class AffichageIngredients extends JPanel {
 
 
 
-    /* Constructeurs */
+    /**
+     *  Constructeur
+     *  Gère l'affichage de la barre des ingrédients, ainsi que les boutons
+     *  "Annuler" et "Valider" qui contribueront à la sélection des ingrédients.
+     *
+     * @param etat              l'état courant du jeu de type 'Etat'
+     * @param affichageServeur  l'affichage serveur de l'application de type 'AffichageServeur'
+     *  */
     public AffichageIngredients(Etat etat, AffichageServeur affichageServeur){
+       // Définition de l'état du jeu
         this.setEtat(etat);
-        setPreferredSize(new Dimension(LARGEUR,HAUTEUR));               	/* On définit les dimensions de notre JPanel */
+        // Définition des dimensions du JPanel
+        setPreferredSize(new Dimension(LARGEUR,HAUTEUR));
+        // Définition de l'affichage serveur
         this.affichageServeur = affichageServeur;
+
         /* Images des ingrédients */
 
-        // On charge les fichiers
+        // Chargement des fichiers contenant les images
         File fileBread = new File("ressources/ingredients/bread.png");
         File fileOil = new File("ressources/ingredients/oil.png");
         File filePotato = new File("ressources/ingredients/potato.png");
@@ -58,7 +82,8 @@ public class AffichageIngredients extends JPanel {
         File filePoulet = new File("ressources/ingredients/poulet-frit.png");
         File fileTortilla = new File("ressources/ingredients/tortillas.png");
         File fileSel = new File("ressources/ingredients/sel.png");
-        // On récupère ces images
+
+        // Récupération des images
         try {
             imageBread = ImageIO.read(fileBread);
             imageOil = ImageIO.read(fileOil);
@@ -85,7 +110,7 @@ public class AffichageIngredients extends JPanel {
         boutonAnnuler.addActionListener(new ControlIngredientsCancel(this.etat,this));
         boutonAnnuler.setBackground(Color.white);
         boutonAnnuler.setFocusPainted(false);
-        //on l'ajoute au JPanel
+        // Ajout du boutonAnnuler au JPanel
         this.add(boutonAnnuler);
 
         /* Bouton valider selection */
@@ -96,28 +121,49 @@ public class AffichageIngredients extends JPanel {
         boutonValider.addActionListener(new ControlIngredientsValider(this.etat,this));
         boutonValider.setBackground(Color.white);
         boutonValider.setFocusPainted(false);
-        //on l'ajoute au JPanel
+        // Ajout du boutonValider au JPanel
         this.add(boutonValider);
 
     }
 
 
-    /*Getter Etat*/
+    /** Gettesr */
+
+    /**
+     * Retourne l'état actuel de l'application.
+     *
+     * @return l'état courant  de type 'Etat'
+     * */
     public Etat getEtat() {
         return etat;
     }
 
-    //getAffichageServeur
+    /**
+     * Retourne l'affichage serveur actuel de l'application
+     *
+     * @return l'affichage serveur courant  de type 'AffichageServeur'
+     * */
     public AffichageServeur getAffichageServeur() { return this.affichageServeur;}
 
 
-    /*Setter etat*/
+    /** Setter */
+
+    /**
+     * Définit l'état de l'application.
+     *
+     * @param etat l'état à définir de type 'Etat'
+     * */
     public void setEtat(Etat etat) {
         this.etat = etat;
     }
 
 
-
+    /**
+     * Méthode qui dessine les ingrédients en dessous d'une bordure noire
+     * ainsi que les graphismes lors de leur sélection.
+     *
+     * @param g  l'objet graphique de l'interface  de type 'Graphics'
+     * */
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -134,6 +180,11 @@ public class AffichageIngredients extends JPanel {
 
     }
 
+    /**
+     * Méthode qui dessine et affiche les ingrédients avec l'image associée à chacun.
+     *
+     * @param g  l'objet graphique de l'interface  de type 'Graphics'
+     * */
     public void drawIngredients(Graphics g){
 
         // On affiche les images des ingrédients LIGNE 1
@@ -154,6 +205,11 @@ public class AffichageIngredients extends JPanel {
         g.drawImage(this.imageSalt, 780,64,45,45,this);
     }
 
+    /**
+     * Méthode qui dessine un oval vert lors de la sélection d'un ingrédient.
+     *
+     * @param g  l'objet graphique de l'interface  de type 'Graphics'
+     * */
     public void drawSelection(Graphics g){
         //Couleur du cercle
         g.setColor(Color.green);
