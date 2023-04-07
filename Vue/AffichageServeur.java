@@ -21,19 +21,33 @@ import java.util.Arrays;
 import java.util.Map;
 
 
-/* Ma classe Affichage qui définira la vue, dans notre cas elle traduire les données de la Classe Etat en affichage pour l'utilisateur  */
+/**
+ * Classe AffichageServeur hérite de la classe 'JPanel' de Swing.
+ * Elle définit la vue, dans notre cas elle traduit les données
+ * de la classe Etat en affichage pour l'utilisateur.
+ *
+ * @version 1.0
+ * */
 public class AffichageServeur extends JPanel {
 
-    /* Constantes Fenetre*/
-    public static final int LARGEUR = 990;                            	/* Largeur Fenetre */
-    public static final int HAUTEUR = 680;                             	/* Hauteur Fenetre */
+    /** Constantes Fenêtre */
+
+    /* Largeur Fenêtre */
+    public static final int LARGEUR = 990;
+    /* Hauteur Fenêtre */
+    public static final int HAUTEUR = 680;
     
-    /* Variables */
-    private Etat etat;                                                  	/* Variable Etat que notre classe retranscrira en affichage */
+    /** Variables */
+
+    /* Variable Etat que notre classe retranscrira en affichage */
+    private Etat etat;
+    /* L'objet VueServeur qui gère ... TODO */
     private VueServeur vueServeur;
+    /* La notification aà afficher */
     private String notification;
+    /* Indique si une notification doit être affichée */
     private Boolean affichageNotification;
-    //indique si on affiche l'aide
+    /* Indique si l'aide doit être affichée */
     private Boolean displayHelp = false;
 
     /* Font de police */
@@ -47,7 +61,7 @@ public class AffichageServeur extends JPanel {
     private BufferedImage imageFrites;
     private BufferedImage imageBoisson;
 
-    /* Image des ingédients */
+    /* Image des ingrédients */
     private BufferedImage imageBread;
     private BufferedImage imageOil;
     private BufferedImage imagePotato;
@@ -62,7 +76,7 @@ public class AffichageServeur extends JPanel {
     private BufferedImage imageTortilla;
     private BufferedImage imageSalt;
 
-    //Plateau
+    /* Dimensions du plateau */
     private int trayWidth = 300;
     private int trayHeight = 200;
 
@@ -74,12 +88,19 @@ public class AffichageServeur extends JPanel {
     private AnimationTimer wrapTimer;
 
 
-    /* Constructeurs */
+    /** Constructeur
+     * Crée un objet AffichageServeur en spécifiant l'état initial.
+     * Il définit les dimensions du JPanel et les attributs de la classe.
+     * Il crée également un objet ControlDragDrop pour gérer le glisser-déposer
+     * d'images et les charge aà partir du fichier correspondant.
+     *
+     * @param etat  l'état courant de l'application  de type 'Etat'
+     * */
     public AffichageServeur(Etat etat){
-        /* On définit les dimensions de notre JPanel */
+        // Définition des dimensions de notre JPanel
         setPreferredSize(new Dimension(LARGEUR,HAUTEUR));
 
-        /* Les attributs */
+        // Initialisation des attributs de la classe
         this.setEtat(etat);
         this.vueServeur = new VueServeur();
         this.affichageNotification = false;
@@ -90,13 +111,13 @@ public class AffichageServeur extends JPanel {
         this.addMouseMotionListener(controlDragDrop);
 
 
-        /* Police d'écriture */
+        // Police des caractères
         this.font = null;
         try {
-            //creation de la police d'affichage, taille 15
+            // Creation de la police d'affichage, taille 15
             this.font = Font.createFont(Font.TRUETYPE_FONT, new File("ressources/fonts/angrybirds-regular.ttf")).deriveFont(15f);
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            //register the font
+            // Enregistrement de la police
             ge.registerFont(this.font);
         } catch (IOException | FontFormatException e) {
             e.printStackTrace();
@@ -185,8 +206,10 @@ public class AffichageServeur extends JPanel {
         this.add(boutonServir);
     }
 
-    /** fonction de dessin du score et des clients insatisfaits
-     * @param g objet graphique
+    /**
+     * Méthode qui permet de dessiner le score et les clients insatisfaits
+     *
+     * @param g objet graphique de l'interface de type 'Graphics'
      */
     public void drawStats(Graphics g) {
         /* on dessine un carré blanc à l'endroit où on écrira le score*/
@@ -201,18 +224,44 @@ public class AffichageServeur extends JPanel {
 
         g.drawRect(580, 50, 350, 35);
     }
-    
-    /*Getter Etat*/
+
+    /** Getter
+     * Renvoie l'état actuel de l'application
+     *
+     * @return etat l'état actuel de type 'Etat'
+     * */
 	public Etat getEtat() {
 		return etat;
 	}
-	
-	/*Setter etat*/
+
+    /**
+     * Setter
+     * Définit l'état de l'application.
+     *
+     * @param etat l'état à définir de type 'Etat'
+     * */
 	public void setEtat(Etat etat) {
 		this.etat = etat;
 	}
+
+    /**
+     * Setter
+     * Définit la notification à afficher.
+     *
+     * @param notif la notification à afficher de type 'String'
+     * */
     public void setNotification(String notif) { this.notification = notif;}
 
+
+    /**
+     * Méthode qui met aà jour l'affichage de l'interface graphique.
+     * Elle effectue plusieurs opérations pour afficher l'arrière-plan, les bordures,
+     * le score et els clients insatisfaits, les notifications, les produits,
+     * le temps de production des produits et d'autres informations
+     * importantes à afficher.
+     *
+     * @param g  l'objet graphique de l'interface de type 'Graphics'
+     * */
     @Override
     public void paint(Graphics g) {
 
@@ -222,7 +271,7 @@ public class AffichageServeur extends JPanel {
         Border blackline = BorderFactory.createLineBorder(Color.black,1);
         this.setBorder(blackline);
 
-        // On paramètre notre police d'écriture en attribut
+        // On paramètre notre police d'écriture choisie en attribut
         this.setFont(this.font);
         // On affiche le decor
         //this.drawDecor(g);
@@ -250,19 +299,34 @@ public class AffichageServeur extends JPanel {
             this.wrapTimer.dessineTimer(g);
         }
 
+        // Affichage de l'aide, s'il est activé
         if(this.displayHelp) {
             this.drawHelp(g);
         }
 
     }
 
+    /**
+     * Méthode qui affiche un texte temporaire (pour une durée donnée).
+     * Elle met à jour la notification et active l'affichage de la notification
+     * pendant la durée spécifiée.
+     * Ensuite, elle désactive son affichage et rafraichit l'interface.
+     *
+     * @param texte                 le texte à afficher de type 'String'
+     * @param dureeEnMillisecondes  la durée d'affichage de la notification en ms
+     *                              de type 'int'
+     * */
     public void afficherTexteTemporairement(String texte, int dureeEnMillisecondes) {
+        // Définition de la notification avec le texte choisi
         this.notification = texte;
+        // Activation de l'affichage de la notification
         this.affichageNotification = true;
 
+        // Création un timer qui permet d'afficher le texte temporairement
         Timer timer = new Timer(dureeEnMillisecondes, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                // désactivation de l'affichage de la notification après la fin du timer
                 AffichageServeur.this.affichageNotification = false;
                 repaint();
             }
@@ -273,6 +337,12 @@ public class AffichageServeur extends JPanel {
         repaint();
     }
 
+
+    /**
+     * Méthode qui affiche le décor de l'interface ainsi que le plateau.
+     *
+     * @param g  l'objet graphique de l'interface de type 'Graphics'
+     * */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -280,6 +350,13 @@ public class AffichageServeur extends JPanel {
         this.drawTray(g);
     }
 
+    /**
+     * Méthode qui dessine la notification (si possible).
+     * Elle dessine un rectangle blanc contenant le texte de la notification
+     * et un cadre noir autour de celui-ci.
+     *
+     * @param g  l'objet graphique de l'interface de type 'Graphics'
+     * */
     public void dessinerNotification(Graphics g) {
         if (affichageNotification) {
             g.setColor(Color.WHITE);
@@ -291,7 +368,12 @@ public class AffichageServeur extends JPanel {
         }
     }
 
-     /** Affiche l'arrière plan */
+     /**
+      * Méthode qui affiche l'arrière-plan de l'application.
+      * Elle récupère l'image à partir du fichier correspondant et la dessine.
+      *
+      * @param g  l'objet graphique de l'interface de type 'Graphics'
+      * */
     public void drawDecor(Graphics g){
         String path_name = "ressources/restaurant.png";
         File fileClient = new File(path_name);
@@ -307,7 +389,12 @@ public class AffichageServeur extends JPanel {
         g.drawImage(image, 1, 1, 988, 600,null);
     }
 
-    /** Méthode affichant l'aide*/
+    /**
+     * Méthode qui affiche l'aide pour le joueur.
+     * Elle récupère l'image à partir du fichier correspondant et la dessine.
+     *
+     * @param g  l'objet graphique de l'interface de type 'Graphics'
+     * */
     public void drawHelp(Graphics g) {
         String path_name = "ressources/recettespcii.png";
         File fileHelp = new File(path_name);
@@ -323,6 +410,12 @@ public class AffichageServeur extends JPanel {
         g.drawImage(image, 200, 1, 500, 500,null);
     }
 
+    /**
+     * Méthode qui dessine les produits disponibles dans le restaurant
+     * ainsi que les quantités restantes en stock.
+     *
+     * @param g  l'objet graphique de l'interface de type 'Graphics'
+     * */
     public void drawProducts(Graphics g){
 
         // Couleur de fond
@@ -337,7 +430,7 @@ public class AffichageServeur extends JPanel {
         g.drawImage(this.imageBoisson, 630, 620, 50, 50,this);
         g.drawImage(this.imageGateau, 770,615,55,55,this);
 
-        // On affiche les cercles au dessus des ressources.produits
+        // On affiche les cercles au-dessus des produits de "ressources.produits"
         g.setColor(Color.white);
         g.fillOval(85,605,30,30);
         g.fillOval(225,605,30,30);
@@ -347,10 +440,10 @@ public class AffichageServeur extends JPanel {
         //g.fillOval(710,605,30,30);
         //g.fillOval(865,605,30,30);
 
-        // On affiche les quantités des ressources.produits dans le stock
+        // On affiche les quantités des produits de "ressources.produits" dans le stock
         g.setColor(Color.black);
 
-        // Quantite
+        // On récupère les quantités de chaque produit en stock
         int quantiteburger = this.etat.getStockBurger();
         int quantitepizza = this.etat.getStockPizza();
         int quantitefrites = this.etat.getStockFrites();
@@ -359,6 +452,7 @@ public class AffichageServeur extends JPanel {
         int quantitedessert = this.etat.getStockGateau();
 
 
+        // On affiche les quantités de chaque produit en stock
         if(quantiteburger>9){ g.drawString(quantiteburger+"", 93,626); }
         else { g.drawString(quantiteburger+"", 97, 626); }
 
@@ -379,8 +473,13 @@ public class AffichageServeur extends JPanel {
         else { g.drawString(quantitedessert+"", 876, 626); }*/
     }
 
-    /** Méthode affichant le plateau*/
+    /**
+     * Méthode qui affiche le plateau du jeu avec son image et les quantités de produits.
+     *
+     * @param g  l'objet graphique de l'interface de type 'Graphics'
+     * */
     public void drawTray(Graphics g) {
+        // Chemin d'accès à l'image du plateau
         String path_name = "ressources/tray.png";
         File filePlateau = new File(path_name);
         // image
@@ -406,6 +505,7 @@ public class AffichageServeur extends JPanel {
         Font font = new Font("Arial", Font.BOLD, 16);
         g.setFont(font);
 
+        // Boucle pour afficher les images et les quantités des produits
         for (Map.Entry<String, Integer> entry : etat.getTrayContent().entrySet()) {
             String product = entry.getKey();
             int quantity = entry.getValue();
@@ -414,6 +514,7 @@ public class AffichageServeur extends JPanel {
             int xPos = 200 + xOffset + col * xSpacing;
             int yPos = 400 + yOffset + row * ySpacing;
 
+            // Affichage des images du produit et sa quantité
             g.drawImage(productImage, xPos, yPos, iconSize, iconSize, null);
             g.drawString("x" + quantity, xPos + iconSize + 5, yPos + iconSize - 5);
 
@@ -425,28 +526,50 @@ public class AffichageServeur extends JPanel {
         }
     }
 
-    /** ANIMATIONS*/
+    /** ANIMATIONS */
+
+    /**
+     * Méthode qui récupère et lance le temps de préparation d'un burger.
+     *
+     * */
     public void lancerBurgerTimer() {
         this.burgerTimer = new AnimationTimer(etat.getDureePreparation(),30,85,605);
         this.burgerTimer.start();
     }
 
+    /**
+     * Méthode qui récupère et lance le temps de préparation d'une barquette de frites.
+     *
+     * */
     public void lancerFritesTimer() {
         this.fritesTimer = new AnimationTimer(etat.getDureePreparation(),30,225,605);
         this.fritesTimer.start();
     }
 
+    /**
+     * Méthode qui récupère et lance le temps de préparation d'une pizza.
+     *
+     * */
     public void lancerPizzaTimer() {
         this.pizzaTimer = new AnimationTimer(etat.getDureePreparation(),30,376,605);
         this.pizzaTimer.start();
     }
 
+    /**
+     * Méthode qui récupère et lance le temps de préparation d'un wrap.
+     *
+     * */
     public void lancerWrapTimer() {
         this.wrapTimer = new AnimationTimer(etat.getDureePreparation(),30,533,605);
         this.wrapTimer.start();
     }
 
 
+    /**
+     * Méthode qui dessine les ingrédients des produits et les affiche sur l'application.
+     *
+     * @param g  l'objet graphique de l'interface de type 'Graphics'
+     * */
     public void drawIngredients(Graphics g){
 
         // On affiche les images des ingrédients LIGNE 1
@@ -467,7 +590,12 @@ public class AffichageServeur extends JPanel {
         g.drawImage(this.imageSalt, 820,744,45,45,this);
     }
 
-    /** Méthode qui affiche un cercle  pour signaler les ingrédients sélectionnés*/
+    /**
+     * Méthode qui affiche un cercle vert autour et précisément pour
+     * les ingrédients sélectionnés.
+     *
+     * @param g  l'objet grraphique de l'interface de type 'Graphics'
+     * */
     public void drawSelection(Graphics g){
         //Couleur du cercle
         g.setColor(Color.green);
@@ -485,18 +613,34 @@ public class AffichageServeur extends JPanel {
             }
         }
     }
-    /** inverse la valeur de displayHelp */
+    /**
+     * Méthode qui inverse la réponse de displayHelp
+     * (afin de dire qu'il ne faut pas afficher l'aide sur l'écran).
+     *
+     * */
     public void revertDisplayHelp() {
         this.displayHelp = !this.displayHelp;
     }
 
-    /**récupère le produit sous le point donné*/
+    /**
+     * Méthode qui récupère le nom du produit qui se trouve
+     * sous le point donné.
+     *
+     * @param point  le point donné  de type 'Point'
+     * @return le nom du produit de type 'String' si le point est contenu dans la zone du produit,
+     *         null sinon.
+     * */
     public String findProductAtPoint(Point point) {
         int xOffset = 40;
         int productWidth = 55;
         int productHeight = 55;
         int productSpacing = 150;
+
+        // La liste des noms de chaque produit
         ArrayList<String> Products = new ArrayList<>(Arrays.asList("Burger", "Frites", "Pizza", "Wrap", "Boisson", "Gateau"));
+
+        // On parcourt la liste des produits et vérifie si le point est contenu
+        // dans la zone de chaque produit
         for (String product : Products) {
             Rectangle productBounds = new Rectangle(xOffset, 615, productWidth, productHeight);
             if (productBounds.contains(point)) {
@@ -504,16 +648,30 @@ public class AffichageServeur extends JPanel {
             }
             xOffset += productSpacing;
         }
+        // Si l'emplacement du point ne correspond à aucun produit, on retourne null
         return null;
     }
 
-    /**Vérifie si un point est dans le plateau*/
+    /**
+     * Méthode qyi vérifie si un point est dans le plateau ou pas.
+     *
+     * @param point  la position donnée de type 'Point'
+     * @return true si le point est dans le plateau,
+     *         false sinon.
+     * */
     public boolean isInTray(Point point) {
         // Remplacez ces valeurs par les dimensions réelles de votre plateau.
         Rectangle trayBounds = new Rectangle(200, 400, trayWidth, trayHeight);
         return trayBounds.contains(point);
     }
 
+    /**
+     * Méthode qui retourne l'image associée au produit donné en paramètres.
+     *
+     * @param produit  le nom du produit choisi de type 'String'
+     * @return l'image du produit choisi de type 'BufferedImage' si le nom du produit est valide
+     *         Exception si le nom du produit est invalide ou s'il existe pas.
+     * */
     public BufferedImage getImage(String produit) {
         switch (produit) {
             case "Burger":
