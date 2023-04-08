@@ -9,46 +9,96 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 /** TODO : interrompre le thread client lorsqu'on le remove et pas seulement le supprimer de la liste */
+
+/**
+ * Classe Clients représente la liste de clients qui peut être affichée
+ * dans l'application.
+ *
+ * @version 1.0
+ * */
 public class Clients {
 
     /** Attributs **/
+
+    /* Liste de clients */
     ArrayList<Client>listeClients;
+    /* L'affichage des clients */
     miniAffichageClient miniAffichageClient;
 
-    /** Constructeur **/
+    /**
+     * Constructeur
+     * Définit l'affichage des clients et initialise la liste des clients.
+     *
+     * @param miniAffichageClient  l'affichage à utiliser pour afficher les clients
+     *                             de type 'miniAffichageClient'
+     * **/
     public Clients(miniAffichageClient miniAffichageClient){
-
+        // Définition de l'affichage des clients
         this.miniAffichageClient = miniAffichageClient;
 
-        /* On initialise l'affichage et la liste des clients vide */
+        // Initialisation dela liste des clients a vide
         this.listeClients = new ArrayList<Client>();
     }
 
     /** Getters **/
+
+    /**
+     * Retourne la liste des clients.
+     *
+     * @return la liste des clients de type 'ArrayList<Client>'
+     * */
     public ArrayList<Client>getListeClients(){
         return this.listeClients;
     }
+
+    /**
+     * Retourne l'affichage associé aux clients.
+     *
+     * @return l'affichage pour les clients de type 'miniAffichageClient'
+     * */
     public miniAffichageClient getMiniAffichageClient(){
         return this.miniAffichageClient;
     }
 
+    /**
+     * Setter
+     * Initialise la liste des clients à vide.
+     *
+     * */
     public void setListeClients(){
         this.listeClients = new ArrayList<Client>();
     }
 
     /** METHODES **/
 
-    /* Méthode addClient qui rajoute le client a notre liste de client */
+    /**
+     * Méthode qui rajoute un client précis à notre liste de client.
+     *
+     * @param client  le client à ajouter à la liste de clients
+     *                de type 'Client'
+     * */
     public void addClient(Client client){
         this.listeClients.add(client);
     }
 
-    /* Méthode genereClients qui génère des clients */
+    /**
+     * Méthode qui supprime un client précis de la liste de clients
+     * et interrompt son thread.
+     *
+     * @param client  le client a supprimer de la liste de clients
+     *                de type 'Client'
+     * */
     public void removeClient(Client client){
         this.listeClients.remove(client);
         client.interrupt();
     }
 
+    /**
+     * Méthode qui supprime un client de la liste de clients pas son identifiant.
+     *
+     * @param id  l'identifiant du client à supprimer de la liste de clients
+     *            de type 'int'
+     * */
     public void removeClientById(int id) {
         ArrayList<Client>liste = listeClients;
         for (Client client: liste){
@@ -58,6 +108,12 @@ public class Clients {
         }
     }
 
+    /**
+     * Méthode qui dessine les clients dans une interface graphique.
+     *
+     * @param g  l'objet graphique de l'interface de type 'Graphics'
+     * @throws IOException si une erreur survient lors de la lecture d'une image.
+     * */
     public void dessiner(Graphics g) throws IOException {
         /* Si la file n'est pas vide */
         if (!this.miniAffichageClient.getEtat().fileVide()) {
