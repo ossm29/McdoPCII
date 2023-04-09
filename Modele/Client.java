@@ -30,9 +30,6 @@ public class Client extends Thread{
     /* Temps d'attente maximum du client */
     private double timer;
 
-    /* Colère du client sur une échelle de 0 à 5 */
-    private int anger;
-
     /* Statut de la commande */
     private boolean traitementcommande;
 
@@ -55,7 +52,6 @@ public class Client extends Thread{
         this.running = true;
         this.setIdentifiant(id);
         this.setTraitementcommande();
-        this.setAnger();
         this.setIdImage();
         this.setTimer();
         this.setCommande();
@@ -84,14 +80,6 @@ public class Client extends Thread{
         return this.timer;
     }
 
-    /**
-     * Obtient et renvoie la colère du client
-     *
-     * @return anger  le degré de colère de type 'int'
-     * */
-    public int getAnger(){
-        return this.anger;
-    }
 
     /**
      * Obtient et renvoie la commande du client
@@ -146,11 +134,6 @@ public class Client extends Thread{
      * Définit le degré de colère du client de manière aléatoire
      *
      * */
-    public void setAnger(){
-        // la colère sera comprise entre 0 et 5 (inclus)
-        Random random = new Random();
-        this.anger = random.nextInt(6);
-    }
 
     /**
      * Définit le statut de la commande du client
@@ -221,8 +204,8 @@ public class Client extends Thread{
         // Tant que timer du client n'est pas fini
         while(this.timer>0 && running) {
             try {
-                // Attendre 200ms
-                Thread.sleep(400/(this.anger+1));
+                // Attendre 100ms
+                Thread.sleep(100);
                 // Mettre a jour la colère et le timer du client
                 this.updateTimer();
                 this.updateEtat();

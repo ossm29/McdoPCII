@@ -8,6 +8,7 @@ import Controleur.ControlDragDrop;
 import Controleur.ControlPlateauCancel;
 import Controleur.ControlPlateauServir;
 import Controleur.ControlServeurAide;
+import Modele.Client;
 import Modele.Etat;
 
 import java.awt.* ;
@@ -42,8 +43,6 @@ public class AffichageServeur extends JPanel {
 
     /* Variable Etat que notre classe retranscrira en affichage */
     private Etat etat;
-    /* L'objet VueServeur qui gère ... TODO */
-    private VueServeur vueServeur;
     /* La notification à afficher */
     private String notification;
     /* Indique si une notification doit être affichée */
@@ -103,7 +102,6 @@ public class AffichageServeur extends JPanel {
 
         // Initialisation des attributs de la classe
         this.setEtat(etat);
-        this.vueServeur = new VueServeur();
         this.affichageNotification = false;
         this.notification = "";
 
@@ -288,6 +286,7 @@ public class AffichageServeur extends JPanel {
         //this.drawIngredients(g);
         // On affiche la selection
         //this.drawSelection(g);
+        this.drawClients(g);
 
         //Si un produit est en production on affiche son timer
         if(this.etat.isBurger_en_cours_de_preparation()) {
@@ -338,7 +337,6 @@ public class AffichageServeur extends JPanel {
         repaint();
     }
 
-
     /**
      * Méthode qui affiche le décor de l'interface ainsi que le plateau.
      *
@@ -388,6 +386,22 @@ public class AffichageServeur extends JPanel {
         }
         // On affiche l'image
         g.drawImage(image, 1, 1, 988, 600,null);
+    }
+
+    public void drawClients(Graphics g) {
+        ArrayList<Client>nosClients =  this.etat.getClients().getListeClients();
+        int x = 290;
+        for (int i = 0; i<nosClients.size();i++){
+            // On affiche l'image
+            x+=120;
+            try {
+                this.etat.getClients().dessiner2(g, x, 415, nosClients.get(i));
+            }
+            catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+            //g.drawImage(image, x, 410, 150, 150,null);
+        }
     }
 
     /**

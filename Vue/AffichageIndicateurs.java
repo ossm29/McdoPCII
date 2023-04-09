@@ -20,8 +20,7 @@ public class AffichageIndicateurs extends JPanel{
 
     /* Variable Etat que notre classe retranscrira en affichage */
     Etat etat;
-    /* L'affichage du client selon son taux d'énervement */
-    AffichageColere affichageColere;
+
     /* L'affichage de la barre de progression du taux d'énervement du client */
     AffichageBarreDeProgression affichageBarreDeProgression;
 
@@ -44,12 +43,9 @@ public class AffichageIndicateurs extends JPanel{
         this.etat = etat;
         // Initialisation des affichages
         this.affichageBarreDeProgression = new AffichageBarreDeProgression();
-        this.affichageColere = new AffichageColere(this.etat) ;
 
         // Ajout de l'affichage de la barre de progression à droite du JPanel
         this.add(affichageBarreDeProgression, BorderLayout.EAST);
-        // Ajout de l'affichage de la colère à gauche du JPanel
-        this.add(affichageColere,BorderLayout.WEST);
 
     }
 
