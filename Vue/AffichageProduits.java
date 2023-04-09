@@ -14,6 +14,7 @@ import java.io.IOException;
  * Elle gère l'affichage de la barre des produits en bas de l'écran
  * extraits du fichier "ressources.produits".
  *
+ * INUTILISEE POUR L'INSTANT
  * @version 1.0
  * */
 public class AffichageProduits extends JPanel {

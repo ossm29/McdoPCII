@@ -633,7 +633,7 @@ public class Etat {
     }
 
     /**
-     * Méthode qui retourne l'état d'une commande précise et si ses produits correspondent
+     * Méthode qui retourne un booleen indiquant si une commande précise correspond
      * au contenu du plateau.
      *
      * @retaurn true  si la commande donnée correspond au contenu du plateau,

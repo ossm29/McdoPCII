@@ -15,7 +15,7 @@ import java.io.IOException;
  * Classe AffichageIngredients hérite de la classe 'JPanel' de Swing.
  * Gère l'affichage de la barre d'ingrédients en bas de l'écran de
  * l'utilisateur.
- *
+ * INUTILISEE POUR L'INSTANT
  * @version 1.0
  * */
 public class AffichageIngredients extends JPanel {

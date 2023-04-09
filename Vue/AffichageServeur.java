@@ -23,6 +23,7 @@ import java.util.Map;
 
 /**
  * Classe AffichageServeur hérite de la classe 'JPanel' de Swing.
+ * Elle représente l'affichage de toute la partie gauche de l'interface (Resataurant, Produits, Ingrédients)
  * Elle définit la vue, dans notre cas elle traduit les données
  * de la classe Etat en affichage pour l'utilisateur.
  *
@@ -43,7 +44,7 @@ public class AffichageServeur extends JPanel {
     private Etat etat;
     /* L'objet VueServeur qui gère ... TODO */
     private VueServeur vueServeur;
-    /* La notification aà afficher */
+    /* La notification à afficher */
     private String notification;
     /* Indique si une notification doit être affichée */
     private Boolean affichageNotification;

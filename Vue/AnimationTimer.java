@@ -4,10 +4,10 @@ import java.awt.*;
 
 /**
  * Classe AnimationTimer hérite de la class 'Thread'.
- * Elle représente le timer d'animation et l'affiche avec la méthode run()
+ * Elle représente l'affiche de l'animation du timer production d'ingrédients
  * de la classe 'Thread'.
  *
- * @vesion 1.0
+ * @verion 1.0
  * */
 public class AnimationTimer extends Thread {
 
