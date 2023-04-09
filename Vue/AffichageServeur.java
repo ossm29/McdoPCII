@@ -376,7 +376,7 @@ public class AffichageServeur extends JPanel {
       * @param g  l'objet graphique de l'interface de type 'Graphics'
       * */
     public void drawDecor(Graphics g){
-        String path_name = "ressources/restaurant.png";
+        String path_name = "ressources/restaurant2.jpeg";
         File fileClient = new File(path_name);
         // On aura 12 images pour 12 états différents
         BufferedImage image = null;

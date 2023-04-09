@@ -142,7 +142,7 @@ public class Clients {
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
-                    g.drawImage(imageclient, 0, 0, 290, 290, null);
+                    g.drawImage(imageclient, 10, 10, 280, 280, null);
                 }
 
                 // Affichage Among us Rouge
@@ -193,7 +193,7 @@ public class Clients {
                     g.drawImage(imageclient, 20, 20, 260, 260, null);
                 }
 
-                // Affichage Among us Jaune
+                // Affichage Among us Cyan
                 else if (client.getIdImage() == 4) {
                     // On choisit l'image selon l'état du client
                     String path_name = "ressources/amongus/cyan" + (client.getEtatclient() % 18 + 1) + ".png";
