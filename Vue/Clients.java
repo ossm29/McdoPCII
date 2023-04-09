@@ -129,12 +129,12 @@ public class Clients {
                     this.miniAffichageClient.getEtat().getClients().removeClient(client);
                 }
 
-                /* Affichage ecurueil */
+                // Affichage Among us Violet
                 if (client.getIdImage() == 0) {
                     // On choisit l'image selon l'état du client
-                    String path_name = "ressources/client" + (client.getEtatclient() % 12 + 1) + ".png";
+                    String path_name = "ressources/amongus/violet" + (client.getEtatclient() % 4 + 1) + ".png";
                     File fileClient = new File(path_name);
-                    // On aura 12 images pour 12 états différents
+                    // On aura 4 images pour 4 états différents
                     BufferedImage imageclient = null;
                     // On récupère ces images
                     try {
@@ -142,15 +142,15 @@ public class Clients {
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
-                    g.drawImage(imageclient, 0, 0, 300, 300, null);
+                    g.drawImage(imageclient, 0, 0, 290, 290, null);
                 }
 
-                // Affichage angrybird
+                // Affichage Among us Rouge
                 else if (client.getIdImage() == 1) {
                     // On choisit l'image selon l'état du client
-                    String path_name = "ressources/angrybirds" + (client.getEtatclient() % 12 + 1) + ".png";
+                    String path_name = "ressources/amongus/red" + (client.getEtatclient() % 9 + 1) + ".png";
                     File fileClient = new File(path_name);
-                    // On aura 12 images pour 12 états différents
+                    // On aura 9 images pour 9 états différents
                     BufferedImage imageclient = null;
                     // On récupère ces images
                     try {
@@ -158,15 +158,15 @@ public class Clients {
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
-                    g.drawImage(imageclient, 0, 0, 300, 300, null);
+                    g.drawImage(imageclient, 20, 0, 290, 290, null);
                 }
 
-                // Affichage humain
+                // Affichage Among us Vert
                 else if (client.getIdImage() == 2) {
                     // On choisit l'image selon l'état du client
-                    String path_name = "ressources/humain" + (client.getEtatclient() % 14 + 1) + ".png";
+                    String path_name = "ressources/amongus/green" + (client.getEtatclient() % 4 + 1) + ".png";
                     File fileClient = new File(path_name);
-                    // On aura 12 images pour 12 états différents
+                    // On aura 4 images pour 4 états différents
                     BufferedImage imageclient = null;
                     // On récupère ces images
                     try {
@@ -174,7 +174,39 @@ public class Clients {
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
-                    g.drawImage(imageclient, 0, 0, 300, 300, null);
+                    g.drawImage(imageclient, 10, 20, 250, 250, null);
+                }
+
+                // Affichage Among us Jaune
+                else if (client.getIdImage() == 3) {
+                    // On choisit l'image selon l'état du client
+                    String path_name = "ressources/amongus/yellow" + (client.getEtatclient() % 6 + 1) + ".png";
+                    File fileClient = new File(path_name);
+                    // On aura 6 images pour 6 états différents
+                    BufferedImage imageclient = null;
+                    // On récupère ces images
+                    try {
+                        imageclient = ImageIO.read(fileClient);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    g.drawImage(imageclient, 20, 20, 260, 260, null);
+                }
+
+                // Affichage Among us Jaune
+                else if (client.getIdImage() == 4) {
+                    // On choisit l'image selon l'état du client
+                    String path_name = "ressources/amongus/cyan" + (client.getEtatclient() % 18 + 1) + ".png";
+                    File fileClient = new File(path_name);
+                    // On aura 18 images pour 18 états différents
+                    BufferedImage imageclient = null;
+                    // On récupère ces images
+                    try {
+                        imageclient = ImageIO.read(fileClient);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    g.drawImage(imageclient, 20, 20, 260, 260, null);
                 }
             }
         }

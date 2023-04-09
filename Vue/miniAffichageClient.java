@@ -53,7 +53,7 @@ public class miniAffichageClient extends JPanel {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        this.setBackground(Color.yellow);
+        this.setBackground(Color.WHITE);
         Border blackline = BorderFactory.createLineBorder(Color.black,1);
         this.setBorder(blackline);
         try {

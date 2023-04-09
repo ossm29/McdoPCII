@@ -168,7 +168,7 @@ public class Client extends Thread{
      * */
     public void setIdImage(){
         Random random = new Random();
-        this.idImage = random.nextInt(3);
+        this.idImage = random.nextInt(5);
     }
 
     /**
