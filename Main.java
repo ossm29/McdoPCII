@@ -3,6 +3,7 @@ import Modele.Etat;
 import Vue.AffichagePrincipal;
 import Vue.FenetrePrincipale;
 
+import javax.swing.*;
 import java.io.IOException;
 
 public class Main {
