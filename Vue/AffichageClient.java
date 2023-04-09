@@ -22,7 +22,7 @@ public class AffichageClient extends JPanel {
     /* Largeur Fenetre */
     public static final int LARGEUR = (int) (0.3* Etat.WIDTH);
     /* Hauteur Fenetre */
-    public static final int HAUTEUR = (int) (0.45*Etat.HEIGHT);
+    public static final int HAUTEUR = 360;
 
     /** Attributs */
     /* Variable Etat que notre classe retranscrira en affichage */
