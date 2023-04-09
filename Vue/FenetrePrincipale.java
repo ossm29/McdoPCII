@@ -30,7 +30,6 @@ public class FenetrePrincipale extends JFrame{
 		AffichageServeur affichageServeur = new AffichageServeur(etat);
         AffichageClient affichageClient = new AffichageClient(etat);
         AffichageIngredients affichageIngredients = new AffichageIngredients(etat, affichageServeur);
-        AffichageProduits affichageProduits = new AffichageProduits(etat);
         AffichageCommande affichageCommande = new AffichageCommande(etat);
 
         /* Declaration de notre Jframe
@@ -42,7 +41,7 @@ public class FenetrePrincipale extends JFrame{
         /* Organisation des affichages dans la fenêtre principale */
 
         // partie gauche
-        AffichageGauche affichageGauche = new AffichageGauche(affichageServeur, affichageProduits,affichageIngredients);
+        AffichageGauche affichageGauche = new AffichageGauche(affichageServeur, affichageIngredients);
 
         // partie droite
         AffichageDroite affichageDroite = new AffichageDroite(affichageClient, affichageCommande);

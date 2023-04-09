@@ -16,7 +16,6 @@ public class AffichageGauche extends JPanel{
     /* L'affichage du serveur */
     private AffichageServeur affichageServeur;
     /* L'affichage des produits */
-    private AffichageProduits affichageProduits;
     /* L'affichage des ingrédients */
     private AffichageIngredients affichageIngredients;
 
@@ -27,13 +26,11 @@ public class AffichageGauche extends JPanel{
      * à la vue.
      *
      * @param affichage            l'affichage du serveur de type 'AffichageServeur'
-     * @param affichageProduits    l'affichage des produits de type 'AffichageProduits'
      * @param affichageIngredients l'affichage des ingrédients de type 'AffichageIngredients'
      * */
-    public AffichageGauche(AffichageServeur affichage, AffichageProduits affichageProduits, AffichageIngredients affichageIngredients){
+    public AffichageGauche(AffichageServeur affichage, AffichageIngredients affichageIngredients){
         // Définition des affichages
         this.affichageServeur = affichage;
-        this.affichageProduits = affichageProduits;
         this.affichageIngredients = affichageIngredients;
         // Définition des dimensions du JPanel
         this.setPreferredSize(new Dimension(1000,850));
@@ -44,15 +41,6 @@ public class AffichageGauche extends JPanel{
     }
 
     /** Getter */
-
-    /**
-     * Retourne l'affichage des produits de l'application.
-     *
-     * @return affichageProduits  l'affichage des produits de type 'AffichageProduits'
-     * */
-    public AffichageProduits getAffichageProduits() {
-        return affichageProduits;
-    }
 
     /**
      * Retourne l'affichage du serveur de l'application.

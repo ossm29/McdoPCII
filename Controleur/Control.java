@@ -23,8 +23,6 @@ public class Control implements MouseListener, KeyListener{
 
     /** Threads */
 
-    // Thread de rafraîchissement de l'interface graphique
-    private Repaint repaint;
     // Thread de génération de clients pour la simulation
     private GenereClient genereClient;
     // Thread de vérification gameOver
@@ -46,7 +44,6 @@ public class Control implements MouseListener, KeyListener{
         this.checkGameOver = new CheckGameOver(this.etat,affichagePrincipal);
         
         /* On initialise nos threads */
-        //this.repaint = new Repaint(this.affichagePrincipal);
         this.genereClient.start();
         this.checkGameOver.start();
 

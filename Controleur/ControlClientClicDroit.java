@@ -1,7 +1,6 @@
 package Controleur;
 
 import Modele.Etat;
-import Vue.Repaint;
 import Vue.miniAffichageClient;
 
 import java.awt.event.KeyEvent;
@@ -26,8 +25,6 @@ public class ControlClientClicDroit implements MouseListener, KeyListener {
 
     /** Threads */
 
-    // Thread de rafraîchissement de l'interface graphique
-    private Repaint repaint;
 
     /**
      * Constructeur
