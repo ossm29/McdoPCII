@@ -124,10 +124,6 @@ public class Clients {
 
                 Client client = this.miniAffichageClient.getEtat().getClients().getListeClients().get(this.miniAffichageClient.getEtat().getClient_en_cours());
 
-                // Si le timer < 0 on supprime le client
-                if (client.getTimer() < 0) {
-                    this.miniAffichageClient.getEtat().getClients().removeClient(client);
-                }
 
                 // Affichage Among us Violet
                 if (client.getIdImage() == 0) {

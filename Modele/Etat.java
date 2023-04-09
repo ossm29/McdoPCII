@@ -622,6 +622,8 @@ public class Etat {
 
                 // On supprime le client de la liste des clients
                 this.clients.removeClient(clientEnCours);
+                // On met à jour l'index du client en cours
+                this.updateClient_en_cours();
                 // On incrémente le nb de clients servis
                 clients_servis += 1;
 
@@ -651,6 +653,13 @@ public class Etat {
 
         // Compare les deux HashMap (commandeContent et trayContent) pour vérifier s'ils sont égaux
         return trayContent.equals(commandeContent);
+    }
+
+    /* met à jour l'index du client en cours lorsqu'un client est supprimé */
+    public void updateClient_en_cours() {
+        if(!this.fileVide() && this.client_en_cours != 0) {
+            this.client_en_cours = this.client_en_cours-1;
+        }
     }
 
 

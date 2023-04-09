@@ -42,7 +42,7 @@ public class GenereClient extends Thread{
     public void run(){
         while(!this.control.getEtat().gameOver()){
             try {
-                Thread.sleep(10000);
+                Thread.sleep(8000);
                 if(!this.control.getEtat().gameOver()) {
                     // Génère un nouveau client
                     this.control.getEtat().getClients().addClient(new Client(this.control.getEtat().getCompteurClients(), this.control.getEtat()));

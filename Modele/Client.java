@@ -182,8 +182,12 @@ public class Client extends Thread{
      * */
     public void updateTimer(){
         this.timer = this.timer - 0.2;
-        // Si temps est égal à 0, on incrémente le nb de clients insatisfaits
+        // Si temps est égal à 0, on incrémente le nb de clients insatisfaits et on supprime le client en cours
+
         if(this.timer <= 0) {
+            this.etat.getClients().getListeClients().remove(this);
+            //on met à jour l'index du client en cours
+            this.etat.updateClient_en_cours();
             Etat.updateClientInsatisfait();
         }
     }
