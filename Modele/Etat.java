@@ -564,8 +564,7 @@ public class Etat {
     public boolean gameOver(){
         // Si le nombre de clients insastisfaits dépasse 5
         // Alors le jeu est fini
-        return clients_insatisfaits > 5;
-        // Sinon non
+        return clients_insatisfaits >= 1;
     }
 
 

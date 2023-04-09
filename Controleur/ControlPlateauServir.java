@@ -43,7 +43,9 @@ public class ControlPlateauServir implements ActionListener {
      * */
     @Override
     public void actionPerformed(ActionEvent e) {
-        this.etat.serveTray();
-        this.affichage.repaint();
+        if (!this.etat.gameOver()) {
+            this.etat.serveTray();
+            this.affichage.repaint();
+        }
     }
 }

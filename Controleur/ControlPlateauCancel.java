@@ -44,7 +44,9 @@ public class ControlPlateauCancel implements ActionListener {
      * */
     @Override
     public void actionPerformed(ActionEvent e) {
-        this.etat.cancelTray();
-        this.affichage.repaint();
+        if(!this.etat.gameOver()) {
+            this.etat.cancelTray();
+            this.affichage.repaint();
+        }
     }
 }

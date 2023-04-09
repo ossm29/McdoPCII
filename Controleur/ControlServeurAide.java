@@ -66,7 +66,9 @@ public class ControlServeurAide implements ActionListener {
      **/
     @Override
     public void actionPerformed(ActionEvent e) {
-        this.affichage.revertDisplayHelp();
-        this.affichage.repaint();
+        if (!this.etat.gameOver()) {
+            this.affichage.revertDisplayHelp();
+            this.affichage.repaint();
+        }
     }
 }

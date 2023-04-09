@@ -67,4 +67,5 @@ public class AffichagePrincipal extends JPanel {
         setBackground(Color.WHITE);
         super.paintComponent(g);
     }
+
 }

@@ -55,13 +55,15 @@ public class ControlClientClicDroit implements MouseListener, KeyListener {
      * */
     @Override
     public void mousePressed(MouseEvent e) {
-    	if ( e.getButton() == MouseEvent.BUTTON1 ) {
-            // Appel de la méthode clientsuivant pour changer au client suivant dans l'état actuel.
-            this.etat.clientsuivant();
-            // Actualisation de l'affichage
-            this.miniAffichageClient.repaint();
-            // Affichage du client actuel dans la console (pour le débogage).
-            System.out.println(this.etat.getClient_en_cours());
+        if (!this.etat.gameOver()){
+            if ( e.getButton() == MouseEvent.BUTTON1 ) {
+                // Appel de la méthode clientsuivant pour changer au client suivant dans l'état actuel.
+                this.etat.clientsuivant();
+                // Actualisation de l'affichage
+                this.miniAffichageClient.repaint();
+                // Affichage du client actuel dans la console (pour le débogage).
+                System.out.println(this.etat.getClient_en_cours());
+            }
         }
     }
 

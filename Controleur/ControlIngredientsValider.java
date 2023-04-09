@@ -69,21 +69,22 @@ public class ControlIngredientsValider implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         // Selon le produit généré on lance un timer
-        String produit = this.etat.production();
-        switch (produit) {
-            case "Burger":
-                this.affichageIngredients.getAffichageServeur().lancerBurgerTimer();
-                break;
-            case "Frites" :
-                this.affichageIngredients.getAffichageServeur().lancerFritesTimer();
-                break;
-            case "Pizza" :
-                this.affichageIngredients.getAffichageServeur().lancerPizzaTimer();
-                break;
-            case "Wrap" :
-                this.affichageIngredients.getAffichageServeur().lancerWrapTimer();
-                break;
+        if (!this.etat.gameOver()) {
+            String produit = this.etat.production();
+            switch (produit) {
+                case "Burger":
+                    this.affichageIngredients.getAffichageServeur().lancerBurgerTimer();
+                    break;
+                case "Frites":
+                    this.affichageIngredients.getAffichageServeur().lancerFritesTimer();
+                    break;
+                case "Pizza":
+                    this.affichageIngredients.getAffichageServeur().lancerPizzaTimer();
+                    break;
+                case "Wrap":
+                    this.affichageIngredients.getAffichageServeur().lancerWrapTimer();
+                    break;
+            }
         }
-        //this.affichageIngredients.repaint();
     }
 }

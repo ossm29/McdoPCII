@@ -56,13 +56,15 @@ public class ControlDragDrop extends MouseAdapter {
      * */
     @Override
     public void mousePressed(MouseEvent e) {
-        startPoint = e.getPoint();
-        draggedProduct = affichageServeur.findProductAtPoint(startPoint);
-        if (draggedProduct != null) {
-            draggedProductLabel = createDraggedProductLabel(affichageServeur.getImage(draggedProduct));
-            affichageServeur.add(draggedProductLabel);
-            affichageServeur.setComponentZOrder(draggedProductLabel, 0);
-            updateDraggedProductLabelPosition(e.getPoint());
+        if (!this.etat.gameOver()) {
+            startPoint = e.getPoint();
+            draggedProduct = affichageServeur.findProductAtPoint(startPoint);
+            if (draggedProduct != null) {
+                draggedProductLabel = createDraggedProductLabel(affichageServeur.getImage(draggedProduct));
+                affichageServeur.add(draggedProductLabel);
+                affichageServeur.setComponentZOrder(draggedProductLabel, 0);
+                updateDraggedProductLabelPosition(e.getPoint());
+            }
         }
     }
 
@@ -86,17 +88,19 @@ public class ControlDragDrop extends MouseAdapter {
      * */
     @Override
     public void mouseReleased(MouseEvent e) {
-        if (draggedProductLabel != null) {
-            Point endPoint = e.getPoint();
-            // Vérifie si le produit a été déposé dans le plateau et met à jour le modèle en conséquence.
-            if (affichageServeur.isInTray(endPoint)) {
-                // Ajoute la logique pour mettre à jour le modèle, si nécessaire.
-                this.etat.addToTray(draggedProduct);
+        if (!this.etat.gameOver()) {
+            if (draggedProductLabel != null) {
+                Point endPoint = e.getPoint();
+                // Vérifie si le produit a été déposé dans le plateau et met à jour le modèle en conséquence.
+                if (affichageServeur.isInTray(endPoint)) {
+                    // Ajoute la logique pour mettre à jour le modèle, si nécessaire.
+                    this.etat.addToTray(draggedProduct);
+                }
+                affichageServeur.remove(draggedProductLabel);
+                affichageServeur.repaint();
+                draggedProductLabel = null;
+                draggedProduct = null;
             }
-            affichageServeur.remove(draggedProductLabel);
-            affichageServeur.repaint();
-            draggedProductLabel = null;
-            draggedProduct = null;
         }
     }
 

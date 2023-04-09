@@ -40,14 +40,16 @@ public class GenereClient extends Thread{
      * */
     @Override
     public void run(){
-        while(true){
+        while(!this.control.getEtat().gameOver()){
             try {
                 Thread.sleep(10000);
-                // Génère un nouveau client
-                this.control.getEtat().getClients().addClient(new Client(this.control.getEtat().getCompteurClients()));
-                // Affichage d'un texte lors de leur apparition
-                this.control.getAffichagePrincipal().getAffichageGauche().getAffichageServeur().afficherTexteTemporairement("Le client N° : "+this.control.getEtat().getCompteurClients() +" vient d'arriver !",5000);
-                this.control.getEtat().updateCompteurClients();
+                if(!this.control.getEtat().gameOver()) {
+                    // Génère un nouveau client
+                    this.control.getEtat().getClients().addClient(new Client(this.control.getEtat().getCompteurClients(), this.control.getEtat()));
+                    // Affichage d'un texte lors de leur apparition
+                    this.control.getAffichagePrincipal().getAffichageGauche().getAffichageServeur().afficherTexteTemporairement("Le client N° : " + this.control.getEtat().getCompteurClients() + " vient d'arriver !", 5000);
+                    this.control.getEtat().updateCompteurClients();
+                }
             } catch (Exception e) { e.printStackTrace(); }
         }
     }

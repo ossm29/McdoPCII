@@ -67,7 +67,9 @@ public class ControlIngredientsCancel implements ActionListener {
      * */
     @Override
     public void actionPerformed(ActionEvent e) {
-        this.etat.videIngredients();
-        this.affichage.repaint();
+        if (!this.etat.gameOver()) {
+            this.etat.videIngredients();
+            this.affichage.repaint();
+        }
     }
 }

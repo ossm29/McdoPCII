@@ -50,10 +50,12 @@ public class ControlClientClicGauche implements MouseListener , KeyListener {
      * */
     @Override
     public void mousePressed(MouseEvent e) {
-        if ( e.getButton() == MouseEvent.BUTTON1 ) {
-            this.etat.clientprecedent();
-            System.out.println(this.etat.getClient_en_cours());
-            this.miniAffichageClient.repaint();
+        if (!this.etat.gameOver()) {
+            if (e.getButton() == MouseEvent.BUTTON1) {
+                this.etat.clientprecedent();
+                System.out.println(this.etat.getClient_en_cours());
+                this.miniAffichageClient.repaint();
+            }
         }
     }
 

@@ -39,7 +39,7 @@ public class Client extends Thread{
     /* Commande passée par le client */
     private Commande commande;
 
-    //private Etat modele;            /*permet de mettre à jour les variables score et client insatisfaits*/
+    private Etat etat;
 
 
     /**
@@ -48,8 +48,9 @@ public class Client extends Thread{
      *
      * @param id  Identifiant unique du client de type 'int'
      * */
-    public Client( int id){
+    public Client( int id, Etat etat){
         this.running = true;
+        this.etat = etat;
         this.setIdentifiant(id);
         this.setTraitementcommande();
         this.setIdImage();
@@ -202,7 +203,7 @@ public class Client extends Thread{
     @Override
     public void run() {
         // Tant que timer du client n'est pas fini
-        while(this.timer>0 && running) {
+        while(this.timer>0 && running && !this.etat.gameOver()) {
             try {
                 // Attendre 100ms
                 Thread.sleep(100);
