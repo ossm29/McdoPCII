@@ -196,14 +196,14 @@ public class AffichageServeur extends JPanel {
         JButton boutonVider = new JButton("X");
         boutonVider.addActionListener(new ControlPlateauCancel(this.etat,this));
         boutonVider.setLayout(null);
-        boutonVider.setBounds(165,475,30,30);
+        boutonVider.setBounds(15,475,30,30);
         this.add(boutonVider);
 
         /* Bouton Servir plateau */
         JButton boutonServir = new JButton("OK");
         boutonServir.addActionListener(new ControlPlateauServir(this.etat,this));
         boutonServir.setLayout(null);
-        boutonServir.setBounds(505,475,30,30);
+        boutonServir.setBounds(355,475,30,30);
         this.add(boutonServir);
     }
 
@@ -492,7 +492,7 @@ public class AffichageServeur extends JPanel {
             throw new RuntimeException(e);
         }
         // On affiche l'image
-        g.drawImage(image, 200, 400, trayWidth, trayHeight,null);
+        g.drawImage(image, 50, 400, trayWidth, trayHeight,null);
 
         // On affiche les icônes et les quantités de produits
         int col = 0;
@@ -512,7 +512,7 @@ public class AffichageServeur extends JPanel {
             int quantity = entry.getValue();
             BufferedImage productImage = this.getImage(product);
 
-            int xPos = 200 + xOffset + col * xSpacing;
+            int xPos = 50 + xOffset + col * xSpacing;
             int yPos = 400 + yOffset + row * ySpacing;
 
             // Affichage des images du produit et sa quantité
@@ -662,7 +662,7 @@ public class AffichageServeur extends JPanel {
      * */
     public boolean isInTray(Point point) {
         // Remplacez ces valeurs par les dimensions réelles de votre plateau.
-        Rectangle trayBounds = new Rectangle(200, 400, trayWidth, trayHeight);
+        Rectangle trayBounds = new Rectangle(50, 400, trayWidth, trayHeight);
         return trayBounds.contains(point);
     }
 

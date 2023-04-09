@@ -163,6 +163,7 @@ public class Client extends Thread{
 
     /**
      * Définit l'identifiant de l'image du client
+     * Définit l'identifiant de l'image du client
      * de manière aléatoire
      *
      * */
