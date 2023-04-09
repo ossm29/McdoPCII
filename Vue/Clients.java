@@ -232,7 +232,7 @@ public class Clients {
         // Affichage Among us Rouge
         else if (client.getIdImage() == 1) {
             // On choisit l'image selon l'état du client
-            String path_name = "ressources/amongus/cyan" + (client.getEtatclient() % 18 + 1) + ".png";
+            String path_name = "ressources/amongus/redw" + (client.getEtatclient() % 16 + 1) + ".png";
             File fileClient = new File(path_name);
             // On aura 9 images pour 9 états différents
             BufferedImage imageclient = null;
@@ -248,7 +248,7 @@ public class Clients {
         // Affichage Among us Vert
         else if (client.getIdImage() == 2) {
             // On choisit l'image selon l'état du client
-            String path_name = "ressources/amongus/cyan" + (client.getEtatclient() % 18 + 1) + ".png";
+            String path_name = "ressources/amongus/redw" + (client.getEtatclient() % 16 + 1) + ".png";
             File fileClient = new File(path_name);
             // On aura 4 images pour 4 états différents
             BufferedImage imageclient = null;

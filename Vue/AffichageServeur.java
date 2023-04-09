@@ -212,16 +212,16 @@ public class AffichageServeur extends JPanel {
      */
     public void drawStats(Graphics g) {
         /* on dessine un carré blanc à l'endroit où on écrira le score*/
-        g.clearRect(580,50,350,35);
+        g.clearRect(560,50,375,35);
+
         /* on affiche le score (converti en chaîne de caractères) */
-
-        g.drawString("SCORE : "+Integer.toString(this.etat.getScore()),705,73);
+        g.drawString("Clients servis : "+Integer.toString(this.etat.getClients_servis()),570,73);
+        g.drawString("SCORE : "+Integer.toString(this.etat.getScore()),700,73);
         g.setColor(Color.red);
-        g.drawString(" | Clients insatisfaits : "+Integer.toString(this.etat.getClients_insatisfaits()),775,73);
-        g.drawString("Clients servis : "+Integer.toString(this.etat.getClients_servis())+" | ",590,73);
-        g.setColor(Color.BLACK);
+        g.drawString("   Clients insatisfaits : "+Integer.toString(this.etat.getClients_insatisfaits()),775,73);
 
-        g.drawRect(580, 50, 350, 35);
+        g.setColor(Color.BLACK);
+        g.drawRect(560, 50, 375, 35);
     }
 
     /** Getter
