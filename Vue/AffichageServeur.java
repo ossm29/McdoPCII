@@ -579,55 +579,6 @@ public class AffichageServeur extends JPanel {
         this.wrapTimer.start();
     }
 
-
-    /**
-     * Méthode qui dessine les ingrédients des produits et les affiche sur l'application.
-     *
-     * @param g  l'objet graphique de l'interface de type 'Graphics'
-     * */
-    public void drawIngredients(Graphics g){
-
-        // On affiche les images des ingrédients LIGNE 1
-        g.drawImage(this.imageBread, 80, 690, 50, 50,this);
-        g.drawImage(this.imageOil, 230, 690, 50, 50,this);
-        g.drawImage(this.imagePotato, 380,690,45,45,this);
-        g.drawImage(this.imageTomato, 527,690,50,50,this);
-        g.drawImage(this.imageCheese, 678,693,42,42,this);
-        g.drawImage(this.imagePate, 820,693,43,43,this);
-
-        // On affiche les images des ingredients LIGNE 2
-        // On affiche les images des ingrédients
-        g.drawImage(this.imageMeat, 83, 740, 45, 45,this);
-        g.drawImage(this.imageSalade, 234, 744, 40, 40,this);
-        g.drawImage(this.imageSauce, 380,743,40,40,this);
-        g.drawImage(this.imagePoulet, 528,740,45,45,this);
-        g.drawImage(this.imageTortilla, 680,743,38,38,this);
-        g.drawImage(this.imageSalt, 820,744,45,45,this);
-    }
-
-    /**
-     * Méthode qui affiche un cercle vert autour et précisément pour
-     * les ingrédients sélectionnés.
-     *
-     * @param g  l'objet grraphique de l'interface de type 'Graphics'
-     * */
-    public void drawSelection(Graphics g){
-        //Couleur du cercle
-        g.setColor(Color.green);
-        //On déclare la liste des ingrédients
-        String[] Ingredients = {"pain","huile","patate","tomate","fromage","pate","viande","salade","sauce","poulet","tortilla","sel"};
-        //Coordonnée X des cercles
-        int[] xPositions = {125,275,425,575,720,867};
-        //Coordonnée Y des cercles
-        int yPosition = 695;
-        for(int i = 0; i <Ingredients.length;i++) {
-            //Au delà du 5e ingrédient on affiche en 2e ligne
-            if(i > 5) { yPosition = 735; }
-            if (this.etat.getSelectionIngredients().contains(Ingredients[i])){
-                g.fillOval(xPositions[i%6],yPosition,13,13);
-            }
-        }
-    }
     /**
      * Méthode qui inverse la réponse de displayHelp
      * (afin de dire qu'il ne faut pas afficher l'aide sur l'écran).
