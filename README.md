@@ -1,22 +1,24 @@
 # RAPPORT PROJET MCDO PCII #
 
 - [RAPPORT PROJET MCDO PCII](#rapport-projet-mcdo-pcii)
-  * [I. INTRODUCTION](#i-introduction)
-  * [II. ANALYSE GLOBALE](#ii-analyse-globale)
-  * [III. PLAN DE DÉVELOPPEMENT](#iii-PLAN-DE-DEVELOPPEMENT)
-  * [IV. Conception générale](#iv-conception-g-n-rale)
-  * [V. Conception détaillée :](#v-conception-d-taill-e--)
-  * [VI. RÉSULTAT :](#vi-r-sultat--)
-  * [VII. DOCUMENTATION UTILISATEUR :](#vii-documentation-utilisateur--)
-  * [VIII. DOCUMENTATION DÉVELOPPEUR :](#viii-documentation-d-veloppeur--)
-- [IV. CONCLUSION :</span>](#iv-conclusion----span-)
+  * [I. Introduction](#i-introduction)
+  * [II. Analyse globale](#ii-analyse-globale)
+  * [III. Plan de développement](#iii-plan-de-développement)
+  * [IV. Conception générale](#iv-conception-générale)
+  * [V. Conception détaillée](#v-conception-détaillée)
+  * [VI. Résultat](#vi-resultat)
+  * [VII. Documentation utilisateur](#vii-documentation-utilisateur)
+  * [VIII. Documentation développeur](#viii-documentation-développeur)
+- [IV. Conclusion](#iv-conclusion)
 
 
-![](https://i.imgur.com/8suPRTo.gif)
+![output2](https://user-images.githubusercontent.com/77997318/232344627-5f8da1a6-f74e-42c8-b9b6-e78c50526795.gif)
+
 
 
 ## I. INTRODUCTION
- 
+
+
 
 Nous avons choisi de fonder notre projet sur un jeu se déroulant dans un restaurant. Initialement, nous avions envisagé un jeu de bataille spatial, mais nous avons réalisé que de nombreux groupes explorent déjà ce type de concepts. Par conséquent, nous avons opté pour une approche plus originale.
 
@@ -190,7 +192,7 @@ La fin de partie a lieu lorsqu’un nombre trop important de clients insatisfait
  Nous suivons le modèle MVC pour ce projet, nos classes seront donc dans des packages différents selon qu’elles agissent sur la vue, sur le modèle, ou sur le contrôle.
 
 
-## V. Conception détaillée :
+## V. Conception détaillée
 
 _Création des ingrédients :_
 
@@ -337,13 +339,13 @@ Diagramme de classe du package Control
 ![](https://i.imgur.com/10vHWb4.png)
 
 
-## VI. RÉSULTAT :
+## VI. RÉSULTAT
 
 ![](https://i.imgur.com/7QhpkhH.jpg)
 
 
 
-## VII. DOCUMENTATION UTILISATEUR :
+## VII. DOCUMENTATION UTILISATEUR
 
  
 
@@ -352,7 +354,7 @@ Afin de jouer à notre jeu, nous avons quelques recommandations et obligations. 
  
 
 
-## VIII. DOCUMENTATION DÉVELOPPEUR :
+## VIII. DOCUMENTATION DÉVELOPPEUR
 
 L’organisation du jeu n’est pas très compliquée. En effet, pour faire fonctionner le projet, il suffit de cliquer sur la fonction main et lancer le projet. La classe du main se trouve directement lorsque le projet s’ouvre. La classe AffichageServeur du package Vue est la plus fournie. Elle contient tous les éléments nécessaires à l’affichage complet du jeu : des clients aux animations, en passant par les ingrédients ainsi que les locaux.
 
@@ -361,7 +363,7 @@ Les principales constantes modifiables dans notre jeu sont l’environnement et 
 Nous aurions également pu implémenter d’autres fonctionnalités telles que l’affichage du taux d’énervement sur le bonhomme qui représente le client en restaurant. Nous aurions pu également afficher un grill pour faire cuire les ingrédients qui se déclencherait une fois l’ingrédient déposé en créant un nouveau JPanel.
 
 
-# IV. CONCLUSION :</span> 
+# IV. CONCLUSION
 
 
 Nous avons réussi à implémenter notre jeu à peu près comme nous l’avions imaginé au début de ce projet. Nous avons notamment fait beaucoup d’efforts graphiquement et nous avons essayé de rendre le jeu le plus interactif possible pour l’utilisateur. Cependant, nous avons rencontré quelques difficultés tout d’abord à se mettre d’accord sur quelles fonctionnalités étaient le plus importantes à réaliser, et puis bien-sûr au niveau du code afin de mettre en place les différents JPanel ainsi qu’avec la gestion des threads simultanés et la modification des variables par ceux-ci. L’utilisation du modèle MVC dont nous n’étions pas toujours habitués nous a permis de bien structurer nos idées et ne pas mélanger nos classes et nos fonctions. Il y a encore de nombreuses améliorations à faire à notre projet afin de le rendre le plus agréable possible cependant nous sommes déjà fiers du travail accompli !
