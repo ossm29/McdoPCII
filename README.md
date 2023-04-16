@@ -3,7 +3,7 @@
 - [RAPPORT PROJET MCDO PCII](#rapport-projet-mcdo-pcii)
   * [I. INTRODUCTION](#i-introduction)
   * [II. ANALYSE GLOBALE](#ii-analyse-globale)
-  * [III. PLAN DE DÉVELOPPEMENT](#iii-plan-de-d-veloppement)
+  * [III. PLAN DE DÉVELOPPEMENT](#iii-PLAN-DE-DEVELOPPEMENT)
   * [IV. Conception générale](#iv-conception-g-n-rale)
   * [V. Conception détaillée :](#v-conception-d-taill-e--)
   * [VI. RÉSULTAT :](#vi-r-sultat--)
